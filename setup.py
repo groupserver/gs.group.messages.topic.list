@@ -33,6 +33,9 @@ setup(name='gs.group.messages.topics',
     install_requires=[
         'setuptools',
         'gs.group.base',
+        'gs.group.home',
+        'gs.group.member.canpost',
+        'Products.GSGroup',
         # -*- Extra requirements: -*-
     ],
     entry_points="""
