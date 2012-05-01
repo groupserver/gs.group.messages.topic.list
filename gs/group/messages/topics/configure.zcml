@@ -4,6 +4,22 @@
   xmlns:rdb="http://namespaces.zope.org/rdb"
   xmlns:sqlos="http://namespaces.sqlobject.org/sqlos"
   xmlns:five="http://namespaces.zope.org/five">
-   
+
+  <!--The Topics tab on the group page-->
+  <browser:viewlet name="gs-group-messages-topics-tab"
+    manager="gs.group.home.interfaces.IGroupHomepageTasks"
+    template="browser/templates/topics.pt"
+    class=".topicstab.TopicsTab"
+    permission="zope2.Public"
+    weight="0"
+    title="Topics" />
+  <!--The JavaScript to drive the Topics tab-->
+  <browser:viewlet name="gs-group-messages-topics-script"
+    manager="gs.group.home.interfaces.IGroupHomepageScripts"
+    template="browser/templates/topicscript.pt"
+    class="gs.group.home.simpletab.PublicTab"
+    permission="zope2.Public"
+    title="Topics" />
+
 </configure>
 

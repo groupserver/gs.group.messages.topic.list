@@ -1,0 +1,42 @@
+<div>
+  <tal:block condition="view/viewTopics">
+    <div id="latestTopics">
+      <img style="margin:0px 0.69em 0px 0px;padding:0px;"
+        src="/++resource++anim/wait.gif"/> 
+      Loading the latest topics
+    </div>
+    <ul id="extended-topic-tasks" class="inline-list">
+      <li><a href="messages/topics.html"><strong>More</strong>
+          topics&#8230;</a></li>
+      <li><a type="application/atom+xml" class="alternateATOM"
+          tal:define="url string:/s/search.atom?t=0&amp;p=1&amp;g=${view/groupInfo/id}"
+          tal:attributes="href url" href="#">Web feed</a></li>
+    </ul>
+    <div tal:condition="view/canPost/canPost" 
+      class="ui-state-highlight ui-corner-all"
+      id="topic-posting-tasks">
+      <p style="margin:1.385em;">
+        <span class="ui-icon ui-icon-info" style="float: left;">&#160;</span>
+        You can 
+        <a href="messages/newTopic.html"><strong>post</strong> to a new
+          topic</a> using the Web or send an email to
+        <a href="#" tal:attributes="href string:mailto:${view/email}">
+          <code class="email" 
+            tal:content="view/email">the email address</code></a>.
+      </p>
+    </div><!--topic-posting-tasks-->
+  </tal:block>
+  <tal:block condition="not:view/viewTopics">
+    <!--We must be looking at a private group-->
+    <p>
+      You must be a logged in member of 
+      <span class="group" tal:content="view/groupInfo/name">this group</span>
+      to view the topics.
+    </p>
+    <tal:block 
+      replace="structure provider:groupserver.GroupHomepageUsBarLinks">
+      &#160;
+    </tal:block>
+  </tal:block>  
+</div>
+
