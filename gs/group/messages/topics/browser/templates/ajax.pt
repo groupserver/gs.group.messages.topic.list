@@ -1,0 +1,13 @@
+<div id="gs-group-messages-topics-ajax-response">
+  <ul class="searchResults">
+    <tal:block repeat="topic view/topics">
+      <li id="result"
+        tal:attributes="id string:gs-group-messages-topics-ajax-response-${topic/topic_id}">
+        <a class="topic" href="#"
+          tal:attributes="href string:/r/topic/${topic/last_post_id}"
+          tal:content="topic/subject">TopicName</a><!--topic-->
+        <!--TODO: Files go here-->
+      </li>
+    </tal:block>
+  </ul><!--searchResults-->
+</div><!--gs-group-messages-topics-ajax-response-->

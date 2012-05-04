@@ -1,20 +1,28 @@
 <div>
   <tal:block condition="view/viewTopics">
-    <div id="latestTopics">
+    <p id="gs-group-messages-topics-loading">
       <img style="margin:0px 0.69em 0px 0px;padding:0px;"
         src="/++resource++anim/wait.gif"/> 
       Loading the latest topics
-    </div>
+    </p><!--gs-group-messages-topics-loading-->
+    <div id="gs-group-messages-topics-latest" 
+      style="display:none;">
+      &#160;
+    </div><!--gs-group-messages-topics-latest-->
+    <div id="gs-group-messages-topics-toolbar">
+      <span class="ui-widget-header ui-corner-all"
+        style="padding: 0.692em;">
+        <button id="gs-group-messages-topics-toolbar-prev">Newer</button>
+        <button id="gs-group-messages-topics-toolbar-next">Older</button>
+      </span>
+    </div><!--gs-group-messages-topics-toolbar-->
     <ul id="extended-topic-tasks" class="inline-list">
-      <li><a href="messages/topics.html"><strong>More</strong>
-          topics&#8230;</a></li>
       <li><a type="application/atom+xml" class="alternateATOM"
           tal:define="url string:/s/search.atom?t=0&amp;p=1&amp;g=${view/groupInfo/id}"
           tal:attributes="href url" href="#">Web feed</a></li>
     </ul>
     <div tal:condition="view/canPost/canPost" 
-      class="ui-state-highlight ui-corner-all"
-      id="topic-posting-tasks">
+      class="ui-corner-all" id="topic-posting-tasks">
       <p style="margin:1.385em;">
         <span class="ui-icon ui-icon-info" style="float: left;">&#160;</span>
         You can 

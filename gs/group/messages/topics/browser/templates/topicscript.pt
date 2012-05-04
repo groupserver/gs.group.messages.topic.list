@@ -1,8 +1,4 @@
-<tal:block>
-jQuery.noConflict() 
-jQuery(document).ready( function () {
-  var uri = "/s/search.ajax?g=<tal:block content="view/groupInfo/id"/>&amp;i=0&amp;l=6";
-  jQuery("#latestTopics").load(uri);
-});
-</tal:block>
+<script type="text/javascript" 
+  src="/++resource++gs-group-messages-topics-js-20120504.js">&#160;</script>
+
 
