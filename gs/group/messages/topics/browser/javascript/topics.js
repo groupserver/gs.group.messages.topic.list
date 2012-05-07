@@ -86,7 +86,7 @@ GSGroupTopicTab = function () {
         loadingMessage.fadeOut('slow', 'swing', show_topics);
     };// load_complete
     var show_topics = function () {
-        // Show the topics list.
+        // Show the topics list
         latestTopics.fadeIn('slow', 'swing');
         prevButton.button('option', 'disabled', offset <= 0);
     };//show_topics
