@@ -29,9 +29,31 @@ class TopicsAjax(GroupPage):
         return retval
     
     @Lazy
-    def topics(self):
+    def rawTopicInfo(self):
         retval = self.messageQuery.topic_search_keyword(
               self.searchTokens, self.siteInfo.id,
               [self.groupInfo.id], limit=self.limit, offset=self.offset)
         return retval
+        
+    @Lazy
+    def topicFiles(self):
+        tIds = [t['topic_id'] for t in self.rawTopicInfo]
+        retval = self.messageQuery.files_metadata_topic(tIds)
+        return retval
+
+    def files_for_topic(self, topic):
+        retval = [{
+                'name': f['file_name'],
+                'url': '/r/topic/%s#post-%s' % (f['post_id'], f['post_id']),
+                'icon': f['mime_type'].replace('/','-').replace('.','-'),
+            } for f in self.topicFiles 
+                if f['topic_id'] == topic['topic_id']]
+        return retval
+        
+    def topics(self):
+        '''Generator, which returns the topics'''
+        topics = self.rawTopicInfo
+        for topic in topics:
+            topic['files'] = self.files_for_topic(topic)
+            yield topic
 

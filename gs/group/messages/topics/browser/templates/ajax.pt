@@ -6,7 +6,14 @@
         <a class="topic" href="#"
           tal:attributes="href string:/r/topic/${topic/last_post_id}"
           tal:content="topic/subject">TopicName</a><!--topic-->
-        <!--TODO: Files go here-->
+        <span class="files" tal:condition="topic/files">
+          <tal:block tal:repeat="file python:topic['files'][-7:]">
+            <a href="#" title="foo"
+              tal:attributes="title file/name;
+                href file/url;
+                class string:fileIcon ${file/icon}">&#160;</a>
+          </tal:block>
+        </span>
       </li>
     </tal:block>
   </ul><!--searchResults-->
