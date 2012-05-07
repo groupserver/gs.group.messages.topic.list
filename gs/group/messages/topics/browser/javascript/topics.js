@@ -79,10 +79,12 @@ GSGroupTopicTab = function () {
             'i': offset,
             'l': limit,
         };
-        latestTopics.load(ajaxPage, data, load_complete);
+        jQuery.post(ajaxPage, data, load_complete);
     };// load_topics
     var load_complete = function(responseText, textStatus, request) {
-        // Hide the Loading message 
+        // Set the contents of the Topics list to the respose.
+        latestTopics.html(responseText);
+        // Hide the Loading message and show the topics
         loadingMessage.fadeOut('slow', 'swing', show_topics);
     };// load_complete
     var show_topics = function () {
