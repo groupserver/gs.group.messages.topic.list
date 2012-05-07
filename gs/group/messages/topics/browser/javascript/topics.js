@@ -3,6 +3,7 @@ jQuery.noConflict();
 GSGroupTopicTab = function () {
     // Private variables
     // Widgets
+    var toolbar = null;
     var prevButton = null;
     var moreButton = null;
     var nextButton = null;
@@ -21,8 +22,7 @@ GSGroupTopicTab = function () {
         nextButton = jQuery('#gs-group-messages-topics-toolbar-next');
         nextButton.button({
             text: true,
-            icons: { primary: 'ui-icon-carat-1-e', },
-            disabled: false,
+            disabled: true,
         });
         nextButton.click(handle_next);
     };// init_next_button
@@ -37,7 +37,7 @@ GSGroupTopicTab = function () {
         moreButton.button({
             text: true,
             icons: { primary: 'ui-icon-carat-1-s', },
-            disabled: false,
+            disabled: true,
         });
         moreButton.click(handle_more);
     };// init_more_button
@@ -86,9 +86,18 @@ GSGroupTopicTab = function () {
         loadingMessage.fadeOut('slow', 'swing', show_topics);
     };// load_complete
     var show_topics = function () {
-        // Show the topics list
+        // Show the topics list, and enable the buttons as required.
+        var nTopics = null;
         latestTopics.fadeIn('slow', 'swing');
         prevButton.button('option', 'disabled', offset <= 0);
+        
+        nTopics = latestTopics.find('.topic').length;
+        nextButton.button('option', 'disabled', nTopics < limit);
+        moreButton.button('option', 'disabled', nTopics < limit);
+        
+        if ((offset <= 0) && (nTopics < limit)) {
+            toolbar.fadeOut('fast', 'swing');
+        }
     };//show_topics
 
     // Public methods and properties.
@@ -102,6 +111,7 @@ GSGroupTopicTab = function () {
             init_next_button();
             latestTopics = jQuery('#gs-group-messages-topics-latest');
             loadingMessage = jQuery('#gs-group-messages-topics-loading');
+            toolbar = jQuery('#gs-group-messages-topics-toolbar');
             load_topics();
         },//init
     };
