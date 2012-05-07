@@ -1,6 +1,6 @@
 <div id="gs-group-messages-topics-ajax-response"
   tal:define="munge_date python:modules['Products.XWFCore.XWFUtils'].munge_date;">
-  <ul class="searchResults">
+  <ul class="searchResults" tal:condition="view/viewTopics">
     <tal:block repeat="topic view/topics">
       <li id="result"
         tal:attributes="id string:gs-group-messages-topics-ajax-response-${topic/topic_id}">
@@ -46,4 +46,7 @@
       </li>
     </tal:block>
   </ul><!--searchResults-->
+  <p tal:condition="not:view/viewTopics">
+    Only members can view the topics.
+  </p>
 </div><!--gs-group-messages-topics-ajax-response-->

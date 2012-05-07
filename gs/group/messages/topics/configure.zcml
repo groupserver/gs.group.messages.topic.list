@@ -20,12 +20,11 @@
     class="gs.group.home.simpletab.PublicTab"
     permission="zope2.Public"
     title="Topics" />
-    
   <browser:resource 
     name="gs-group-messages-topics-js-20120504.js"
     file="browser/javascript/topics.js"
     permission="zope2.Public" />
-
+  <!--The page that returns the search-results to the tab. -->
   <browser:page name="gs-group-topics-ajax.html"
     for="gs.group.base.interfaces.IGSGroupMarker"
     template="browser/templates/ajax.pt"

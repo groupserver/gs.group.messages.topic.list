@@ -2,6 +2,7 @@
 from math import log10
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject
+from AccessControl import getSecurityManager
 from gs.group.base.page import GroupPage
 from Products.GSSearch.queries import MessageQuery
 from Products.XWFCore.cache import LRUCache
@@ -10,6 +11,15 @@ from Products.XWFMailingListManager.stopwords import en as STOP_WORDS
 class TopicsAjax(GroupPage):
     topicKeywords = LRUCache("TopicKeywords")
     authorCache = LRUCache("Author")
+    
+    @Lazy
+    def viewTopics(self):
+        # TODO: Figure out I could do this better.
+        msgs = self.context.messages
+        user = getSecurityManager().getUser()
+        retval = bool(user.has_permission('View', msgs))
+        return retval
+    
     @Lazy
     def messageQuery(self):
         da = self.context.zsqlalchemy
