@@ -94,8 +94,7 @@ GSGroupTopicTab = function () {
     };
     var handle_search_input = function(eventObject) {
         if (eventObject.which == 13) {
-            searchText = searchInput.val();
-            latestTopics.fadeOut(FADE_SPEED, FADE_METHOD, do_topics_load);
+            searchButton.click();
         }
     };
     
@@ -129,10 +128,26 @@ GSGroupTopicTab = function () {
         nextButton.button('option', 'disabled', nTopics < limit);
         moreButton.button('option', 'disabled', nTopics < limit);
         
+        init_keywords();
+        
         if ((offset <= 0) && (nTopics < limit)) {
             toolbar.fadeOut('fast', FADE_METHOD);
         }
     };//show_topics
+
+    var init_keywords = function () {
+        var result = null;
+        var keywords = null;
+        result = jQuery("#gs-group-messages-topics-ajax-response");
+        keywords = result.find('.keyword');
+        keywords.removeAttr('href');
+        keywords.click(handle_keyword_click);
+    };//init_keywords
+    var handle_keyword_click = function(eventObject) {
+        searchText = jQuery(this).text();
+        searchInput.val(searchText);
+        searchButton.click();
+    };//handle_keyword_click
 
     // Public methods and properties.
     return {
@@ -145,6 +160,7 @@ GSGroupTopicTab = function () {
             init_next_button();
             init_search_button();
             init_search_input();
+            
             latestTopics = jQuery('#gs-group-messages-topics-latest');
             loadingMessage = jQuery('#gs-group-messages-topics-loading');
             toolbar = jQuery('#gs-group-messages-topics-toolbar');
