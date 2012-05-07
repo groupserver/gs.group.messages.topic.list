@@ -83,10 +83,21 @@ GSGroupTopicTab = function () {
         });
         searchButton.click(handle_search)
     };//init_search_button
-    var handle_search = function () {
+    var handle_search = function (eventObject) {
         searchText = searchInput.val();
         latestTopics.fadeOut(FADE_SPEED, FADE_METHOD, do_topics_load);
     };//handle_search
+    
+    var init_search_input = function () {
+        searchInput = jQuery('#gs-group-messages-topics-search-input');
+        searchInput.keypress(handle_search_input);
+    };
+    var handle_search_input = function(eventObject) {
+        if (eventObject.which == 13) {
+            searchText = searchInput.val();
+            latestTopics.fadeOut(FADE_SPEED, FADE_METHOD, do_topics_load);
+        }
+    };
     
     // Code to load the topics in a pleasing way.
     var do_topics_load = function () {
@@ -133,7 +144,7 @@ GSGroupTopicTab = function () {
             init_more_button()
             init_next_button();
             init_search_button();
-            searchInput = jQuery('#gs-group-messages-topics-search-input');
+            init_search_input();
             latestTopics = jQuery('#gs-group-messages-topics-latest');
             loadingMessage = jQuery('#gs-group-messages-topics-loading');
             toolbar = jQuery('#gs-group-messages-topics-toolbar');
