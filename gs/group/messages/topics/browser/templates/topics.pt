@@ -13,6 +13,7 @@
       <span class="ui-widget-header ui-corner-all"
         style="padding: 0.692em;">
         <button id="gs-group-messages-topics-toolbar-prev">Newer</button>
+        <button id="gs-group-messages-topics-toolbar-more">More</button>
         <button id="gs-group-messages-topics-toolbar-next">Older</button>
       </span>
     </div><!--gs-group-messages-topics-toolbar-->
