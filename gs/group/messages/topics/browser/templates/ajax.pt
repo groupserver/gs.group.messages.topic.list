@@ -1,4 +1,5 @@
-<div id="gs-group-messages-topics-ajax-response">
+<div id="gs-group-messages-topics-ajax-response"
+  tal:define="munge_date python:modules['Products.XWFCore.XWFUtils'].munge_date;">
   <ul class="searchResults">
     <tal:block repeat="topic view/topics">
       <li id="result"
@@ -21,6 +22,24 @@
             </tal:block>
           </ul>
         </div><!--tags-->
+        <div class="metadata"
+          tal:define="multiplePosts python:topic['num_posts']&gt;1">
+          <span class="postCount">
+            <span class="cardinal" tal:content="topic/num_posts"/>
+            post<tal:block condition="multiplePosts">s</tal:block> 
+          </span>
+          &#8212;
+          <tal:block condition="multiplePosts">latest post</tal:block>
+          by
+          <a class="name" href="#" 
+            tal:omit-tag="not:topic/last_author/exists"
+            tal:attributes="href topic/last_author/url"
+            tal:content="topic/last_author/name">Me!</a>
+          at
+          <span class="date"
+            tal:define="ctx view/context; d topic/last_post_date" 
+            tal:content="python:munge_date(ctx, d)"/>
+        </div><!--metadata-->
       </li>
     </tal:block>
   </ul><!--searchResults-->

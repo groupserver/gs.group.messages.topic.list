@@ -9,6 +9,7 @@ from Products.XWFMailingListManager.stopwords import en as STOP_WORDS
 
 class TopicsAjax(GroupPage):
     topicKeywords = LRUCache("TopicKeywords")
+    authorCache = LRUCache("Author")
     @Lazy
     def messageQuery(self):
         da = self.context.zsqlalchemy
@@ -90,12 +91,31 @@ class TopicsAjax(GroupPage):
         retval.sort(tfidf_sort)
         return retval
 
+    def last_author_for_topic(self, topic):
+        userId = topic['last_post_user_id']
+        authorInfo = self.authorCache.get(userId)
+        if not authorInfo:
+            ui = createObject('groupserver.UserFromId', 
+                                    self.context, userId)
+            authorInfo = {
+                'id':       ui.id,
+                'exists':   not ui.anonymous,
+                'url':      ui.url,
+                'name':     ui.name,
+                'onlyURL':  '#' # TODO: Fix
+            }
+            self.authorCache.add(userId, authorInfo)
+        assert authorInfo
+        assert authorInfo['id'] == userId
+        return authorInfo
+
     def topics(self):
         '''Generator, which returns the topics'''
         topics = self.rawTopicInfo
         for topic in topics:
             topic['files'] = self.files_for_topic(topic)
             topic['keywords'] = self.keywords_for_topic(topic)
+            topic['last_author'] = self.last_author_for_topic(topic)
             yield topic
 
 def tfidf_sort(a, b):
