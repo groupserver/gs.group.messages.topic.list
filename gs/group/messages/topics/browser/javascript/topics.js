@@ -7,13 +7,19 @@ GSGroupTopicTab = function () {
     var prevButton = null;
     var moreButton = null;
     var nextButton = null;
+    var searchInput = null;
+    var searchButton = null;
     var latestTopics = null;
     var loadingMessage = null;
     // Search Info
     var ajaxPage = 'gs-group-topics-ajax.html';
     var offset = null;
     var limit = null;
+    var searchText = '';
+    // Constants
     var MAX_ITEMS = 48;
+    var FADE_SPEED = 'slow';
+    var FADE_METHOD = 'swing';
     
     // Private methods
     
@@ -28,7 +34,7 @@ GSGroupTopicTab = function () {
     };// init_next_button
     var handle_next = function(eventObject) {
         offset = offset + limit;
-        latestTopics.fadeOut('slow', 'swing', do_topics_load);
+        latestTopics.fadeOut(FADE_SPEED, FADE_METHOD, do_topics_load);
     };//handle_next
     
     // More button
@@ -47,7 +53,7 @@ GSGroupTopicTab = function () {
             limit = MAX_ITEMS;
             moreButton.button('options', 'disabled', true);
         }
-        latestTopics.fadeOut('slow', 'swing', do_topics_load);
+        latestTopics.fadeOut(FADE_SPEED, FADE_METHOD, do_topics_load);
     };//handle_more
     
     // Previous Button
@@ -65,19 +71,34 @@ GSGroupTopicTab = function () {
         if (offset < 0) {
             offset = 0
         }
-        latestTopics.fadeOut('slow', 'swing', do_topics_load);
+        latestTopics.fadeOut(FADE_SPEED, FADE_METHOD, do_topics_load);
     };//handle_prev
+    
+    var init_search_button = function() {
+        searchButton = jQuery('#gs-group-messages-topics-search-button');
+        searchButton.button({
+            text: false,
+            icons: { primary: 'ui-icon-search', },
+            disabled: false,
+        });
+        searchButton.click(handle_search)
+    };//init_search_button
+    var handle_search = function () {
+        searchText = searchInput.val();
+        latestTopics.fadeOut(FADE_SPEED, FADE_METHOD, do_topics_load);
+    };//handle_search
     
     // Code to load the topics in a pleasing way.
     var do_topics_load = function () {
         // Function used by the buttons.
-        loadingMessage.fadeIn('slow', 'swing', load_topics);
+        loadingMessage.fadeIn(FADE_SPEED, FADE_METHOD, load_topics);
     };//do_topics_load
     var load_topics = function() {
         // Actually load the topics, making am AJAX request
         var data = {
             'i': offset,
             'l': limit,
+            's': searchText,
         };
         jQuery.post(ajaxPage, data, load_complete);
     };// load_topics
@@ -85,12 +106,12 @@ GSGroupTopicTab = function () {
         // Set the contents of the Topics list to the respose.
         latestTopics.html(responseText);
         // Hide the Loading message and show the topics
-        loadingMessage.fadeOut('slow', 'swing', show_topics);
+        loadingMessage.fadeOut(FADE_SPEED, FADE_METHOD, show_topics);
     };// load_complete
     var show_topics = function () {
         // Show the topics list, and enable the buttons as required.
         var nTopics = null;
-        latestTopics.fadeIn('slow', 'swing');
+        latestTopics.fadeIn(FADE_SPEED, FADE_METHOD);
         prevButton.button('option', 'disabled', offset <= 0);
         
         nTopics = latestTopics.find('.topic').length;
@@ -98,7 +119,7 @@ GSGroupTopicTab = function () {
         moreButton.button('option', 'disabled', nTopics < limit);
         
         if ((offset <= 0) && (nTopics < limit)) {
-            toolbar.fadeOut('fast', 'swing');
+            toolbar.fadeOut('fast', FADE_METHOD);
         }
     };//show_topics
 
@@ -111,6 +132,8 @@ GSGroupTopicTab = function () {
             init_prev_button();
             init_more_button()
             init_next_button();
+            init_search_button();
+            searchInput = jQuery('#gs-group-messages-topics-search-input');
             latestTopics = jQuery('#gs-group-messages-topics-latest');
             loadingMessage = jQuery('#gs-group-messages-topics-loading');
             toolbar = jQuery('#gs-group-messages-topics-toolbar');

@@ -1,9 +1,16 @@
 <div>
   <tal:block condition="view/viewTopics">
+    <div id="gs-group-messages-topics-search">
+      <input type="text" class="textType" name="s" 
+        id="gs-group-messages-topics-search-input" value=""
+        style="width:27.692em;margin-left:0;display:inline-block;"
+        title="Search this group"/>
+      <button id="gs-group-messages-topics-search-button">Search</button>
+    </div><!--gs-group-messages-topics-search-->
     <p id="gs-group-messages-topics-loading">
       <img style="margin:0px 0.69em 0px 0px;padding:0px;"
         src="/++resource++anim/wait.gif"/> 
-      Loading the latest topics
+      Loading the topics
     </p><!--gs-group-messages-topics-loading-->
     <div id="gs-group-messages-topics-latest" 
       style="display:none;">

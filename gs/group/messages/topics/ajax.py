@@ -18,7 +18,8 @@ class TopicsAjax(GroupPage):
 
     @Lazy
     def searchTokens(self):
-        return createObject('groupserver.SearchTextTokens', "")
+        s = self.request.get('s', '')
+        return createObject('groupserver.SearchTextTokens', s)
     
     @Lazy
     def offset(self):
