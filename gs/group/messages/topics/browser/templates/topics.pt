@@ -44,7 +44,7 @@
           tal:define="url string:/s/search.atom?t=0&amp;p=1&amp;g=${view/groupInfo/id}"
           tal:attributes="href url" href="#">Web feed</a></li>
         <li><a id="gs-group-messages-topics-advanced-search-link"
-          tal:define="url string:/s/?t=0&amp;p=1&amp;g=${view/groupInfo/id}"
+          tal:define="url string:/s/?g=${view/groupInfo/id}&amp;i=0"
           tal:attributes="href url" href="#">Advanced Search</a></li>
       </ul>
     </div><!--gs-group-messages-topics-advanced-->

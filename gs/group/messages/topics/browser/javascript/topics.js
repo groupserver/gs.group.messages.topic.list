@@ -10,6 +10,7 @@ GSGroupTopicTab = function () {
     var searchButton = null;
     var latestTopics = null;
     var loadingMessage = null;
+    var advancedSearch = null;
     // Search Info
     var ajaxPage = 'gs-group-topics-ajax.html';
     var offset = null;
@@ -66,6 +67,7 @@ GSGroupTopicTab = function () {
     };//init_search_button
     var handle_search = function (eventObject) {
         searchText = searchInput.val();
+        offset = 0;
         latestTopics.fadeOut(FADE_SPEED, FADE_METHOD, do_topics_load);
     };//handle_search
     
@@ -91,6 +93,15 @@ GSGroupTopicTab = function () {
             'l': limit,
             's': searchText,
         };
+        var href = null;
+        var query = null;
+        var newHref = null;
+        
+        href = advancedSearch.attr('href');
+        query = '&i='+offset+'&s='+searchText.replace(/ /, '+');
+        newHref = href.replace(/&i.*$/, query);
+        advancedSearch.attr('href', newHref);
+        
         jQuery.post(ajaxPage, data, load_complete);
     };// load_topics
     var load_complete = function(responseText, textStatus, request) {
@@ -143,6 +154,8 @@ GSGroupTopicTab = function () {
             latestTopics = jQuery('#gs-group-messages-topics-latest');
             loadingMessage = jQuery('#gs-group-messages-topics-loading');
             toolbar = jQuery('#gs-group-messages-topics-toolbar');
+            advancedSearch = jQuery('#gs-group-messages-topics-advanced-search-link');
+            
             load_topics();
         },//init
     };
