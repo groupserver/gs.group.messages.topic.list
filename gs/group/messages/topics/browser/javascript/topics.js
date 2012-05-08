@@ -16,6 +16,7 @@ GSGroupTopicTab = function () {
     var offset = null;
     var limit = null;
     var searchText = '';
+    var toolbarShown = true;
     // Constants
     var MAX_ITEMS = 48;
     var FADE_SPEED = 'slow';
@@ -121,8 +122,12 @@ GSGroupTopicTab = function () {
         
         init_keywords();
         
-        if ((offset <= 0) && (nTopics < limit)) {
+        if ((offset <= 0) && (nTopics < limit) && toolbarShown) {
             toolbar.fadeOut('fast', FADE_METHOD);
+            toolbarShown = false;
+        } else if (((offset > 0) || (nTopics >= limit)) && !toolbarShown) {
+            toolbar.fadeIn('fast', FADE_METHOD);
+            toolbarShown = true;
         }
     };//show_topics
 
@@ -131,7 +136,7 @@ GSGroupTopicTab = function () {
         var keywords = null;
         result = jQuery("#gs-group-messages-topics-ajax-response");
         keywords = result.find('.keyword');
-        keywords.removeAttr('href');
+        keywords.removeAttr('href').css("cursor","pointer");
         keywords.click(handle_keyword_click);
     };//init_keywords
     var handle_keyword_click = function(eventObject) {
