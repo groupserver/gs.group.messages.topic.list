@@ -5,7 +5,6 @@ GSGroupTopicTab = function () {
     // Widgets
     var toolbar = null;
     var prevButton = null;
-    var moreButton = null;
     var nextButton = null;
     var searchInput = null;
     var searchButton = null;
@@ -28,6 +27,7 @@ GSGroupTopicTab = function () {
         nextButton = jQuery('#gs-group-messages-topics-toolbar-next');
         nextButton.button({
             text: true,
+            icons: { secondary: 'ui-icon-carat-1-e', },
             disabled: true,
         });
         nextButton.click(handle_next);
@@ -36,25 +36,6 @@ GSGroupTopicTab = function () {
         offset = offset + limit;
         latestTopics.fadeOut(FADE_SPEED, FADE_METHOD, do_topics_load);
     };//handle_next
-    
-    // More button
-    var init_more_button = function() {
-        moreButton = jQuery('#gs-group-messages-topics-toolbar-more');
-        moreButton.button({
-            text: true,
-            icons: { primary: 'ui-icon-carat-1-s', },
-            disabled: true,
-        });
-        moreButton.click(handle_more);
-    };// init_more_button
-    var handle_more = function(eventObject) {
-        limit = limit * 2;
-        if (limit >= MAX_ITEMS) {
-            limit = MAX_ITEMS;
-            moreButton.button('options', 'disabled', true);
-        }
-        latestTopics.fadeOut(FADE_SPEED, FADE_METHOD, do_topics_load);
-    };//handle_more
     
     // Previous Button
     var init_prev_button = function() {
@@ -126,7 +107,6 @@ GSGroupTopicTab = function () {
         
         nTopics = latestTopics.find('.topic').length;
         nextButton.button('option', 'disabled', nTopics < limit);
-        moreButton.button('option', 'disabled', nTopics < limit);
         
         init_keywords();
         
@@ -152,11 +132,10 @@ GSGroupTopicTab = function () {
     // Public methods and properties.
     return {
         init: function (groupId) {
-            limit = 12;
+            limit = 6;
             offset = 0;
         
             init_prev_button();
-            init_more_button()
             init_next_button();
             init_search_button();
             init_search_input();

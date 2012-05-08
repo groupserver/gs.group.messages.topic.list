@@ -1,4 +1,4 @@
-<div>
+<div id="gs-group-messages-topics">
   <tal:block condition="view/viewTopics">
     <div id="gs-group-messages-topics-search">
       <input type="text" class="textType" name="s" 
@@ -20,27 +20,34 @@
       <span class="ui-widget-header ui-corner-all"
         style="padding: 0.692em;">
         <button id="gs-group-messages-topics-toolbar-prev">Newer</button>
-        <button id="gs-group-messages-topics-toolbar-more">More</button>
         <button id="gs-group-messages-topics-toolbar-next">Older</button>
       </span>
     </div><!--gs-group-messages-topics-toolbar-->
-    <ul id="extended-topic-tasks" class="inline-list">
-      <li><a type="application/atom+xml" class="alternateATOM"
+    <div tal:condition="view/canPost/canPost" 
+      id="gs-group-messages-topics-tasks">
+      <ul style="margin:1.385em 0;">
+        <li><a href="messages/newTopic.html"><strong>Start</strong> a 
+          topic</a> using the Web</li>
+        <li><a tal:attributes="href string:mailto:${view/email}"
+            href="#" >Email
+            <code class="email" 
+              tal:content="view/email">the email address</code></a>.</li>
+      </ul>
+    </div><!--gs-group-messages-topics-tasks-->
+    <div id="gs-group-messages-topics-advanced" 
+      class="disclosureWidget">
+      <p>
+        <a class="disclosureButton">Advanced</a>
+      </p>
+      <ul class="inline-list disclosureShowHide" style="display: none;">
+        <li><a type="application/atom+xml" class="alternateATOM"
           tal:define="url string:/s/search.atom?t=0&amp;p=1&amp;g=${view/groupInfo/id}"
           tal:attributes="href url" href="#">Web feed</a></li>
-    </ul>
-    <div tal:condition="view/canPost/canPost" 
-      class="ui-corner-all" id="topic-posting-tasks">
-      <p style="margin:1.385em;">
-        <span class="ui-icon ui-icon-info" style="float: left;">&#160;</span>
-        You can 
-        <a href="messages/newTopic.html"><strong>post</strong> to a new
-          topic</a> using the Web or send an email to
-        <a href="#" tal:attributes="href string:mailto:${view/email}">
-          <code class="email" 
-            tal:content="view/email">the email address</code></a>.
-      </p>
-    </div><!--topic-posting-tasks-->
+        <li><a id="gs-group-messages-topics-advanced-search-link"
+          tal:define="url string:/s/?t=0&amp;p=1&amp;g=${view/groupInfo/id}"
+          tal:attributes="href url" href="#">Advanced Search</a></li>
+      </ul>
+    </div><!--gs-group-messages-topics-advanced-->
   </tal:block>
   <tal:block condition="not:view/viewTopics">
     <!--We must be looking at a private group-->
@@ -54,5 +61,5 @@
       &#160;
     </tal:block>
   </tal:block>  
-</div>
+</div><!--gs-group-messages-topics-->
 
