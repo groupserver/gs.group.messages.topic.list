@@ -35,7 +35,13 @@ GSGroupTopicTab = function () {
         nextButton.click(handle_next);
     };// init_next_button
     var handle_next = function(eventObject) {
-        offset = offset + limit;
+        var nSticky = null;
+        if (searchInput.val()) {
+            offset = offset + limit;
+        } else {
+            nSticky = latestTopics.find('.sticky').length;
+            offset = offset + limit - nSticky;
+        }
         latestTopics.fadeOut(FADE_SPEED, FADE_METHOD, do_topics_load);
     };//handle_next
     
@@ -134,8 +140,7 @@ GSGroupTopicTab = function () {
     var init_keywords = function () {
         var result = null;
         var keywords = null;
-        result = jQuery("#gs-group-messages-topics-ajax-response");
-        keywords = result.find('.keyword');
+        keywords = latestTopics.find('.keyword');
         keywords.removeAttr('href').css("cursor","pointer");
         keywords.click(handle_keyword_click);
     };//init_keywords
