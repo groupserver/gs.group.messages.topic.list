@@ -9,7 +9,7 @@
           <span tal:condition="topic/sticky"
             style="display:inline-block;"
             title="Sticky"
-            class="ui-icon ui-icon-pin-s">&#160;</span>
+            class="sticky ui-icon ui-icon-pin-s">&#160;</span>
           <span class="name"
               tal:content="topic/subject">TopicName</span></a><!--topic-->
         <span class="files" tal:condition="topic/files">
