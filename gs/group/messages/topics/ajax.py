@@ -1,29 +1,17 @@
 # coding=utf-8
-from math import log10
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject
 from AccessControl import getSecurityManager
 from gs.group.base.page import GroupPage
-from Products.GSSearch.queries import MessageQuery
-from Products.XWFCore.cache import LRUCache
-from Products.XWFMailingListManager.stopwords import en as STOP_WORDS
+from topicssearch import TopicsSearch
 
 class TopicsAjax(GroupPage):
-    topicKeywords = LRUCache("TopicKeywords")
-    authorCache = LRUCache("Author")
-    
     @Lazy
     def viewTopics(self):
         # TODO: Figure out I could do this better.
         msgs = self.context.messages
         user = getSecurityManager().getUser()
         retval = bool(user.has_permission('View', msgs))
-        return retval
-    
-    @Lazy
-    def messageQuery(self):
-        da = self.context.zsqlalchemy
-        retval  = MessageQuery(self.context, da)
         return retval
 
     @Lazy
@@ -43,98 +31,10 @@ class TopicsAjax(GroupPage):
         assert retval >= 0
         return retval
     
-    @Lazy
-    def rawTopicInfo(self):
-        return self.messageQuery.topic_search_keyword(
-                self.searchTokens, self.siteInfo.id, 
-                [self.groupInfo.id], limit=self.limit, 
-                offset=self.offset)
-        
-    @Lazy
-    def topicFiles(self):
-        tIds = [t['topic_id'] for t in self.rawTopicInfo]
-        retval = self.messageQuery.files_metadata_topic(tIds)
-        return retval
-
-    def files_for_topic(self, topic):
-        retval = [{
-                'name': f['file_name'],
-                'url': '/r/topic/%s#post-%s' % (f['post_id'], f['post_id']),
-                'icon': f['mime_type'].replace('/','-').replace('.','-'),
-            } for f in self.topicFiles 
-                if f['topic_id'] == topic['topic_id']]
-        return retval
-        
-    def keywords_for_topic(self, topic):
-        retval = self.topicKeywords.get(topic['last_post_id'])
-        if not retval:
-            retval = self.generate_keywords_for_topic(topic)
-            self.topicKeywords.add(topic['last_post_id'], retval)
-        return retval
-
-    @Lazy
-    def topicsWordCounts(self):
-        tIds = [t['topic_id'] for t in self.rawTopicInfo]
-        retval = self.messageQuery.topics_word_count(tIds)
-        return retval
-    
-    @Lazy
-    def totalTopicCount(self):
-        return self.messageQuery.count_topics()
-        
-    @Lazy
-    def wordCounts(self):
-        return self.messageQuery.word_counts()
-        
-    def generate_keywords_for_topic(self, topic):
-        tId = topic['topic_id']
-        topicWords = [tw for tw in self.topicsWordCounts 
-                        if tw['topic_id'] == tId]
-        twc = float(sum([w['count'] for w in topicWords]))
-        wc = self.wordCounts
-        retval = [{ 'word':  w['word'],
-                    'tfidf': (w['count']/twc)*\
-                              log10(self.totalTopicCount/\
-                                    float(wc.get('word', 1)))}
-                for w in topicWords
-                if ((len(w['word']) > 3) and 
-                     (w['word'] not in STOP_WORDS))]
-        retval.sort(tfidf_sort)
-        return retval
-
-    def last_author_for_topic(self, topic):
-        userId = topic['last_post_user_id']
-        authorInfo = self.authorCache.get(userId)
-        if not authorInfo:
-            ui = createObject('groupserver.UserFromId', 
-                                    self.context, userId)
-            authorInfo = {
-                'id':       ui.id,
-                'exists':   not ui.anonymous,
-                'url':      ui.url,
-                'name':     ui.name,
-                'onlyURL':  '#' # TODO: Fix
-            }
-            self.authorCache.add(userId, authorInfo)
-        assert authorInfo
-        assert authorInfo['id'] == userId
-        return authorInfo
 
     def topics(self):
         '''Generator, which returns the topics'''
-        topics = self.rawTopicInfo
-        for topic in topics:
-            topic['files'] = self.files_for_topic(topic)
-            topic['keywords'] = self.keywords_for_topic(topic)
-            topic['last_author'] = self.last_author_for_topic(topic)
-            yield topic
-
-def tfidf_sort(a, b):
-    if a['tfidf'] < b['tfidf']:
-        retval = 1
-    elif a['tfidf'] == b['tfidf']:
-        retval = 0
-    else:
-        retval = -1
-    return retval
+        ts = TopicsSearch(self.context, self.searchTokens, self.limit,
+                            self.offset)
+        return ts.topics()
 
