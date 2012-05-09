@@ -30,7 +30,6 @@ class TopicsAjax(GroupPage):
         retval = int(self.request.get('l', 6)) % 48
         assert retval >= 0
         return retval
-    
 
     def topics(self):
         '''Generator, which returns the topics'''

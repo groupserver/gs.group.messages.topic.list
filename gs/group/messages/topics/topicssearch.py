@@ -46,7 +46,7 @@ class TopicsSearch(object):
 
     @Lazy
     def topicsQuery(self):
-        retval  = topicsQuery(self.context, self.da)
+        retval  = TopicsQuery(self.da)
         return retval
 
     def topics(self):
@@ -60,10 +60,30 @@ class TopicsSearch(object):
         
     @Lazy
     def rawTopicInfo(self):
-        return self.messageQuery.topic_search_keyword(
+        if ((self.offset == 0) and (not self.searchTokens.searchText)):
+            retval = self.sticky_plus_recent()
+        else:
+            retval = self.normal_search()
+        assert type(retval) == list
+        return retval
+
+    def normal_search(self):
+        retval = self.messageQuery.topic_search_keyword(
                 self.searchTokens, self.siteInfo.id, 
                 [self.groupInfo.id], limit=self.limit, 
                 offset=self.offset)
+        return retval    
+        
+    def sticky_plus_recent(self):
+        s = self.topicsQuery.sticky_topics(self.siteInfo.id,
+                                            self.groupInfo.id)
+        limit = max([self.limit - len(s), 0])
+        r = []
+        if limit:
+            r = self.topicsQuery.recent_non_sitcky_topics(
+                    self.siteInfo.id, self.groupInfo.id, limit)
+        retval = s + r
+        return retval
         
     @Lazy
     def topicFiles(self):

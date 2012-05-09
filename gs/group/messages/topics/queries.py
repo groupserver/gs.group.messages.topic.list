@@ -4,7 +4,8 @@ import sqlalchemy as sa
 class TopicsQuery(object):
     def __init__(self, da):
         self.topicTable = da.createTable('topic')
-
+        self.postTable = da.createTable('post')
+        
     def marshal_topic_info(self, x):
         assert x
         retval = {
@@ -29,16 +30,16 @@ class TopicsQuery(object):
         cols = [tt.c.topic_id.distinct(), tt.c.last_post_id, 
                 tt.c.first_post_id, tt.c.group_id, tt.c.site_id, 
                 tt.c.original_subject, tt.c.last_post_date, 
-                tt.c.num_posts, tt.c.sitcky,
+                tt.c.num_posts, tt.c.sticky,
                 sa.select(  [pt.c.user_id], 
                             tt.c.last_post_id == pt.c.post_id,  
                             scalar=True).label('user_id')]
 
-        statement = sa.select(cols)
+        s = sa.select(cols)
         s.append_whereclause(tt.c.site_id == siteId)
         s.append_whereclause(tt.c.group_id == groupId)
         s.append_whereclause(tt.c.sticky != None)        
-        s.order_by(tt.c.lat_post_date)
+        s.order_by(tt.c.last_post_date)
         r = s.execute()
 
         retval = [self.marshal_topic_info(x)for x in r]
@@ -52,15 +53,15 @@ class TopicsQuery(object):
         cols = [tt.c.topic_id.distinct(), tt.c.last_post_id, 
                 tt.c.first_post_id, tt.c.group_id, tt.c.site_id, 
                 tt.c.original_subject, tt.c.last_post_date, 
-                tt.c.num_posts, tt.c.sitcky,
+                tt.c.num_posts, tt.c.sticky,
                 sa.select(  [pt.c.user_id], 
                             tt.c.last_post_id == pt.c.post_id,  
                             scalar=True).label('user_id')]
-        statement = sa.select(cols)
+        s = sa.select(cols)
         s.append_whereclause(tt.c.site_id == siteId)
         s.append_whereclause(tt.c.group_id == groupId)
         s.append_whereclause(tt.c.sticky == None)
-        s.order_by(tt.c.lat_post_date)
+        s.order_by(tt.c.last_post_date)
         s.limit = limit
 
         r = s.execute()

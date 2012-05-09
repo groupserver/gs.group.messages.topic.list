@@ -5,8 +5,13 @@
       <li id="result"
         tal:attributes="id string:gs-group-messages-topics-ajax-response-${topic/topic_id}">
         <a class="topic" href="#"
-          tal:attributes="href string:/r/topic/${topic/last_post_id}"
-          tal:content="topic/subject">TopicName</a><!--topic-->
+          tal:attributes="href string:/r/topic/${topic/last_post_id}">
+          <span tal:condition="topic/sticky"
+            style="display:inline-block;"
+            title="Sticky"
+            class="ui-icon ui-icon-pin-s">&#160;</span>
+          <span class="name"
+              tal:content="topic/subject">TopicName</span></a><!--topic-->
         <span class="files" tal:condition="topic/files">
           <tal:block tal:repeat="file python:topic['files'][-7:]">
             <a href="#" title="foo"
