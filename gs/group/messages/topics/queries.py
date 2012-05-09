@@ -39,14 +39,14 @@ class TopicsQuery(object):
         s.append_whereclause(tt.c.site_id == siteId)
         s.append_whereclause(tt.c.group_id == groupId)
         s.append_whereclause(tt.c.sticky != None)        
-        s.order_by(tt.c.last_post_date)
+        s.order_by(sa.desc(tt.c.last_post_date))
         r = s.execute()
 
         retval = [self.marshal_topic_info(x)for x in r]
         assert type(retval) == list
         return retval
 
-    def recent_non_sitcky_topics(self, siteId, groupId, limit):
+    def recent_non_sitcky_topics(self, siteId, groupId, limit, offset):
         tt = self.topicTable
         pt = self.postTable
 
@@ -61,8 +61,9 @@ class TopicsQuery(object):
         s.append_whereclause(tt.c.site_id == siteId)
         s.append_whereclause(tt.c.group_id == groupId)
         s.append_whereclause(tt.c.sticky == None)
-        s.order_by(tt.c.last_post_date)
+        s.order_by(sa.desc(tt.c.last_post_date))
         s.limit = limit
+        s.offset = offset
 
         r = s.execute()
 
