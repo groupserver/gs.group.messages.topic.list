@@ -60,8 +60,6 @@ class TopicsSearch(object):
         
     @Lazy
     def rawTopicInfo(self):
-        print 'self.searchTokens.searchText %s' % self.searchTokens.searchText
-        print 'offset %s ' % self.offset
         if ((not self.searchTokens.searchText) and (self.offset == 0)):
             retval = self.sticky_plus_recent()
         elif ((not self.searchTokens.searchText) and (self.offset != 0)):
@@ -72,7 +70,6 @@ class TopicsSearch(object):
         return retval
 
     def normal_search(self):
-        print 'Normal search'
         retval = self.messageQuery.topic_search_keyword(
                 self.searchTokens, self.siteInfo.id, 
                 [self.groupInfo.id], limit=self.limit, 
@@ -80,7 +77,6 @@ class TopicsSearch(object):
         return retval
         
     def sticky_plus_recent(self):
-        print 'sticky plus recent'
         s = self.topicsQuery.sticky_topics(self.siteInfo.id,
                                             self.groupInfo.id)
         limit = max([self.limit - len(s), 0])
@@ -92,7 +88,6 @@ class TopicsSearch(object):
         return retval
         
     def just_recent(self):
-        print 'just recent'
         retval = self.topicsQuery.recent_non_sitcky_topics(
                     self.siteInfo.id, self.groupInfo.id, self.limit,
                     self.offset)
