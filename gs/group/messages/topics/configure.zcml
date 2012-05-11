@@ -31,5 +31,12 @@
     class=".ajax.TopicsAjax"
     permission="zope2.View"/>
 
+  <!--Help-->
+  <browser:viewlet name="gs-group-messages-topics-help"
+    manager="gs.help.interfaces.IUserHelp"
+    template="browser/templates/help.pt"
+    permission="zope2.Public"
+    title="Topics" 
+    weight="4"/>
 </configure>
 
