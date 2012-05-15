@@ -22,7 +22,7 @@
         <div class="tags" tal:condition="topic/keywords">
           <ul class="inline-list">
             <tal:block tal:repeat="keyword topic/keywords">
-              <li class="keyword">
+              <li>
                 <a href="#" class="keyword"
                   tal:content="keyword/word">Keyword</a>
               </li>
