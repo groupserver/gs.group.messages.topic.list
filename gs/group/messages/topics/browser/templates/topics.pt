@@ -30,8 +30,8 @@
               tal:content="view/email">the email address</code></a>.</li>
       </ul>
     </div><!--gs-group-messages-topics-tasks-->
-    <div id="gs-group-messages-topics-advanced" class="advanced"
-      class="disclosureWidget">
+    <div id="gs-group-messages-topics-advanced" 
+      class="advanced disclosureWidget">
       <p>
         <a class="disclosureButton">Advanced</a>
       </p>
