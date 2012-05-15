@@ -11,7 +11,7 @@
     template="browser/templates/topics.pt"
     class=".topicstab.TopicsTab"
     permission="zope2.Public"
-    weight="0"
+    weight="10"
     title="Topics" />
   <!--The JavaScript to drive the Topics tab-->
   <browser:viewlet name="gs-group-messages-topics-script"
