@@ -42,7 +42,8 @@
       <ul class="inline-list disclosureShowHide" 
         style="display:none;padding-left:0.692em;">
         <li><a type="application/atom+xml" class="alternateATOM"
-          tal:define="url string:/s/search.atom?t=0&amp;p=1&amp;g=${view/groupInfo/id}"
+          tal:define="title string:Topics in ${view/groupInfo/name};
+            url string:/s/search.atom?t=1&amp;p=0&amp;g=${view/groupInfo/id}"
           tal:attributes="href url" href="#">Web feed</a></li>
         <li><a id="gs-group-messages-topics-advanced-search-link"
           tal:define="url string:/s/?g=${view/groupInfo/id}&amp;i=0"

@@ -19,6 +19,7 @@
     template="browser/templates/topicscript.pt"
     class="gs.group.home.simpletab.PublicTab"
     permission="zope2.Public"
+    weight="10"
     title="Topics" />
   <browser:resource 
     name="gs-group-messages-topics-js-20120504.js"
@@ -30,7 +31,15 @@
     template="browser/templates/ajax.pt"
     class=".ajax.TopicsAjax"
     permission="zope2.View"/>
-
+  <!--The link to the Web Feed -->
+  <browser:viewlet name="gs-group-messages-topics-link"
+    manager="gs.group.home.interfaces.IGroupHomepageMetadata"
+    template="browser/templates/link.pt"
+    class="gs.group.home.simpletab.PublicTab"
+    permission="zope2.View"
+    weight="10"
+    title="Topics Link" />
+    
   <!--Help-->
   <browser:viewlet name="gs-group-messages-topics-help"
     manager="gs.help.interfaces.IUserHelp"
