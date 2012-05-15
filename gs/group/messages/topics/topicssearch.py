@@ -54,7 +54,7 @@ class TopicsSearch(object):
         topics = self.rawTopicInfo
         for topic in topics:
             topic['files'] = self.files_for_topic(topic)
-            topic['keywords'] = self.keywords_for_topic(topic)
+            topic['keywords'] = self.keywords_for_topic(topic)[:5]
             topic['last_author'] = self.last_author_for_topic(topic)
             yield topic
         
