@@ -2,12 +2,11 @@
   tal:define="munge_date python:modules['Products.XWFCore.XWFUtils'].munge_date;">
   <ul class="searchResults" tal:condition="view/viewTopics">
     <tal:block repeat="topic view/topics">
-      <li id="result"
+      <li id="result topic"
         tal:attributes="id string:gs-group-messages-topics-ajax-response-${topic/topic_id}">
         <a class="topic" href="#"
           tal:attributes="href string:/r/topic/${topic/last_post_id}">
           <span tal:condition="topic/sticky | nothing"
-            style="display:inline-block;"
             title="Sticky"
             class="sticky ui-icon ui-icon-pin-s">&#160;</span>
           <span class="name"
@@ -23,8 +22,8 @@
         <div class="tags" tal:condition="topic/keywords">
           <ul class="inline-list">
             <tal:block tal:repeat="keyword topic/keywords">
-              <li>
-                <a href="#" class="keyword" style="text-decoration:none;"
+              <li class="keyword">
+                <a href="#" class="keyword"
                   tal:content="keyword/word">Keyword</a>
               </li>
             </tal:block>

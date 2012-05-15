@@ -1,24 +1,20 @@
 <div id="gs-group-messages-topics">
   <tal:block condition="view/viewTopics">
-    <div id="gs-group-messages-topics-search">
+    <div id="gs-group-messages-topics-search" class="search">
       <input type="text" class="textType" name="s" 
         id="gs-group-messages-topics-search-input" value=""
-        style="width:27.692em;margin-left:0;display:inline-block;"
         title="Search this group"/>
       <button id="gs-group-messages-topics-search-button">Search</button>
     </div><!--gs-group-messages-topics-search-->
-    <p id="gs-group-messages-topics-loading">
-      <img style="margin:0px 0.69em 0px 0px;padding:0px;"
-        src="/++resource++anim/wait.gif"/> 
+    <p id="gs-group-messages-topics-loading" class="loading-message">
+      <img src="/++resource++anim/wait.gif"/> 
       Loading the topics
     </p><!--gs-group-messages-topics-loading-->
-    <div id="gs-group-messages-topics-latest" 
-      style="display:none;">
+    <div id="gs-group-messages-topics-latest" class="items-list">
       &#160;
     </div><!--gs-group-messages-topics-latest-->
-    <div id="gs-group-messages-topics-toolbar">
-      <span class="ui-widget-header ui-corner-all"
-        style="padding: 0.692em;">
+    <div id="gs-group-messages-topics-toolbar" class="toolbar">
+      <span class="ui-widget-header ui-corner-all">
         <button id="gs-group-messages-topics-toolbar-prev">Newer</button>
         <button id="gs-group-messages-topics-toolbar-next">Older</button>
       </span>
@@ -34,13 +30,12 @@
               tal:content="view/email">the email address</code></a>.</li>
       </ul>
     </div><!--gs-group-messages-topics-tasks-->
-    <div id="gs-group-messages-topics-advanced" 
+    <div id="gs-group-messages-topics-advanced" class="advanced"
       class="disclosureWidget">
       <p>
         <a class="disclosureButton">Advanced</a>
       </p>
-      <ul class="inline-list disclosureShowHide" 
-        style="display:none;padding-left:0.692em;">
+      <ul class="inline-list disclosureShowHide" style="display:none;">
         <li><a type="application/atom+xml" class="alternateATOM"
           tal:define="title string:Topics in ${view/groupInfo/name};
             url string:/s/search.atom?t=1&amp;p=0&amp;g=${view/groupInfo/id}"
