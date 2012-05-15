@@ -6,7 +6,7 @@
         tal:attributes="id string:gs-group-messages-topics-ajax-response-${topic/topic_id}">
         <a class="topic" href="#"
           tal:attributes="href string:/r/topic/${topic/last_post_id}">
-          <span tal:condition="topic/sticky"
+          <span tal:condition="topic/sticky | nothing"
             style="display:inline-block;"
             title="Sticky"
             class="sticky ui-icon ui-icon-pin-s">&#160;</span>
