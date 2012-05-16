@@ -145,7 +145,7 @@ GSGroupTopicTab = function () {
         keywords.click(handle_keyword_click);
     };//init_keywords
     var handle_keyword_click = function(eventObject) {
-        searchText = jQuery(this).text();
+        var searchText = jQuery(this).text();
         searchInput.val(searchText);
         searchButton.click();
     };//handle_keyword_click
