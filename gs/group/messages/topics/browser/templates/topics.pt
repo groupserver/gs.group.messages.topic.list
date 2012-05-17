@@ -36,6 +36,8 @@
         <a class="disclosureButton">Advanced</a>
       </p>
       <ul class="inline-list disclosureShowHide" style="display:none;">
+        <li><a href="messages/topics.html">The full 
+            <strong>topics</strong> page.</a></li>
         <li><a type="application/atom+xml" class="alternateATOM"
           tal:define="title string:Topics in ${view/groupInfo/name};
             url string:/s/search.atom?t=1&amp;p=0&amp;g=${view/groupInfo/id}"

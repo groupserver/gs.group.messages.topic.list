@@ -39,7 +39,15 @@
     permission="zope2.View"
     weight="10"
     title="Topics Link" />
-    
+
+  <!--The list of topics on one page-->
+  <browser:page
+    for="Products.XWFMailingListManager.interfaces.IGSMessagesFolder" 
+    name="topics.html"
+    class=".topicspage.TopicsPage"
+    template="browser/templates/topicspage.pt" 
+    permission="zope2.View" />
+
   <!--Help-->
   <browser:viewlet name="gs-group-messages-topics-help"
     manager="gs.help.interfaces.IUserHelp"
