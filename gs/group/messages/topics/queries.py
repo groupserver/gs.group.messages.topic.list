@@ -39,6 +39,7 @@ class TopicsQuery(object):
         s.append_whereclause(tt.c.site_id == siteId)
         s.append_whereclause(tt.c.group_id == groupId)
         s.append_whereclause(tt.c.sticky != None)        
+        s.append_whereclause(tt.c.hidden == None)
         s.order_by(sa.desc(tt.c.last_post_date))
         r = s.execute()
 
@@ -61,6 +62,7 @@ class TopicsQuery(object):
         s.append_whereclause(tt.c.site_id == siteId)
         s.append_whereclause(tt.c.group_id == groupId)
         s.append_whereclause(tt.c.sticky == None)
+        s.append_whereclause(tt.c.hidden == None)
         s.order_by(sa.desc(tt.c.last_post_date))
         s.limit = limit
         s.offset = offset
