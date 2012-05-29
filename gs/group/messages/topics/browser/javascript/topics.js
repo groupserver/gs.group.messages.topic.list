@@ -17,6 +17,7 @@ GSGroupTopicTab = function () {
     var limit = null;
     var searchText = '';
     var toolbarShown = true;
+    var searchShown = true;
     // Constants
     var MAX_ITEMS = 48;
     var FADE_SPEED = 'slow';
@@ -135,7 +136,18 @@ GSGroupTopicTab = function () {
             toolbar.fadeIn('fast', FADE_METHOD);
             toolbarShown = true;
         }
-    };//show_topics
+	
+	if ((nTopics == 0) && searchShown) {
+	    searchInput.fadeOut('fast', FADE_METHOD);
+	    searchButton.fadeOut('fast', FADE_METHOD);
+	    searchShown = false;
+	} else if ((nTopics > 0) && !searchShown) {
+	    searchInput.fadeIn('fast', FADE_METHOD);
+	    searchButton.fadeIn('fast', FADE_METHOD);
+	    searchShown = true;
+	}
+
+    };//Show_topics
 
     var init_keywords = function () {
         var result = null;
