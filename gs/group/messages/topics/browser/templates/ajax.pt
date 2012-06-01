@@ -2,7 +2,7 @@
   tal:define="munge_date python:modules['Products.XWFCore.XWFUtils'].munge_date;">
   <ul class="searchResults" tal:condition="view/viewTopics">
     <tal:block repeat="topic view/topics">
-      <li id="result topic"
+      <li id="topic" class="result"
         tal:attributes="id string:gs-group-messages-topics-ajax-response-${topic/topic_id}">
         <a class="topic" href="#"
           tal:attributes="href string:/r/topic/${topic/last_post_id}">

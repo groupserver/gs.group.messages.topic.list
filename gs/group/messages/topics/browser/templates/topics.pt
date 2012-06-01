@@ -12,7 +12,8 @@
       <img src="/++resource++anim/wait.gif"/> 
       Loading the topics
     </p><!--gs-group-messages-topics-loading-->
-    <div id="gs-group-messages-topics-latest" class="gs-search-results">
+    <div id="gs-group-messages-topics-latest" 
+	 class="gs-search-results items-list">
       &#160;
     </div><!--gs-group-messages-topics-latest-->
     <div id="gs-group-messages-topics-toolbar" 
