@@ -1,22 +1,27 @@
 <div id="gs-group-messages-topics">
-  <tal:block condition="view/viewTopics">
-    <div id="gs-group-messages-topics-search" class="search">
-      <input type="text" class="textType" name="s" 
+  <div id="gs-group-messages-topics-search" class="gs-search"
+     tal:condition="view/viewTopics">
+    <div class="gs-search-entry search">
+      <input type="text" name="s" 
         id="gs-group-messages-topics-search-input" value=""
         title="Search this group"/>
       <button id="gs-group-messages-topics-search-button">Search</button>
     </div><!--gs-group-messages-topics-search-->
-    <p id="gs-group-messages-topics-loading" class="loading-message">
+    <p id="gs-group-messages-topics-loading" class="gs-search-loading"
+       style="display:none;">
       <img src="/++resource++anim/wait.gif"/> 
       Loading the topics
     </p><!--gs-group-messages-topics-loading-->
-    <div id="gs-group-messages-topics-latest" class="items-list">
+    <div id="gs-group-messages-topics-latest" class="gs-search-results">
       &#160;
     </div><!--gs-group-messages-topics-latest-->
-    <div id="gs-group-messages-topics-toolbar" class="toolbar">
+    <div id="gs-group-messages-topics-toolbar" 
+	 class="toolbar gs-search-toolbar">
       <span class="ui-widget-header ui-corner-all">
-        <button id="gs-group-messages-topics-toolbar-prev">Newer</button>
-        <button id="gs-group-messages-topics-toolbar-next">Older</button>
+        <button id="gs-group-messages-topics-toolbar-prev"
+		class="gs-search-toolbar-previous">Newer</button>
+        <button id="gs-group-messages-topics-toolbar-next"
+		class="gs-search-toolbar-next">Older</button>
       </span>
     </div><!--gs-group-messages-topics-toolbar-->
     <div tal:condition="view/canPost/canPost"
@@ -47,7 +52,7 @@
           tal:attributes="href url" href="#">Advanced Search</a></li>
       </ul>
     </div><!--gs-group-messages-topics-advanced-->
-  </tal:block>
+  </div><!--id="gs-group-messages-topics-search-->
   <tal:block condition="not:view/viewTopics">
     <!--We must be looking at a private group-->
     <p>
