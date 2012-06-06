@@ -1,15 +1,12 @@
-<div id="gs-group-messages-topics-script"
-     tal:condition="view/viewTopics">
-  <script type="text/javascript"
-	  src="/++resource++search-20120601.js">&#160;</script>
-  <script type="text/javascript">
-    jQuery.noConflict();
-    jQuery(document).ready( function () {
-        var topicsSearch = null;
-        topicsSearch = GSSearch('#gs-group-messages-topics-search', 
-                                'gs-group-topics-ajax.html', 
-                                 0, 6, {}, null);
-        topicsSearch.load();
-    });
-  </script>
-</div><!--gs-group-messages-topics-script-->
+<script 
+  id="gs-group-messages-topics-script"
+  type="text/javascript">
+  jQuery.noConflict();
+  jQuery(document).ready( function () {
+    var topicsSearch = null;
+    topicsSearch = GSSearch('#gs-group-messages-topics-search', 
+                            'gs-group-topics-ajax.html', 
+                            0, 6, {}, null);
+    topicsSearch.load();
+  });
+</script><!--gs-group-messages-topics-script-->
