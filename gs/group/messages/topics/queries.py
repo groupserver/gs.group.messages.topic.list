@@ -1,10 +1,11 @@
 # coding=utf-8
 import sqlalchemy as sa
+from gs.database import getTable, getSession
 
 class TopicsQuery(object):
-    def __init__(self, da):
-        self.topicTable = da.createTable('topic')
-        self.postTable = da.createTable('post')
+    def __init__(self):
+        self.topicTable = getTable('topic')
+        self.postTable = getTable('post')
         
     def marshal_topic_info(self, x):
         assert x
@@ -35,13 +36,14 @@ class TopicsQuery(object):
                             tt.c.last_post_id == pt.c.post_id,  
                             scalar=True).label('user_id')]
 
-        s = sa.select(cols)
+        s = sa.select(cols, order_by=sa.desc(tt.c.last_post_date))
         s.append_whereclause(tt.c.site_id == siteId)
         s.append_whereclause(tt.c.group_id == groupId)
         s.append_whereclause(tt.c.sticky != None)        
         s.append_whereclause(tt.c.hidden == None)
-        s.order_by(sa.desc(tt.c.last_post_date))
-        r = s.execute()
+
+        session = getSession()
+        r = session.execute(s)
 
         retval = [self.marshal_topic_info(x)for x in r]
         assert type(retval) == list
@@ -58,16 +60,15 @@ class TopicsQuery(object):
                 sa.select(  [pt.c.user_id], 
                             tt.c.last_post_id == pt.c.post_id,  
                             scalar=True).label('user_id')]
-        s = sa.select(cols)
+        s = sa.select(cols, order_by=sa.desc(tt.c.last_post_date),
+                            limit=limit, offset=offset)
         s.append_whereclause(tt.c.site_id == siteId)
         s.append_whereclause(tt.c.group_id == groupId)
         s.append_whereclause(tt.c.sticky == None)
         s.append_whereclause(tt.c.hidden == None)
-        s.order_by(sa.desc(tt.c.last_post_date))
-        s.limit = limit
-        s.offset = offset
 
-        r = s.execute()
+        session = getSession()
+        r = session.execute(s)
 
         retval = [self.marshal_topic_info(x)for x in r]
         assert type(retval) == list

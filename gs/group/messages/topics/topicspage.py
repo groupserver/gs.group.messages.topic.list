@@ -45,9 +45,7 @@ class TopicsPage(GroupPage):
             
     @Lazy
     def messageQuery(self):
-        da = self.context.zsqlalchemy 
-        assert da
-        retval = MessageQuery(self.context, da)
+        retval = MessageQuery(self.context)
         return retval
 
     @Lazy
