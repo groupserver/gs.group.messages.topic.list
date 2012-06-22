@@ -33,6 +33,7 @@ setup(name='gs.group.messages.topics',
     install_requires=[
         'setuptools',
         'gs.content.js.jquery',
+        'gs.database',
         'gs.group.base',
         'gs.group.home',
         'gs.group.member.canpost',
