@@ -13,7 +13,7 @@ class TopicsQuery(object):
             'topic_id':             x['topic_id'],
             'group_id':             x['group_id'], 
             'site_id':              x['site_id'], 
-            'subject':      unicode(x['original_subject'], 'utf-8'), 
+            'subject':              x['original_subject'], 
             'sticky':               x['sticky'],
             'num_posts':            x['num_posts'],
             'first_post_id':        x['first_post_id'], 
@@ -32,9 +32,8 @@ class TopicsQuery(object):
                 tt.c.first_post_id, tt.c.group_id, tt.c.site_id, 
                 tt.c.original_subject, tt.c.last_post_date, 
                 tt.c.num_posts, tt.c.sticky,
-                sa.select(  [pt.c.user_id], 
-                            tt.c.last_post_id == pt.c.post_id,  
-                            scalar=True).label('user_id')]
+                sa.select([pt.c.user_id], 
+                            tt.c.last_post_id == pt.c.post_id).label('user_id')]
 
         s = sa.select(cols, order_by=sa.desc(tt.c.last_post_date))
         s.append_whereclause(tt.c.site_id == siteId)
@@ -57,9 +56,9 @@ class TopicsQuery(object):
                 tt.c.first_post_id, tt.c.group_id, tt.c.site_id, 
                 tt.c.original_subject, tt.c.last_post_date, 
                 tt.c.num_posts, tt.c.sticky,
-                sa.select(  [pt.c.user_id], 
-                            tt.c.last_post_id == pt.c.post_id,  
-                            scalar=True).label('user_id')]
+                sa.select([pt.c.user_id], 
+                          tt.c.last_post_id == pt.c.post_id,  
+                          ).label('user_id')]
         s = sa.select(cols, order_by=sa.desc(tt.c.last_post_date),
                             limit=limit, offset=offset)
         s.append_whereclause(tt.c.site_id == siteId)

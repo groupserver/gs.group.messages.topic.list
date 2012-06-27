@@ -139,21 +139,24 @@ class TopicsSearch(object):
         return retval
 
     def last_author_for_topic(self, topic):
+        # XXX: Implement cache
         userId = topic['last_post_user_id']
-        authorInfo = self.authorCache.get(userId)
-        if not authorInfo:
-            ui = createObject('groupserver.UserFromId', 
-                                    self.context, userId)
-            authorInfo = {
-                'id':       ui.id,
-                'exists':   not ui.anonymous,
-                'url':      ui.url,
-                'name':     ui.name,
-                'onlyURL':  '#' # TODO: Fix
-            }
-            self.authorCache.add(userId, authorInfo)
-        assert authorInfo
-        assert authorInfo['id'] == userId
+        #authorInfo = self.authorCache.get(userId)
+        #if not authorInfo:
+        #    print 'not from cache'
+        ui = createObject('groupserver.UserFromId', 
+                          self.context, userId)
+        authorInfo = {
+            'id':       ui.id,
+            'exists':   not ui.anonymous,
+            'url':      ui.url,
+            'name':     ui.name,
+            'onlyURL':  '#' # TODO: Fix
+        }
+        #    self.authorCache.add(userId, authorInfo)
+        
+        assert authorInfo, "Author info was not created"
+        assert authorInfo['id'] == userId, "authorInfo did not equal userId"
         return authorInfo
 
 def tfidf_sort(a, b):
@@ -164,4 +167,3 @@ def tfidf_sort(a, b):
     else:
         retval = -1
     return retval
-
