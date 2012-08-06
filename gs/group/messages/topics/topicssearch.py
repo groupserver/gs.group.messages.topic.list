@@ -156,7 +156,9 @@ class TopicsSearch(object):
         #    self.authorCache.add(userId, authorInfo)
         
         assert authorInfo, "Author info was not created"
-        assert authorInfo['id'] == userId, "authorInfo did not equal userId"
+        assert authorInfo['id'] == userId, \
+            "authorInfo ID (%s) did not equal userId (%s) for the topic %s" %\
+            (authorInfo['id'], userId, topic['topic_id'])
         return authorInfo
 
 def tfidf_sort(a, b):
