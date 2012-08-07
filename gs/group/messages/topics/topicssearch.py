@@ -7,6 +7,9 @@ from Products.XWFCore.cache import LRUCache
 from Products.XWFMailingListManager.stopwords import en as STOP_WORDS
 from queries import TopicsQuery
 
+from logging import getLogger
+log = getLogger('gs.group.messages.topics.TopicsSearch')
+
 class TopicsSearch(object):
     topicKeywords = LRUCache("TopicKeywords")
     authorCache = LRUCache("Author")
@@ -139,7 +142,7 @@ class TopicsSearch(object):
         return retval
 
     def last_author_for_topic(self, topic):
-        # XXX: Implement cache
+        # TODO: Implement cache
         userId = topic['last_post_user_id']
         #authorInfo = self.authorCache.get(userId)
         #if not authorInfo:
@@ -156,9 +159,11 @@ class TopicsSearch(object):
         #    self.authorCache.add(userId, authorInfo)
         
         assert authorInfo, "Author info was not created"
-        assert authorInfo['id'] == userId, \
-            "authorInfo ID (%s) did not equal userId (%s) for the topic %s" %\
-            (authorInfo['id'], userId, topic['topic_id'])
+        if  authorInfo['id'] != userId:
+            m = 'authorInfo ID (%s) did not equal userId (%s) for the topic '\
+                '"%s". Was the user "%s" deleted?' % \
+                (authorInfo['id'], userId, topic['topic_id'], userId)
+            log.warning(m)
         return authorInfo
 
 def tfidf_sort(a, b):
