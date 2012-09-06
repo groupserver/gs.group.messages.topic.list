@@ -1,0 +1,7 @@
+{
+  "venv": "", 
+  "project-type": "Import from sources", 
+  "name": "gs.group.messages.topics", 
+  "license": "GNU General Public License v3", 
+  "description": "The Topics tab and Topics page for a GroupServer group."
+}
