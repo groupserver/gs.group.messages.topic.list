@@ -10,6 +10,7 @@ from queries import TopicsQuery
 from logging import getLogger
 log = getLogger('gs.group.messages.topics.TopicsSearch')
 
+
 class TopicsSearch(object):
     topicKeywords = LRUCache("TopicKeywords")
     authorCache = LRUCache("Author")
@@ -19,7 +20,7 @@ class TopicsSearch(object):
         self.searchTokens = searchTokens
         self.limit = limit
         self.offset = offset
-        
+
     @Lazy
     def groupInfo(self):
         retval = createObject('groupserver.GroupInfo', self.context)
@@ -34,15 +35,15 @@ class TopicsSearch(object):
     def loggedInUser(self):
         retval = createObject('groupserver.LoggedInUser', self.context)
         return retval
-        
+
     @Lazy
     def messageQuery(self):
-        retval  = MessageQuery(self.context)
+        retval = MessageQuery(self.context)
         return retval
 
     @Lazy
     def topicsQuery(self):
-        retval  = TopicsQuery()
+        retval = TopicsQuery()
         return retval
 
     def topics(self):
@@ -53,7 +54,7 @@ class TopicsSearch(object):
             topic['keywords'] = self.keywords_for_topic(topic)[:5]
             topic['last_author'] = self.last_author_for_topic(topic)
             yield topic
-        
+
     @Lazy
     def rawTopicInfo(self):
         if ((not self.searchTokens.searchText) and (self.offset == 0)):
@@ -67,11 +68,11 @@ class TopicsSearch(object):
 
     def normal_search(self):
         retval = self.messageQuery.topic_search_keyword(
-                self.searchTokens, self.siteInfo.id, 
-                [self.groupInfo.id], limit=self.limit, 
+                self.searchTokens, self.siteInfo.id,
+                [self.groupInfo.id], limit=self.limit,
                 offset=self.offset)
         return retval
-        
+
     def sticky_plus_recent(self):
         s = self.topicsQuery.sticky_topics(self.siteInfo.id,
                                             self.groupInfo.id)
@@ -82,13 +83,13 @@ class TopicsSearch(object):
                     self.siteInfo.id, self.groupInfo.id, limit, 0)
         retval = s + r
         return retval
-        
+
     def just_recent(self):
         retval = self.topicsQuery.recent_non_sitcky_topics(
                     self.siteInfo.id, self.groupInfo.id, self.limit,
                     self.offset)
         return retval
-                
+
     @Lazy
     def topicFiles(self):
         tIds = [t['topic_id'] for t in self.rawTopicInfo]
@@ -99,11 +100,11 @@ class TopicsSearch(object):
         retval = [{
                 'name': f['file_name'],
                 'url': '/r/topic/%s#post-%s' % (f['post_id'], f['post_id']),
-                'icon': f['mime_type'].replace('/','-').replace('.','-'),
-            } for f in self.topicFiles 
+                'icon': f['mime_type'].replace('/', '-').replace('.', '-'),
+            } for f in self.topicFiles
                 if f['topic_id'] == topic['topic_id']]
         return retval
-        
+
     def keywords_for_topic(self, topic):
         retval = self.topicKeywords.get(topic['last_post_id'])
         if not retval:
@@ -116,27 +117,27 @@ class TopicsSearch(object):
         tIds = [t['topic_id'] for t in self.rawTopicInfo]
         retval = self.messageQuery.topics_word_count(tIds)
         return retval
-    
+
     @Lazy
     def totalTopicCount(self):
         return self.messageQuery.count_topics()
-        
+
     @Lazy
     def wordCounts(self):
         return self.messageQuery.word_counts()
-        
+
     def generate_keywords_for_topic(self, topic):
         tId = topic['topic_id']
-        topicWords = [tw for tw in self.topicsWordCounts 
+        topicWords = [tw for tw in self.topicsWordCounts
                         if tw['topic_id'] == tId]
         twc = float(sum([w['count'] for w in topicWords]))
         wc = self.wordCounts
-        retval = [{ 'word':  w['word'],
-                    'tfidf': (w['count']/twc)*\
-                              log10(self.totalTopicCount/\
+        retval = [{'word': w['word'],
+                    'tfidf': (w['count'] / twc) *
+                              log10(self.totalTopicCount /
                                     float(wc.get('word', 1)))}
                 for w in topicWords
-                if ((len(w['word']) > 3) and 
+                if ((len(w['word']) > 3) and
                      (w['word'] not in STOP_WORDS))]
         retval.sort(tfidf_sort)
         return retval
@@ -147,17 +148,17 @@ class TopicsSearch(object):
         #authorInfo = self.authorCache.get(userId)
         #if not authorInfo:
         #    print 'not from cache'
-        ui = createObject('groupserver.UserFromId', 
+        ui = createObject('groupserver.UserFromId',
                           self.context, userId)
         authorInfo = {
-            'id':       ui.id,
-            'exists':   not ui.anonymous,
-            'url':      ui.url,
-            'name':     ui.name,
-            'onlyURL':  '#' # TODO: Fix
+            'id': ui.id,
+            'exists': not ui.anonymous,
+            'url': ui.url,
+            'name': ui.name,
+            'onlyURL': '#'  # FIXME: Figure out what onlyURL is for
         }
         #    self.authorCache.add(userId, authorInfo)
-        
+
         assert authorInfo, "Author info was not created"
         if  authorInfo['id'] != userId:
             m = 'authorInfo ID (%s) did not equal userId (%s) for the topic '\
@@ -165,6 +166,7 @@ class TopicsSearch(object):
                 (authorInfo['id'], userId, topic['topic_id'], userId)
             log.warning(m)
         return authorInfo
+
 
 def tfidf_sort(a, b):
     if a['tfidf'] < b['tfidf']:
