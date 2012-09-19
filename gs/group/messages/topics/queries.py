@@ -17,6 +17,7 @@ class TopicsQuery(object):
             'subject': x['original_subject'],
             'sticky': x['sticky'],
             'num_posts': x['num_posts'],
+            'keywords': x['keywords'],
             'first_post_id': x['first_post_id'],
             'last_post_id': x['last_post_id'],
             'last_post_date': x['last_post_date'],
@@ -33,7 +34,7 @@ class TopicsQuery(object):
                         tt.c.last_post_id == pt.c.post_id).label('user_id')
         retval = [tt.c.topic_id.distinct(), tt.c.last_post_id,
                     tt.c.first_post_id, tt.c.group_id, tt.c.site_id,
-                    tt.c.original_subject, tt.c.last_post_date,
+                    tt.c.original_subject, tt.c.last_post_date, tt.c.keywords,
                     tt.c.num_posts, tt.c.sticky, s1]
         return retval
 
@@ -41,9 +42,10 @@ class TopicsQuery(object):
         statement.append_whereclause(self.topicTable.c.site_id == siteId)
         statement.append_whereclause(self.topicTable.c.group_id == groupId)
         if hidden:
-            statement.append_whereclause(self.topicTable.c.hidden != None)  # lint:ok
+            c = self.topicTable.c.hidden != None  # lint:ok
         else:
-            statement.append_whereclause(self.topicTable.c.hidden == None)  # lint:ok
+            c = self.topicTable.c.hidden == None  # lint:ok
+        statement.append_whereclause(c)  # lint:ok
 
     def sticky_topics(self, siteId, groupId):
         tt = self.topicTable
