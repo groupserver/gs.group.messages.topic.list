@@ -77,23 +77,21 @@ class TopicsQuery(object):
 
     def search(self, searchTokens, siteId, groupId, limit=12, offset=0):
         tt = self.topicTable
-        pt = self.postTable
-        # SELECT topic.topic_id from topic, post
+        # SELECT topic.topic_id from topic
         #   WHERE topic.topic_id = post.topic_id
         #     AND topic.site_id = siteId
         #     AND topic.group_id = groupId
-        #     AND post.fts_vectors @@ to_tsquery(kw1 & kw2 & ... & kwn)
+        #     AND topic.fts_vectors @@ to_tsquery(kw1 & kw2 & ... & kwn)
         #   ORDER_BY DESC(topic.last_post_date)
         #   LIMIT = limit
         #   OFFSET = offset;
         s = sa.select(self.cols, order_by=sa.desc(tt.c.last_post_date),
                             limit=limit, offset=offset)
-        s.append_whereclause(tt.c.topic_id == pt.c.topic_id)
         self.add_standard_where_clauses(s, siteId, groupId, False)
 
         if searchTokens.keywords:
             q = ' & '.join(searchTokens.keywords)
-            s.append_whereclause(pt.c.fts_vectors.match(q))
+            s.append_whereclause(tt.c.fts_vectors.match(q))
 
         session = getSession()
         r = session.execute(s)
