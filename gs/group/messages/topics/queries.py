@@ -6,6 +6,7 @@ from gs.database import getTable, getSession
 class TopicsQuery(object):
     def __init__(self):
         self.topicTable = getTable('topic')
+        self.topicKeywordsTable = getTable('topic_keywords')
         self.postTable = getTable('post')
 
     def marshal_topic_info(self, x):
@@ -29,12 +30,13 @@ class TopicsQuery(object):
     @property
     def cols(self):
         tt = self.topicTable
+        tkt = self.topicKeywordsTable
         pt = self.postTable
         s1 = sa.select([pt.c.user_id],
                         tt.c.last_post_id == pt.c.post_id).label('user_id')
         retval = [tt.c.topic_id.distinct(), tt.c.last_post_id,
                     tt.c.first_post_id, tt.c.group_id, tt.c.site_id,
-                    tt.c.original_subject, tt.c.last_post_date, tt.c.keywords,
+                    tt.c.original_subject, tt.c.last_post_date, tkt.c.keywords,
                     tt.c.num_posts, tt.c.sticky, s1]
         return retval
 
@@ -49,10 +51,11 @@ class TopicsQuery(object):
 
     def sticky_topics(self, siteId, groupId):
         tt = self.topicTable
-
+        tkt = self.topicKeywordsTable
         s = sa.select(self.cols, order_by=sa.desc(tt.c.last_post_date))
         self.add_standard_where_clauses(s, siteId, groupId, False)
         s.append_whereclause(tt.c.sticky != None)  # lint:ok
+        s.append_whereclause(tt.c.topic_id == tkt.c.topic_id)
 
         session = getSession()
         r = session.execute(s)
@@ -63,10 +66,12 @@ class TopicsQuery(object):
 
     def recent_non_sitcky_topics(self, siteId, groupId, limit, offset):
         tt = self.topicTable
+        tkt = self.topicKeywordsTable
         s = sa.select(self.cols, order_by=sa.desc(tt.c.last_post_date),
                             limit=limit, offset=offset)
         self.add_standard_where_clauses(s, siteId, groupId, False)
         s.append_whereclause(tt.c.sticky == None)  # lint:ok
+        s.append_whereclause(tt.c.topic_id == tkt.c.topic_id)
 
         session = getSession()
         r = session.execute(s)
@@ -77,6 +82,7 @@ class TopicsQuery(object):
 
     def search(self, searchTokens, siteId, groupId, limit=12, offset=0):
         tt = self.topicTable
+        tkt = self.topicKeywordsTable
         # SELECT topic.topic_id from topic
         #   WHERE topic.topic_id = post.topic_id
         #     AND topic.site_id = siteId
@@ -88,6 +94,7 @@ class TopicsQuery(object):
         s = sa.select(self.cols, order_by=sa.desc(tt.c.last_post_date),
                             limit=limit, offset=offset)
         self.add_standard_where_clauses(s, siteId, groupId, False)
+        s.append_whereclause(tt.c.topic_id == tkt.c.topic_id)
 
         if searchTokens.keywords:
             q = ' & '.join(searchTokens.keywords)
