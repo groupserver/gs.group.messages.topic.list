@@ -34,7 +34,7 @@ class TopicsQuery(object):
         pt = self.postTable
         s1 = sa.select([pt.c.user_id],
                         tt.c.last_post_id == pt.c.post_id).label('user_id')
-        retval = [tt.c.topic_id.distinct(), tt.c.last_post_id,
+        retval = [tt.c.topic_id, tt.c.last_post_id,
                     tt.c.first_post_id, tt.c.group_id, tt.c.site_id,
                     tt.c.original_subject, tt.c.last_post_date, tkt.c.keywords,
                     tt.c.num_posts, tt.c.sticky, s1]
