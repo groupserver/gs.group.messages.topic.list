@@ -12,8 +12,8 @@ class TopicsTab(UserInfoTab):
 
     @Lazy
     def canPost(self):
-        retval = getMultiAdapter((self.groupInfo.groupObj, self.userInfo),
-                                  IGSPostingUser)
+        retval = getMultiAdapter((self.groupInfo.groupObj, self.loggedInUser),
+                                    IGSPostingUser)
         return retval
 
     @Lazy
