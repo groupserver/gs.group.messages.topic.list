@@ -30,8 +30,8 @@ GSGroupTopicTab = function () {
         nextButton = jQuery('#gs-group-messages-topics-toolbar-next');
         nextButton.button({
             text: true,
-            icons: { secondary: 'ui-icon-carat-1-e', },
-            disabled: true,
+            icons: { secondary: 'ui-icon-carat-1-e' },
+            disabled: true
         });
         nextButton.click(handle_next);
     };// init_next_button
@@ -51,8 +51,8 @@ GSGroupTopicTab = function () {
         prevButton = jQuery('#gs-group-messages-topics-toolbar-prev');
         prevButton.button({
             text: true,
-            icons: { primary: 'ui-icon-carat-1-w', },
-            disabled: true,
+            icons: { primary: 'ui-icon-carat-1-w' },
+            disabled: true
         });
         prevButton.click(handle_prev);
     };// init_prev_button
@@ -68,8 +68,8 @@ GSGroupTopicTab = function () {
         searchButton = jQuery('#gs-group-messages-topics-search-button');
         searchButton.button({
             text: false,
-            icons: { primary: 'ui-icon-search', },
-            disabled: false,
+            icons: { primary: 'ui-icon-search' },
+            disabled: false
         });
         searchButton.click(handle_search)
     };//init_search_button
@@ -99,7 +99,7 @@ GSGroupTopicTab = function () {
         var data = {
             'i': offset,
             'l': limit,
-            's': searchText,
+            's': searchText
         };
         var href = null;
         var query = null;
@@ -136,16 +136,16 @@ GSGroupTopicTab = function () {
             toolbar.fadeIn('fast', FADE_METHOD);
             toolbarShown = true;
         }
-	
-	if ((nTopics == 0) && searchShown) {
-	    searchInput.fadeOut('fast', FADE_METHOD);
-	    searchButton.fadeOut('fast', FADE_METHOD);
-	    searchShown = false;
-	} else if ((nTopics > 0) && !searchShown) {
-	    searchInput.fadeIn('fast', FADE_METHOD);
-	    searchButton.fadeIn('fast', FADE_METHOD);
-	    searchShown = true;
-	}
+        
+        if ((nTopics == 0) && searchShown) {
+            searchInput.fadeOut('fast', FADE_METHOD);
+            searchButton.fadeOut('fast', FADE_METHOD);
+            searchShown = false;
+        } else if ((nTopics > 0) && !searchShown) {
+            searchInput.fadeIn('fast', FADE_METHOD);
+            searchButton.fadeIn('fast', FADE_METHOD);
+            searchShown = true;
+        }
 
     };//Show_topics
 
@@ -179,7 +179,7 @@ GSGroupTopicTab = function () {
             advancedSearch = jQuery('#gs-group-messages-topics-advanced-search-link');
             
             load_topics();
-        },//init
+        }//init
     };
 }(); // GSVerifyEmailAddress
 jQuery(document).ready( function () {
