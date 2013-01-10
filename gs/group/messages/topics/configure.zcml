@@ -4,8 +4,9 @@
   xmlns:five="http://namespaces.zope.org/five">
 
   <!--The Topics tab on the group page-->
-  <browser:viewlet name="gs-group-messages-topics-tab"
-    manager="gs.group.home.interfaces.IGroupHomepageTasks"
+  <browser:viewlet 
+    name="gs-group-messages-topics-tab"
+    manager="gs.group.messages.base.interfaces.IGroupHomepageMessages"
     template="browser/templates/topics.pt"
     class=".topicstab.TopicsTab"
     permission="zope2.Public"
