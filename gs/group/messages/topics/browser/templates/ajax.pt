@@ -7,46 +7,38 @@
         <a class="topic" href="#"
           tal:attributes="href string:/r/topic/${topic/last_post_id}">
           <span tal:condition="topic/sticky | nothing"
-            title="Sticky"
-            class="sticky gs-search-sticky ui-icon ui-icon-pin-s">&#160;</span>
+                title="Sticky"
+                class="sticky gs-search-sticky ui-icon ui-icon-pin-s">&#160;</span>
           <span class="name"
-              tal:content="topic/subject">TopicName</span></a><!--topic-->
-        <span class="files" tal:condition="topic/files">
-          <tal:block tal:repeat="file python:topic['files'][-7:]">
-            <a href="#" title="foo"
-              tal:attributes="title file/name;
-                href file/url;
-                class string:fileIcon ${file/icon}">&#160;</a>
-          </tal:block>
-        </span>
-        <div class="tags" tal:condition="topic/keywords">
-          <ul class="inline-list">
-            <tal:block tal:repeat="keyword topic/keywords">
-              <li>
-                <a href="#" class="keyword gs-search-keyword"
-                  tal:content="keyword">Keyword</a>
-              </li>
-            </tal:block>
-          </ul>
-        </div><!--tags-->
-        <div class="metadata"
-          tal:define="multiplePosts python:topic['num_posts']&gt;1">
-          <span class="postCount">
-            <span class="cardinal" tal:content="topic/num_posts"/>
-            post<tal:block condition="multiplePosts">s</tal:block>
-          </span>
-          &#8212;
-          <tal:block condition="multiplePosts">latest post</tal:block>
-          by
+                tal:content="topic/subject">TopicName</span>
+        </a><!--topic-->
+        <acronym class="postCount cardinal" title="Number of posts"
+                 tal:content="topic/num_posts">?</acronym>
+        <acronym class="files" title="Number of files"
+                 tal:condition="topic/files"
+                 tal:content="python:len(topic['files'])">?</acronym>
+        <div class="metadata minor">
+          Last post by
           <a class="name" href="#"
             tal:omit-tag="not:topic/last_author/exists"
             tal:attributes="href topic/last_author/url"
             tal:content="topic/last_author/name">Me!</a>
           at
-          <span class="date"
+          <em class="date"
             tal:define="ctx view/context; d topic/last_post_date"
-            tal:content="python:munge_date(ctx, d)"/>
+            tal:content="python:munge_date(ctx, d)">a date</em>
         </div><!--metadata-->
+        <div class="tags minor" tal:condition="topic/keywords">
+          <ul class="inline-list">
+            <li>Keywords:</li>
+            <tal:block tal:repeat="keyword topic/keywords">
+              <li>
+                <a href="#" class="keyword gs-search-keyword minor"
+                  tal:content="keyword">Keyword</a>,
+              </li>
+            </tal:block>
+          </ul>
+        </div><!--tags-->
       </li>
     </tal:block>
   </ul><!--searchResults-->
