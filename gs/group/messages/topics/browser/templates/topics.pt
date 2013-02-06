@@ -1,11 +1,13 @@
 <div id="gs-group-messages-topics">
   <div id="gs-group-messages-topics-search" class="gs-search"
      tal:condition="view/viewTopics">
-    <div class="gs-search-entry search">
-      <input type="text" name="s" 
-        id="gs-group-messages-topics-search-input" value=""
-        title="Search this group"/>
-      <button id="gs-group-messages-topics-search-button">Search</button>
+    <div class="gs-search-entry search input-append">
+      <input type="search" name="s" placeholder="Search within topics&#8230;"
+             autocomplete="on"
+             id="gs-group-messages-topics-search-input" value=""
+             title="Search this group"/>
+      <button id="gs-group-messages-topics-search-button"
+              class="btn">Search</button>
     </div><!--gs-group-messages-topics-search-->
     <p id="gs-group-messages-topics-loading" class="gs-search-loading"
        style="display:none;">
@@ -13,16 +15,16 @@
       Loading the topics
     </p><!--gs-group-messages-topics-loading-->
     <div id="gs-group-messages-topics-latest" 
-	 class="gs-search-results items-list">
+         class="gs-search-results items-list">
       &#160;
     </div><!--gs-group-messages-topics-latest-->
     <div id="gs-group-messages-topics-toolbar" 
-	 class="toolbar gs-search-toolbar">
+         class="toolbar gs-search-toolbar">
       <span class="ui-widget-header ui-corner-all">
         <button id="gs-group-messages-topics-toolbar-prev"
-		class="gs-search-toolbar-previous">Newer</button>
+                class="gs-search-toolbar-previous">Newer</button>
         <button id="gs-group-messages-topics-toolbar-next"
-		class="gs-search-toolbar-next">Older</button>
+                class="gs-search-toolbar-next">Older</button>
       </span>
     </div><!--gs-group-messages-topics-toolbar-->
     <div tal:condition="view/canPost/canPost"

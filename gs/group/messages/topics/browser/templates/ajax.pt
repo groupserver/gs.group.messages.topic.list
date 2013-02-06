@@ -17,23 +17,23 @@
         <acronym class="files" title="Number of files"
                  tal:condition="topic/files"
                  tal:content="python:len(topic['files'])">?</acronym>
-        <div class="metadata minor">
+        <div class="metadata muted">
           Last post by
           <a class="name" href="#"
             tal:omit-tag="not:topic/last_author/exists"
-            tal:attributes="href topic/last_author/url"
-            tal:content="topic/last_author/name">Me!</a>
+            tal:attributes="href topic/last_author/url"><em class="fn" 
+                                                            tal:content="topic/last_author/name">Me!</em></a>
           at
           <em class="date"
             tal:define="ctx view/context; d topic/last_post_date"
             tal:content="python:munge_date(ctx, d)">a date</em>
         </div><!--metadata-->
-        <div class="tags minor" tal:condition="topic/keywords">
+        <div class="tags muted" tal:condition="topic/keywords">
           <ul class="inline-list">
             <li>Keywords:</li>
             <tal:block tal:repeat="keyword topic/keywords">
               <li>
-                <a href="#" class="keyword gs-search-keyword minor"
+                <a href="#" class="keyword gs-search-keyword muted"
                   tal:content="keyword">Keyword</a>,
               </li>
             </tal:block>
