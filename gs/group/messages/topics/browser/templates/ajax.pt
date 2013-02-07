@@ -8,18 +8,18 @@
         tal:attributes="id string:gs-group-messages-topics-ajax-response-${topic/topic_id}">
         <a class="topic" href="#" rel="bookmark"
           tal:attributes="href string:/r/topic/${topic/last_post_id}">
-          <span tal:condition="topic/sticky | nothing"
+          <abbr role="tooltip" tal:condition="topic/sticky | nothing"
                 title="Sticky"
-                class="sticky gs-search-sticky">&#128204;</span>
+                class="sticky gs-search-sticky">&#128204;</abbr>
           <span class="name entry-title"
                 tal:content="topic/subject">TopicName</span>
         </a><!--topic-->
-        <abbr rel="tooltip" class="postCount value" title="Number of posts" 
+        <abbr role="tooltip" class="postCount value" title="Number of posts" 
               tal:define="l topic/num_posts;
                        p python:'posts' if l != 1 else 'post'"
            tal:attributes="title string:${l} ${p}"
            tal:content="topic/num_posts">?</abbr>
-        <abbr rel="tooltip" class="files" title="Number of files"
+        <abbr role="tooltip" class="files" title="Number of files"
               tal:condition="topic/files"
               tal:attributes="title topic/icons">&#128206;
           <span class="value"
