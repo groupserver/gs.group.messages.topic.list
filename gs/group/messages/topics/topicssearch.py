@@ -8,6 +8,10 @@ from queries import TopicsQuery
 from logging import getLogger
 log = getLogger('gs.group.messages.topics.TopicsSearch')
 
+# The lookup table for the characters that represent the file-icons. The *type*
+# is used. For speed a slice used to check the first five characters. This
+# works well, for everything other than "text". If there is a miss then "other"
+# is used.
 ICON_CHAR = {
         'image': unichr(128247),  # Camera
         'audio': unichr(128266),  # Speaker with 3 sound waves
