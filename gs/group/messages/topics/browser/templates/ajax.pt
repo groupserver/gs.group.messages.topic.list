@@ -19,7 +19,7 @@
                        p python:'posts' if l != 1 else 'post'"
            tal:attributes="title string:${l} ${p}"
            tal:content="topic/num_posts">?</abbr>
-        <abbr role="tooltip" class="files" title="Number of files"
+        <abbr role="tooltip" class="files muted" title="Number of files"
               tal:condition="topic/files"
               tal:attributes="title topic/icons">&#128206;
           <span class="value"
