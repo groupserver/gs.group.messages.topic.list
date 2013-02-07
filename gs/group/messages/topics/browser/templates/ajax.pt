@@ -1,39 +1,52 @@
 <div id="gs-group-messages-topics-ajax-response"
-  tal:define="munge_date python:modules['Products.XWFCore.XWFUtils'].munge_date;">
-  <ul class="searchResults" tal:condition="view/viewTopics">
+  tal:define="utils python:modules['Products.XWFCore.XWFUtils'];
+              change_tz python:utils.change_timezone;
+              munge_date python:utils.munge_date;">
+  <ul class="searchResults hfeed" tal:condition="view/viewTopics">
     <tal:block repeat="topic view/topics">
-      <li id="topic" class="gs-search-result"
+      <li id="topic" class="gs-search-result hentry"
         tal:attributes="id string:gs-group-messages-topics-ajax-response-${topic/topic_id}">
-        <a class="topic" href="#"
+        <a class="topic" href="#" rel="bookmark"
           tal:attributes="href string:/r/topic/${topic/last_post_id}">
           <span tal:condition="topic/sticky | nothing"
                 title="Sticky"
-                class="sticky gs-search-sticky ui-icon ui-icon-pin-s">&#160;</span>
-          <span class="name"
+                class="sticky gs-search-sticky">&#128204;</span>
+          <span class="name entry-title"
                 tal:content="topic/subject">TopicName</span>
         </a><!--topic-->
-        <acronym class="postCount cardinal" title="Number of posts"
-                 tal:content="topic/num_posts">?</acronym>
-        <acronym class="files" title="Number of files"
-                 tal:condition="topic/files"
-                 tal:content="python:len(topic['files'])">?</acronym>
+        <abbr class="postCount value" title="Number of posts"
+              tal:define="l topic/num_posts;
+                          p python:'posts' if l != 1 else 'post'"
+              tal:attributes="title string:${l} ${p}"
+              tal:content="topic/num_posts">?</abbr>
+        <abbr class="files" title="Number of files"
+              tal:condition="topic/files"
+              tal:define="l python:len(topic['files']);
+                          f python:'files' if l != 1 else 'file'"
+              tal:attributes="title string:${l} ${f}">&#128206;
+          <span class="value"
+                tal:content="l">?</span>
+        </abbr>
         <div class="metadata muted">
           Last post by
-          <a class="name" href="#"
-            tal:omit-tag="not:topic/last_author/exists"
-            tal:attributes="href topic/last_author/url"><em class="fn" 
-                                                            tal:content="topic/last_author/name">Me!</em></a>
+          <a class="name author hcard" href="#"
+             tal:omit-tag="not:topic/last_author/exists"
+             tal:attributes="href topic/last_author/url"><em class="fn" 
+                                                             tal:content="topic/last_author/name">Me!</em></a>
           at
-          <em class="date"
-            tal:define="ctx view/context; d topic/last_post_date"
-            tal:content="python:munge_date(ctx, d)">a date</em>
+          <em class="updated"
+            tal:define="ctx view/context; d topic/last_post_date;
+                        z python:change_tz(d, 'UTC').replace(microsecond=0);">
+            <abbr title="date" class="value"
+                  tal:attributes="title string:${z/isoformat}Z"
+                  tal:content="python:munge_date(ctx, d)">a date</abbr></em>
         </div><!--metadata-->
         <div class="tags muted" tal:condition="topic/keywords">
           <ul class="inline-list">
             <li>Keywords:</li>
             <tal:block tal:repeat="keyword topic/keywords">
               <li>
-                <a href="#" class="keyword gs-search-keyword muted"
+                <a href="#" class="keyword gs-search-keyword muted" rel="tag"
                   tal:content="keyword">Keyword</a>,
               </li>
             </tal:block>
