@@ -14,18 +14,16 @@
           <span class="name entry-title"
                 tal:content="topic/subject">TopicName</span>
         </a><!--topic-->
-        <abbr class="postCount value" title="Number of posts"
+        <abbr rel="tooltip" class="postCount value" title="Number of posts" 
               tal:define="l topic/num_posts;
-                          p python:'posts' if l != 1 else 'post'"
-              tal:attributes="title string:${l} ${p}"
-              tal:content="topic/num_posts">?</abbr>
-        <abbr class="files" title="Number of files"
+                       p python:'posts' if l != 1 else 'post'"
+           tal:attributes="title string:${l} ${p}"
+           tal:content="topic/num_posts">?</abbr>
+        <abbr rel="tooltip" class="files" title="Number of files"
               tal:condition="topic/files"
-              tal:define="l python:len(topic['files']);
-                          f python:'files' if l != 1 else 'file'"
-              tal:attributes="title string:${l} ${f}">&#128206;
+              tal:attributes="title topic/icons">&#128206;
           <span class="value"
-                tal:content="l">?</span>
+                tal:content="python:len(topic['files'])">?</span>
         </abbr>
         <div class="metadata muted">
           Last post by

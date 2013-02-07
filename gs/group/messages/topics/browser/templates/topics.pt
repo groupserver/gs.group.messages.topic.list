@@ -10,7 +10,7 @@
               class="btn">Search</button>
     </div><!--gs-group-messages-topics-search-->
     <p id="gs-group-messages-topics-loading" class="gs-search-loading"
-       style="display:none;">
+       style="display:none;" role="status">
       <img src="/++resource++anim/wait.gif"/> 
       Loading the topics
     </p><!--gs-group-messages-topics-loading-->
@@ -18,14 +18,12 @@
          class="gs-search-results items-list">
       &#160;
     </div><!--gs-group-messages-topics-latest-->
-    <div id="gs-group-messages-topics-toolbar" 
-         class="toolbar gs-search-toolbar">
-      <span class="ui-widget-header ui-corner-all">
-        <button id="gs-group-messages-topics-toolbar-prev"
-                class="gs-search-toolbar-previous">Newer</button>
-        <button id="gs-group-messages-topics-toolbar-next"
-                class="gs-search-toolbar-next">Older</button>
-      </span>
+    <div id="gs-group-messages-topics-toolbar" role="toolbar"
+         class="btn-toolbar gs-search-toolbar">
+      <button id="gs-group-messages-topics-toolbar-prev"
+              class="btn gs-search-toolbar-previous">Newer</button>
+      <button id="gs-group-messages-topics-toolbar-next"
+              class="btn gs-search-toolbar-next">Older</button>
     </div><!--gs-group-messages-topics-toolbar-->
     <div tal:condition="view/canPost/canPost"
       id="gs-group-messages-topics-tasks">

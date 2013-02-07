@@ -15,5 +15,8 @@
     topicsSearch = GSSearch('#gs-group-messages-topics-search', 
                             url, 0, 6, {}, null);
     topicsSearch.load();
+    jQuery('#gs-group-messages-topics-search').on('resultsloaded', function () {
+    jQuery('abbr[rel=tooltip]').tooltip();
+    });
   });
 </script><!--gs-group-messages-topics-script-->

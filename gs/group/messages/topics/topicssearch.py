@@ -8,6 +8,14 @@ from queries import TopicsQuery
 from logging import getLogger
 log = getLogger('gs.group.messages.topics.TopicsSearch')
 
+ICON_CHAR = {
+        'image': unichr(128247),  # Camera
+        'audio': unichr(128266),  # Speaker with 3 sound waves
+        'video': unichr(128249),  # Video camera
+        'text/': unichr(128211),  # Notebook
+        'other': unichr(128195),  # Page with curl
+    }
+
 
 class TopicsSearch(object):
     topicKeywords = LRUCache("TopicKeywords")
@@ -49,6 +57,8 @@ class TopicsSearch(object):
         topics = self.rawTopicInfo
         for topic in topics:
             topic['files'] = self.files_for_topic(topic)
+            icons = u' '.join([f['icon'] for f in topic['files']])
+            topic['icons'] = icons.encode('utf-8', 'ignore')
             topic['last_author'] = self.last_author_for_topic(topic)
             yield topic
 
@@ -96,8 +106,8 @@ class TopicsSearch(object):
     def files_for_topic(self, topic):
         retval = [{
                 'name': f['file_name'],
-                'url': '/r/topic/%s#post-%s' % (f['post_id'], f['post_id']),
-                'icon': f['mime_type'].replace('/', '-').replace('.', '-'),
+                'url': '/r/topic/%s# post-%s' % (f['post_id'], f['post_id']),
+                'icon': ICON_CHAR.get(f['mime_type'][:5], ICON_CHAR['other'])
             } for f in self.topicFiles
                 if f['topic_id'] == topic['topic_id']]
         return retval
