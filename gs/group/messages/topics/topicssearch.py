@@ -110,7 +110,7 @@ class TopicsSearch(object):
     def files_for_topic(self, topic):
         retval = [{
                 'name': f['file_name'],
-                'url': '/r/topic/%s# post-%s' % (f['post_id'], f['post_id']),
+                'url': '/r/topic/%s#post-%s' % (f['post_id'], f['post_id']),
                 'icon': ICON_CHAR.get(f['mime_type'][:5], ICON_CHAR['other'])
             } for f in self.topicFiles
                 if f['topic_id'] == topic['topic_id']]
