@@ -7,7 +7,7 @@
       <li id="topic" class="gs-search-result hentry"
         tal:attributes="id string:gs-group-messages-topics-ajax-response-${topic/topic_id}">
         <a class="topic" href="#" rel="bookmark"
-          tal:attributes="href string:/r/topic/${topic/last_post_id}">
+          tal:attributes="href string:${view/groupInfo/relativeURL}/messages/topic/${topic/last_post_id}/">
           <abbr role="tooltip" tal:condition="topic/sticky | nothing"
                 title="Sticky"
                 class="sticky gs-search-sticky">&#128204;</abbr>
