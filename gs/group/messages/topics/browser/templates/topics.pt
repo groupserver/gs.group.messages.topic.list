@@ -1,14 +1,20 @@
 <div id="gs-group-messages-topics">
   <div id="gs-group-messages-topics-search" class="gs-search"
      tal:condition="view/viewTopics">
-    <div class="gs-search-entry search input-append">
-      <input type="search" name="s" placeholder="Search within topics&#8230;"
-             autocomplete="on"
-             id="gs-group-messages-topics-search-input" value=""
-             title="Search this group"/>
-      <button id="gs-group-messages-topics-search-button"
-              class="btn">Search</button>
-    </div><!--gs-group-messages-topics-search-->
+    <div id="gs-group-messages-topics-search-form" class="form-inline">
+      <div class="gs-search-entry search input-append">
+        <input type="search" name="s" placeholder="Search within topics&#8230;"
+               autocomplete="on"
+               id="gs-group-messages-topics-search-input" value=""
+               title="Search this group"/>
+        <button id="gs-group-messages-topics-search-button"
+                class="btn">Search</button>
+      </div><!--gs-group-messages-topics-search-->
+      <a id="gs-group-messages-topics-search-form-new-topic" class="btn"
+         tal:condition="view/canPost/canPost"
+         href="messages/newTopic.html"><span class="muted">&#10010;</span>
+         <strong>New topic</strong></a>
+    </div><!--gs-group-messages-topics-search-form-->
     <p id="gs-group-messages-topics-loading" class="gs-search-loading"
        style="display:none;" role="status">
       <img src="/++resource++anim/wait.gif"/> 
@@ -22,6 +28,13 @@
          class="btn-toolbar gs-search-toolbar">
       <button id="gs-group-messages-topics-toolbar-prev"
               class="btn gs-search-toolbar-previous">Newer</button>
+      <ul class="dotted-inline-list">
+        <li><a href="messages/topics.html">All topics</a></li>
+        <li><a type="application/atom+xml" class="alternateATOM"
+               tal:define="title string:Topics in ${view/groupInfo/name};
+                           url string:/s/search.atom?t=1&amp;p=0&amp;g=${view/groupInfo/id}"
+               tal:attributes="href url" href="#">&#160;</a></li>
+      </ul>
       <button id="gs-group-messages-topics-toolbar-next"
               class="btn gs-search-toolbar-next">Older</button>
     </div><!--gs-group-messages-topics-toolbar-->
