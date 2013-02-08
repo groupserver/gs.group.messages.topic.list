@@ -17,6 +17,7 @@
     topicsSearch.load();
     jQuery('#gs-group-messages-topics-search').on('resultsloaded', function () {
     jQuery('abbr[role=tooltip]').tooltip();
+    jQuery('#gs-group-messages-base-tabs-buttons li:first-child a').click();
     });
   });
 </script><!--gs-group-messages-topics-script-->
