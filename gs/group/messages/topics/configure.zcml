@@ -13,13 +13,19 @@
     weight="10"
     title="Topics" />
   <!--The JavaScript to drive the Topics tab-->
-  <browser:viewlet name="gs-group-messages-topics-script"
+  <browser:viewlet 
+    name="gs-group-messages-topics-tab-script"
     manager="gs.group.home.interfaces.IGroupHomepageScripts"
-    template="browser/templates/topicscript.pt"
+    template="browser/templates/topicstab-js.pt"
     class="gs.group.home.simpletab.PublicTab"
     permission="zope2.Public"
     weight="10"
     title="Topics" />
+  <browser:resource
+    name="gs-group-messages-topics-tab-20130111.js"
+    file="browser/javascript/topicstab.js"
+    permission="zope2.Public" />
+
   <!--The page that returns the search-results to the tab. -->
   <browser:page name="gs-group-topics-ajax.html"
     for="gs.group.base.interfaces.IGSGroupMarker"
