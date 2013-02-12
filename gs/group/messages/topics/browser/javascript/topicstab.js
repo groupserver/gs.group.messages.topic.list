@@ -1,9 +1,10 @@
+jQuery.noConflict();
+
 var init_topic_search = function () {
     var topicsSearch = null;
     var b = null;
     var url = null;
 
-    jQuery.noConflict();
     b = jQuery('base').attr('href');
     if (b[b.length -1] != '/') {
         b = b + '/';
@@ -18,9 +19,7 @@ var init_topic_search = function () {
     });
 }
 
-window.addEventListener('load', function () {
-    gsJsLoader.with_modules(['/++resource++jquery-1.8.3.js',
-                             '/++resource++gs-search-base-js-20121217.js'],
-                            init_topic_search);
-}, false);
-
+jQuery(window).load(function () {
+    gsJsLoader.with('/++resource++gs-search-base-js-20121217.js',
+                    init_topic_search);
+});
