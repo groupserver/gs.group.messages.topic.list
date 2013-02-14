@@ -19,7 +19,9 @@ var init_topic_search = function () {
     });
 }
 
-jQuery(window).load(function () {
-    gsJsLoader.with('/++resource++gs-search-base-js-20121217.js',
-                    init_topic_search);
+// Connect to the DOM being ready, rather than the window loading, so the 
+// topics can load while all the other assets are being downloaded
+jQuery(document).ready(function () {
+    gsJsLoader.with_module('/++resource++gs-search-base-js-20121217.js',
+                           init_topic_search);
 });
