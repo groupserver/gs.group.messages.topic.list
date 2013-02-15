@@ -16,9 +16,9 @@
          <strong>New topic</strong></a>
     </div><!--gs-group-messages-topics-search-form-->
     <p id="gs-group-messages-topics-loading" class="gs-search-loading"
-       style="display:none;" role="status">
+       role="status">
       <img src="/++resource++anim/wait.gif"/> 
-      Loading the topics
+      Loading the topics&#8230;
     </p><!--gs-group-messages-topics-loading-->
     <div id="gs-group-messages-topics-latest" 
          class="gs-search-results items-list">
@@ -74,10 +74,6 @@
       <span class="group" tal:content="view/groupInfo/name">this group</span>
       to view the topics.
     </p>
-    <tal:block 
-      replace="structure provider:groupserver.GroupHomepageUsBarLinks">
-      &#160;
-    </tal:block>
   </tal:block>  
 </div><!--gs-group-messages-topics-->
 
