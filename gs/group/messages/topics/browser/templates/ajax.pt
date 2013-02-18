@@ -44,8 +44,11 @@
             <li>Keywords:</li>
             <tal:block tal:repeat="keyword topic/keywords">
               <li>
-                <a href="#" class="keyword gs-search-keyword muted" rel="tag"
-                  tal:content="keyword">Keyword</a>,
+                <a class="keyword gs-search-keyword muted" rel="tag"
+                   tal:attributes="title string:Search for &#8220;${keyword}&#8221;"
+                   tal:content="keyword"
+                   href="#">Keyword</a><tal:block define="n repeat/keyword/number;" 
+                   condition="python:n &lt; len(topic['keywords'])">,</tal:block>
               </li>
             </tal:block>
           </ul>
