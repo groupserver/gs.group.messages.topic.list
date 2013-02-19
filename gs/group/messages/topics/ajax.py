@@ -28,7 +28,7 @@ class TopicsAjax(GroupPage):
 
     @Lazy
     def limit(self):
-        retval = int(self.request.get('l', 6)) % 48
+        retval = int(self.request.get('l', 10)) % 48
         assert retval >= 0
         return retval
 
