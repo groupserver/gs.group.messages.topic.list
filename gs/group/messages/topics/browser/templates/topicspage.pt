@@ -22,15 +22,29 @@
         tal:attributes="href python:view.get_last_url()" />
       <link rel="up" title="Group Homepage" href="#"
         tal:attributes="title view/groupInfo/name;
-        href view/groupInfo/relativeURL" />
+        href string:${view/groupInfo/relativeURL}/" />
     </tal:block>
   </head>
   <body>
-    <tal:block metal:fill-slot="body">
-      <h1>Topics in 
+    <ul metal:fill-slot="breadcrumb">
+      <li><a tal:attributes="title string:${view/siteInfo/name} Homepage"
+             href="/" title="Home">&#8962;</a></li>
+      <li>
+        <a class="group" 
+           tal:attributes="href string:${view/groupInfo/relativeURL}/">
+          <strong
+            tal:content="view/groupInfo/name">This group</strong></a>
+      </li>
+      <li>Topics</li>
+    </ul>
+
+    <div id="gs-group-messages-topics-page" role="main" 
+         aria-labelledby="gs-group-messages-topics-page-h"
+         metal:fill-slot="body">
+      <h1 id="gs-group-messages-topics-page-h">Topics in 
         <span class="group" 
           tal:content="python:view.groupInfo.get_name()">a Group</span></h1>
-      <ul class="inline-list navlinks" 
+      <ul class="inline-list navlinks" role="navigation"
         tal:define="len view/summaryLength">
         <li>
           <a href="#" tal:condition="laterURL" class="prev"
@@ -130,7 +144,7 @@
             </tal:block>
           </tbody>
         </table>
-      <ul class="inline-list navlinks" 
+      <ul class="inline-list navlinks" role="navigation"
         tal:define="len view/summaryLength">
         <li>
           <a href="#" tal:condition="laterURL" class="prev"
@@ -157,6 +171,6 @@
         </li>
       </ul><!--navlinks-->
       </tal:block>
-    </tal:block>
+    </div><!--gs-group-messages-topics-page-->
   </body>
 </html>
