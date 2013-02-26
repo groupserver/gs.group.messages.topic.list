@@ -1,0 +1,10 @@
+<div id="gs-group-messages-topics-postinginfo">
+  <p>
+    Mail 
+    <a href="#"
+       tal:attributes="href string:mailto:${view/email}; 
+                       title string:Email ${view/groupInfo/name};">
+       <code class="email" 
+             tal:content="view/email">the email address</code></a>
+  </p>
+</div><!--gs-group-messages-topics-postinginfo-->

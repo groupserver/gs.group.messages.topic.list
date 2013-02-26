@@ -41,6 +41,16 @@
     weight="10"
     title="Topics Link" />
 
+  <browser:viewlet 
+    name="gs-group-messages-topics-postinginfo"
+    manager="gs.group.home.interfaces.IGroupHomepageSecondary"
+    template="browser/templates/postinginfo.pt"
+    class=".postinginfo.PostingInfo"
+    permission="zope2.View"
+    weight="10"
+    title="Posting Info" />
+
+
   <!--The list of topics on one page-->
   <browser:page
     for="Products.XWFMailingListManager.interfaces.IGSMessagesFolder" 
