@@ -39,20 +39,18 @@
                   tal:attributes="title string:${z/isoformat}Z"
                   tal:content="python:munge_date(ctx, d)">a date</abbr></em>
         </div><!--metadata-->
-        <div class="tags muted" tal:condition="topic/keywords">
-          <ul class="inline-list">
-            <li>Keywords:</li>
-            <tal:block tal:repeat="keyword topic/keywords">
-              <li>
-                <a class="keyword gs-search-keyword muted" rel="tag"
-                   tal:attributes="title string:Search for &#8220;${keyword}&#8221;"
-                   tal:content="keyword"
-                   href="#">Keyword</a><tal:block define="n repeat/keyword/number;" 
-                   condition="python:n &lt; len(topic['keywords'])">,</tal:block>
-              </li>
-            </tal:block>
-          </ul>
-        </div><!--tags-->
+        <ul class="tags muted inline-list" tal:condition="topic/keywords">
+          <li>Keywords:</li>
+          <tal:block tal:repeat="keyword topic/keywords">
+            <li>
+              <a class="keyword gs-search-keyword muted" rel="tag"
+                 tal:attributes="title string:Search for &#8220;${keyword}&#8221;"
+                 tal:content="keyword"
+                 href="#">Keyword</a><tal:block define="n repeat/keyword/number;" 
+                 condition="python:n &lt; len(topic['keywords'])">,</tal:block>
+            </li>
+          </tal:block>
+        </ul><!--tags-->
       </li>
     </tal:block>
   </ul><!--searchResults-->
