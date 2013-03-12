@@ -33,7 +33,8 @@
               class="btn gs-search-toolbar-previous">Newer</button>
       <ul id="gs-group-messages-topics-toolbar-navigation"
           class="dotted-inline-list" role="navigation">
-        <li><a href="messages/topics.html">All topics</a></li>
+        <li><a tal:attributes="href string:${view/groupInfo/relativeURL}/messages/topics.html"
+               href="messages/topics.html">All topics</a></li>
         <li><a type="application/atom+xml" class="alternateATOM"
                tal:define="title string:Topics in ${view/groupInfo/name};
                            url string:/s/search.atom?t=1&amp;p=0&amp;g=${view/groupInfo/id}"
