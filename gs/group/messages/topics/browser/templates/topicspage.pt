@@ -37,67 +37,54 @@
       </li>
       <li>Topics</li>
     </ul>
-
+    
     <div id="gs-group-messages-topics-page" role="main" 
          aria-labelledby="gs-group-messages-topics-page-h"
          metal:fill-slot="body">
+      <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group nav" role="navigation"
+             tal:define="len view/summaryLength">
+          <a href="#" tal:condition="laterURL" class="prev btn"
+             tal:attributes="href laterURL;
+                             title string:The ${len} more recent topics;">Prev</a>
+          <span tal:condition="not:laterURL" 
+                class="prev btn disabled">Prev</span>
+          <a href="#" class="group btn up"
+             tal:attributes="href view/groupInfo/relativeURL;
+                             title view/groupInfo/name">Up</a>
+          <a href="#" tal:condition="earlierURL" class="btn next"
+             tal:attributes="href earlierURL;
+                             title string:The ${len} older topics;">Next</a>
+          <span tal:condition="not:earlierURL" 
+                class="btn next disabled">Next</span>
+        </div><!--nav-->
+        <a tal:condition="view/userPostingInfo/canPost"
+           href="newTopic.html" class="btn"><span class="muted">&#10010;</span>
+        New topic</a>
+      </div><!--toobar-->
       <h1 id="gs-group-messages-topics-page-h">Topics in 
-        <span class="group" 
-          tal:content="python:view.groupInfo.get_name()">a Group</span></h1>
-      <ul class="inline-list navlinks" role="navigation"
-        tal:define="len view/summaryLength">
-        <li>
-          <a href="#" tal:condition="laterURL" class="prev"
-            tal:attributes="href laterURL;
-            title string:The ${len} more recent topics;">Later
-            <span tal:replace="len">-1</span> topics</a>
-          <span tal:condition="not:laterURL" class="prev">Later
-            <span tal:replace="len">-1</span> topics
-          </span>
-        </li>
-        <li>
-          <a href="#" class="up"
-            tal:attributes="href view/groupInfo/relativeURL;
-              title view/groupInfo/name">Group</a>
-        </li>
-        <li>
-          <a href="#" tal:condition="earlierURL" class="next"
-            tal:attributes="href earlierURL;
-            title string:The ${len} older topics;">Earlier
-            <span tal:replace="len">-1</span> topics</a>
-          <span tal:condition="not:earlierURL" class="next">Earlier
-            <span tal:replace="len">-1</span> topics
-          </span>
-        </li>
-      </ul><!--navlinks-->
-      <div id="usefulLinks">
-        <ul class="inline-list">
-          <li class="start" 
-            tal:condition="view/userPostingInfo/canPost">
-            <a href="newTopic.html">Start a new topic</a>
-          </li>
-        </ul>
-      </div>
+      <span class="group" 
+            tal:content="python:view.groupInfo.get_name()">a Group</span></h1>
+      
       <p class="message-result"
-        tal:condition="python:not(view.userPostingInfo.canPost) and (view.userPostingInfo.status != 2)"
-        tal:define="statusNum view/userPostingInfo/statusNum;
-          status view/userPostingInfo/status;"
-        tal:content="structure provider:groupserver.CanPost">
+         tal:condition="python:not(view.userPostingInfo.canPost) and (view.userPostingInfo.status != 2)"
+         tal:define="statusNum view/userPostingInfo/statusNum;
+                     status view/userPostingInfo/status;"
+         tal:content="structure provider:groupserver.CanPost">
         Can Post Info
       </p>
       <tal:block tal:define="munge_date python:modules['Products.XWFCore.XWFUtils'].munge_date;
-        ctx view/context;">
+                             ctx view/context;">
         <table id="topicsSummary" 
-          tal:condition="view/topics">
+               tal:condition="view/topics">
           <caption>Topics in
-            <span class="group" 
-              tal:content="view/groupInfo/name">This Group</span>
+          <span class="group" 
+                tal:content="view/groupInfo/name">This Group</span>
           </caption>
           <thead>
             <tr>
               <th class="sticky">&#160;</th>
               <th class="topic">Topic</th>
-              <th class="files">Files</th>
               <th class="posts">Posts</th>
               <th class="date">Latest Post</th>
             </tr>
@@ -105,71 +92,35 @@
           <tbody>
             <tal:block tal:repeat="topic view/topics">
               <tr id="abc123" 
-                tal:define="position repeat/topic/number;
-                class python:((position % 2) and 'odd') or 'even';"
-                tal:attributes="id topic/topic_id; class class;">
+                  tal:define="position repeat/topic/number;
+                              class python:((position % 2) and 'odd') or 'even';"
+                  tal:attributes="id topic/topic_id; class class;">
                 <td class="sticky">
                   <span tal:condition="topic/sticky | nothing"
-                    title="Sticky"
-                    class="sticky ui-icon ui-icon-pin-s">&#160;</span>
+                        title="Sticky"
+                        class="sticky ui-icon ui-icon-pin-s">&#160;</span>
                 </td>
                 <td class="topic">
                   <a class="topic" href="#"
-                    tal:attributes="href string:/r/topic/${topic/last_post_id}"
-                    tal:content="topic/subject">Topic</a>
-                </td>
-                <td class="files">
-                  <span tal:condition="topic/files">
-                    <tal:block tal:repeat="file topic/files">
-                      <a href="#" title="foo"
-                        tal:attributes="title file/name;
-                          href file/url;
-                          class string:fileIcon ${file/icon}">&#160;</a>
-                    </tal:block>
-                  </span>
+                     tal:attributes="href string:/r/topic/${topic/last_post_id}"
+                     tal:content="topic/subject">Topic</a>
                 </td>
                 <td class="posts">
                   <span class="cardinal" tal:content="topic/num_posts"/>
                 </td>
                 <td>
                   <a class="name" href="#" 
-                    tal:omit-tag="not:topic/last_author/exists"
-                    tal:attributes="href topic/last_author/url"
-                    tal:content="topic/last_author/name">Me!</a>
+                     tal:omit-tag="not:topic/last_author/exists"
+                     tal:attributes="href topic/last_author/url"
+                     tal:content="topic/last_author/name">Me!</a>
                   at
                   <span class="date"
-                    tal:content="python:munge_date(ctx, topic['last_post_date'])"/>
+                        tal:content="python:munge_date(ctx, topic['last_post_date'])"/>
                 </td>
               </tr>
             </tal:block>
           </tbody>
         </table>
-      <ul class="inline-list navlinks" role="navigation"
-        tal:define="len view/summaryLength">
-        <li>
-          <a href="#" tal:condition="laterURL" class="prev"
-            tal:attributes="href laterURL;
-            title string:The ${len} more recent topics;">Later
-            <span tal:replace="len">-1</span> topics</a>
-          <span tal:condition="not:laterURL" class="prev">Later
-            <span tal:replace="len">-1</span> topics
-          </span>
-        </li>
-        <li>
-          <a href="#" class="up"
-            tal:attributes="href view/groupInfo/relativeURL;
-              title view/groupInfo/name">Group</a>
-        </li>
-        <li>
-          <a href="#" tal:condition="earlierURL" class="next"
-            tal:attributes="href earlierURL;
-            title string:The ${len} older topics;">Earlier
-            <span tal:replace="len">-1</span> topics</a>
-          <span tal:condition="not:earlierURL" class="next">Earlier
-            <span tal:replace="len">-1</span> topics
-          </span>
-        </li>
-      </ul><!--navlinks-->
       </tal:block>
     </div><!--gs-group-messages-topics-page-->
   </body>
