@@ -44,6 +44,9 @@ by the *Posts* tab as well.
 Because the *New topic* button is displayed by the Topics viewlet this
 product depends on ``gs.group.member.canpost``.
 
+The viewlet ends with links to the *Topics* page_ and the ATOM feed for the
+topics.
+
 AJAX
 ----
 
@@ -51,6 +54,28 @@ The contents of the Topics tab is loaded from the page
 ``gs-group-topics-ajax.html`` within the group context, using AJAX. (The
 page is not viewed directly by people, so it does not have a human-friendly
 name.) The same page provides an interface to the search system [#search]_. 
+
+The Topics list provided by the AJAX is designed to provide many cues to
+information retrieval (or *information scent*). For each topic the
+following metadata is provided:
+
+* A *Sticky* marker is shown if the topic has been marked sticky by an
+  administrator. Sticky topics are always listed first.
+
+* The name of the topic (the *Subject*).
+
+* The number of posts.
+
+* The number of files. Hovering over the number of files shows icons for
+  the files posted to the topic.
+
+* Who wrote the most recent post, and when it was posted.
+
+* Keywords extracted from the topic. Clicking on a keyword performs a
+  search for other topics that contain that keyword.
+
+The CSS for the topics list makes heavy use of *muted* text, to provide a
+hierarchy of information.
 
 JavaScript
 ----------
