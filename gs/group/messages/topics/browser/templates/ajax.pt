@@ -39,7 +39,7 @@
                   tal:attributes="title string:${z/isoformat}Z"
                   tal:content="python:munge_date(ctx, d)">a date</abbr></em>
         </div><!--metadata-->
-        <ul class="tags muted inline-list" tal:condition="topic/keywords">
+        <ul class="inline-list tags muted small" tal:condition="topic/keywords">
           <li>Keywords:</li>
           <tal:block tal:repeat="keyword topic/keywords">
             <li>
