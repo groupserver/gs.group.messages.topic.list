@@ -13,11 +13,11 @@ log = getLogger('gs.group.messages.topics.TopicsSearch')
 # works well, for everything other than "text". If there is a miss then "other"
 # is used.
 ICON_CHAR = {
-        'image': unichr(128247),  # Camera
-        'audio': unichr(128266),  # Speaker with 3 sound waves
-        'video': unichr(128249),  # Video camera
-        'text/': unichr(128211),  # Notebook
-        'other': unichr(128195),  # Page with curl
+        'image': unichr(127912),
+        'audio': unichr(128265),
+        'video': unichr(127910),
+        'text/': unichr(128461),
+        'other': unichr(128461),
     }
 
 
