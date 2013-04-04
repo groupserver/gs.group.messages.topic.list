@@ -8,9 +8,12 @@
         tal:attributes="id string:gs-group-messages-topics-ajax-response-${topic/topic_id}">
         <a class="topic" href="#" rel="bookmark"
           tal:attributes="href string:${view/groupInfo/relativeURL}/messages/topic/${topic/last_post_id}/">
-          <abbr role="tooltip" tal:condition="topic/sticky | nothing"
+          <abbr tal:condition="topic/sticky | nothing"
                 title="Sticky"
-                class="sticky gs-search-sticky">&#128204;</abbr>
+                class="gs-search-sticky icon-alone">
+            <span aria-hidden="true" data-icon="&#x1f4cc;"></span>
+            <span class="screen-reader-text">Sticky</span>
+          </abbr><!--gs-search-sticky-->
           <span class="name entry-title"
                 tal:content="topic/subject">TopicName</span>
         </a><!--topic-->
@@ -21,7 +24,11 @@
            tal:content="topic/num_posts">?</abbr>
         <abbr role="tooltip" class="files muted" title="Number of files"
               tal:condition="topic/files"
-              tal:attributes="title topic/icons">&#128206;
+              tal:attributes="title topic/icons">
+          <span class="icon-alone">
+            <span aria-hidden="true" data-icon="&#128206;"></span>
+            <span class="screen-reader-text">Files:</span>
+          </span><!--icon-alone-->
           <span class="value"
                 tal:content="python:len(topic['files'])">?</span>
         </abbr>
