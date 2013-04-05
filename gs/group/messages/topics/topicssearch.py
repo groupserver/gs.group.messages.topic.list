@@ -1,24 +1,13 @@
-# coding=utf-8
+# -*- coding: utf-8 -*-
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject
+from gs.group.messages.base import get_icon
 from Products.GSSearch.queries import MessageQuery
 from Products.XWFCore.cache import LRUCache
 from queries import TopicsQuery
 
 from logging import getLogger
 log = getLogger('gs.group.messages.topics.TopicsSearch')
-
-# The lookup table for the characters that represent the file-icons. The *type*
-# is used. For speed a slice used to check the first five characters. This
-# works well, for everything other than "text". If there is a miss then "other"
-# is used.
-ICON_CHAR = {
-        'image': unichr(127912),
-        'audio': unichr(128265),
-        'video': unichr(127910),
-        'text/': unichr(128461),
-        'other': unichr(128461),
-    }
 
 
 class TopicsSearch(object):
@@ -111,7 +100,7 @@ class TopicsSearch(object):
         retval = [{
                 'name': f['file_name'],
                 'url': '/r/topic/%s#post-%s' % (f['post_id'], f['post_id']),
-                'icon': ICON_CHAR.get(f['mime_type'][:5], ICON_CHAR['other'])
+                'icon': get_icon(f['mime_type'])
             } for f in self.topicFiles
                 if f['topic_id'] == topic['topic_id']]
         return retval
