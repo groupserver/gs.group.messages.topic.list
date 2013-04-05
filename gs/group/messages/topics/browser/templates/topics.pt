@@ -39,10 +39,10 @@
              href="messages/topics.html">All topics</a>
         </li>
         <li>
-          <a type="application/atom+xml" class="alternateATOM icon-alone"
-             tal:define="title string:Topics in ${view/groupInfo/name};
-                         url string:/s/search.atom?t=1&amp;p=0&amp;g=${view/groupInfo/id}"
-             tal:attributes="href url" href="#">
+          <a type="application/atom+xml" class="icon-alone" href="#"
+             tal:define="url string:/s/search.atom?t=1&amp;p=0&amp;g=${view/groupInfo/id}"
+             tal:attributes="href url; 
+                             title string:Topics in ${view/groupInfo/name};">
               <span aria-hidden="true" data-icon="&#xe003;"></span>
               <span class="screen-reader-text">Web feed</span>
           </a>
