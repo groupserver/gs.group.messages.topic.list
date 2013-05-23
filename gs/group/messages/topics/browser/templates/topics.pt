@@ -13,6 +13,7 @@
       </div><!--gs-group-messages-topics-search-->
       <a id="gs-group-messages-topics-search-form-new-topic" class="btn"
          tal:condition="view/canPost/canPost"
+         tal:attributes="href string:${view/groupInfo/relativeURL}/messages/newTopic.html"
          href="messages/newTopic.html"><span class="muted">&#10010;</span>
          <strong>New topic</strong></a>
     </div><!--gs-group-messages-topics-search-form-->
