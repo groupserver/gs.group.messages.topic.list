@@ -4,7 +4,7 @@
     <a href="#"
        tal:attributes="href string:mailto:${view/email}; 
                        title string:Email ${view/groupInfo/name};">
-       <code class="email" 
-             tal:content="view/email">the email address</code></a>
+      <code class="email" data-icon="&#x2709;"
+            tal:content="view/email">the email address</code></a>
   </p>
 </div><!--gs-group-messages-topics-postinginfo-->
