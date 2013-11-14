@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Copyright © 2013 OnlineGroups.net and Contributors. -->
+<!-- All Rights Reserved. -->
+
+<!-- This software is subject to the provisions of the Zope Public -->
+<!-- License, Version 2.1 (ZPL).  A copy of the ZPL should accompany this -->
+<!-- distribution. -->
+
+<!-- THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED -->
+<!-- WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED -->
+<!-- WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE. -->
 <configure xmlns="http://namespaces.zope.org/zope"
   xmlns:browser="http://namespaces.zope.org/browser"
   xmlns:five="http://namespaces.zope.org/five">
 
+  <include package="zope.viewlet" file="meta.zcml" />
+
   <!--The Topics tab on the group page-->
-  <browser:viewlet 
+  <browser:viewlet
     name="gs-group-messages-topics-tab"
     manager="gs.group.messages.base.interfaces.IGroupHomepageMessages"
     template="browser/templates/topics.pt"
@@ -13,7 +26,7 @@
     weight="10"
     title="Topics" />
   <!--The JavaScript to drive the Topics tab-->
-  <browser:viewlet 
+  <browser:viewlet
     name="gs-group-messages-topics-tab-script"
     manager="gs.group.home.interfaces.IGroupHomepageScripts"
     template="browser/templates/topicstab-js.pt"
@@ -41,7 +54,7 @@
     weight="10"
     title="Topics Link" />
 
-  <browser:viewlet 
+  <browser:viewlet
     name="gs-group-messages-topics-postinginfo"
     manager="gs.group.home.interfaces.IGroupHomepageSecondary"
     template="browser/templates/postinginfo.pt"
@@ -53,10 +66,10 @@
 
   <!--The list of topics on one page-->
   <browser:page
-    for="Products.XWFMailingListManager.interfaces.IGSMessagesFolder" 
+    for="Products.XWFMailingListManager.interfaces.IGSMessagesFolder"
     name="topics.html"
     class=".topicspage.TopicsPage"
-    template="browser/templates/topicspage.pt" 
+    template="browser/templates/topicspage.pt"
     permission="zope2.View" />
 
   <!--Help-->
@@ -64,7 +77,6 @@
     manager="gs.help.interfaces.IUserHelp"
     template="browser/templates/help.pt"
     permission="zope2.Public"
-    title="Topics" 
+    title="Topics"
     weight="4"/>
 </configure>
-
