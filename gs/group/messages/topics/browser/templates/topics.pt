@@ -26,6 +26,12 @@
          class="gs-search-results items-list">
       &#160;
     </div><!--gs-group-messages-topics-latest-->
+    <p class="gs-search-failed">
+      No topics were found.
+    </p><!--gs-search-failed-->
+    <p class="gs-search-empty muted">
+      There are no topics in this group.
+    </p><!--gs-search-empty-->
     <div id="gs-group-messages-topics-toolbar" role="toolbar"
          class="btn-toolbar gs-search-toolbar">
       <button id="gs-group-messages-topics-toolbar-prev"
