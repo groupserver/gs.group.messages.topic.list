@@ -11,8 +11,7 @@
 <!-- WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND -->
 <!-- FITNESS FOR A PARTICULAR PURPOSE. -->
 <configure xmlns="http://namespaces.zope.org/zope"
-  xmlns:browser="http://namespaces.zope.org/browser"
-  xmlns:five="http://namespaces.zope.org/five">
+  xmlns:browser="http://namespaces.zope.org/browser">
 
   <include package="zope.viewlet" file="meta.zcml" />
 
@@ -35,8 +34,12 @@
     weight="10"
     title="Topics" />
   <browser:resource
-    name="gs-group-messages-topics-tab-20130111.js"
+    name="gs-group-messages-topics-tab-20131121.js"
     file="browser/javascript/topicstab.js"
+    permission="zope2.Public" />
+  <browser:resource
+    name="gs-group-messages-topics-tab-min-20131121.js"
+    file="browser/javascript/topicstab-min.js"
     permission="zope2.Public" />
 
   <!--The page that returns the search-results to the tab. -->
