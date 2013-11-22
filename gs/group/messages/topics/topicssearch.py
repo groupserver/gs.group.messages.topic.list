@@ -1,10 +1,24 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+#
+# Copyright © 2013 OnlineGroups.net and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
+from __future__ import absolute_import
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject
 from gs.group.messages.base import get_icon
 from Products.GSSearch.queries import MessageQuery
 from Products.XWFCore.cache import LRUCache
-from queries import TopicsQuery
+from .queries import TopicsQuery
 
 from logging import getLogger
 log = getLogger('gs.group.messages.topics.TopicsSearch')
