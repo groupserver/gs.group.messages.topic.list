@@ -19,7 +19,7 @@
     </div><!--gs-group-messages-topics-search-form-->
     <p id="gs-group-messages-topics-loading" class="gs-search-loading"
        role="status">
-      <img src="/++resource++anim/wait.gif" aria-visible="false" />
+      <span data-icon="&#xe619;" aria-hidden="true" class="loading"> </span>
       Loading the topics&#8230;
     </p><!--gs-group-messages-topics-loading-->
     <div id="gs-group-messages-topics-latest" aria-live="polite"
