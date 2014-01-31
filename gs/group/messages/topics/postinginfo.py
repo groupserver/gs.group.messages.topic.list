@@ -17,6 +17,7 @@ from zope.component import getMultiAdapter
 from Products.GSGroup.interfaces import IGSMailingListInfo
 from gs.group.member.canpost.interfaces import IGSPostingUser
 from gs.group.home.simpletab import UserInfoTab
+from gs.group.messages.privacy import MessagesPrivacy
 
 
 class PostingInfo(UserInfoTab):
@@ -38,4 +39,9 @@ class PostingInfo(UserInfoTab):
     def email(self):
         l = IGSMailingListInfo(self.groupInfo.groupObj)
         retval = l.get_property('mailto')
+        return retval
+
+    @Lazy
+    def privacy(self):
+        retval = MessagesPrivacy(self.context)
         return retval

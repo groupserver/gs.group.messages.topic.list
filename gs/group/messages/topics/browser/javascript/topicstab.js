@@ -1,6 +1,6 @@
 // GroupServer JavaScript module for providing the Search mechanism
 //
-// Copyright © 2013 OnlineGroups.net and Contributors.
+// Copyright © 2014 OnlineGroups.net and Contributors.
 // All Rights Reserved.
 //
 // This software is subject to the provisions of the Zope Public License,
@@ -10,7 +10,7 @@ jQuery.noConflict();
 
 function init_topic_search() {
     var topicsSearch=null, b=null, url=null,
-        ts = '#gs-group-messages-topics-search';
+        ts='#gs-group-messages-topics-search';
 
     b = jQuery('base').attr('href');
     if (b[b.length -1] != '/') {
@@ -29,4 +29,14 @@ function init_topic_search() {
 jQuery(document).ready(function () {
     gsJsLoader.with_module('/++resource++gs-search-base-js-min-20131121.js',
                            init_topic_search);
+});
+
+jQuery(window).load( function () {
+    var h=null, d=null;
+    if (jQuery('#gs-group-messages-topics-postinginfo').length != 0) {
+        h = jQuery('#gs-group-messages-topics-postinginfo-privacy').html();
+        d = {animation: true, html: true, placement: 'bottom', 
+             trigger: 'click', content: h};
+        jQuery('#gs-group-messages-topics-postinginfo-privacy-summary').popover(d);
+    }
 });

@@ -1,10 +1,24 @@
 <div id="gs-group-messages-topics-postinginfo">
   <p>
-    Mail 
-    <a href="#"
-       tal:attributes="href string:mailto:${view/email}; 
+    Mail
+    <a href="#" title="Email someone"
+       tal:attributes="href string:mailto:${view/email};
                        title string:Email ${view/groupInfo/name};">
       <code class="email" data-icon="&#x2709;"
             tal:content="view/email">the email address</code></a>
+      <br />
+      <span id="gs-group-messages-topics-postinginfo-privacy-summary"
+            title="Privacy"
+            tal:attributes="title string:Privacy: ${view/privacy/visibility};">
+        <span class="muted" role="button" aria-haspopup="true" >Post will be
+        <span class="vis"
+              tal:content="view/privacy/visibility">lurid</span></span>
+        (?)
+      </span><!--gs-group-messages-topics-postinginfo-->
   </p>
+  <div id="gs-group-messages-topics-postinginfo-privacy"
+       style="display:none;"
+       tal:content="structure provider:groupserver.PostPrivacy">
+    Privacy statement
+  </div><!--gs-group-messages-topic-add-privacy-->
 </div><!--gs-group-messages-topics-postinginfo-->
