@@ -12,16 +12,16 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-from __future__ import absolute_import
+from __future__ import absolute_import, unicode_literals
+from logging import getLogger
+log = getLogger('gs.group.messages.topics.TopicsSearch')
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject
+from gs.core import to_ascii
 from gs.group.messages.base import get_icon
 from Products.GSSearch.queries import MessageQuery
 from Products.XWFCore.cache import LRUCache
 from .queries import TopicsQuery
-
-from logging import getLogger
-log = getLogger('gs.group.messages.topics.TopicsSearch')
 
 
 class TopicsSearch(object):
@@ -64,7 +64,7 @@ class TopicsSearch(object):
         topics = self.rawTopicInfo
         for topic in topics:
             topic['files'] = self.files_for_topic(topic)
-            icons = u' '.join([f['icon'] for f in topic['files']])
+            icons = ' '.join([f['icon'] for f in topic['files']])
             topic['icons'] = icons.encode('utf-8', 'ignore')
             topic['last_author'] = self.last_author_for_topic(topic)
             yield topic
@@ -113,7 +113,8 @@ class TopicsSearch(object):
     def files_for_topic(self, topic):
         retval = [{
                 'name': f['file_name'],
-                'url': '/r/topic/%s#post-%s' % (f['post_id'], f['post_id']),
+                'url': to_ascii('/r/topic/%s#post-%s' % (f['post_id'], f
+                                                            ['post_id'])),
                 'icon': get_icon(f['mime_type'])
             } for f in self.topicFiles
                 if f['topic_id'] == topic['topic_id']]
@@ -130,7 +131,7 @@ class TopicsSearch(object):
         authorInfo = {
             'id': ui.id,
             'exists': not ui.anonymous,
-            'url': ui.url,
+            'url': to_ascii(ui.url),
             'name': ui.name,
             'onlyURL': '#'  # FIXME: Figure out what onlyURL is for
         }

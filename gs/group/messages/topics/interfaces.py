@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright © 2013 OnlineGroups.net and Contributors.
+# Copyright © 2013, 2014 OnlineGroups.net and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -12,13 +12,15 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
+from __future__ import absolute_import, unicode_literals
 from zope.contentprovider.interfaces import IContentProvider
 from zope.schema import ASCIILine
+from gs.core import to_ascii
 
 
 class IOGNLogitudinalInfo(IContentProvider):
-    pageTemplateFileName = ASCIILine(title=u"Page Template File Name",
-        description=u'The name of the ZPT file that is used to '
-            u'render the status message.',
+    pageTemplateFileName = ASCIILine(title="Page Template File Name",
+        description='The name of the ZPT file that is used to '
+            'render the status message.',
         required=False,
-        default="browser/templates/tioucscript.pt")
+        default=to_ascii("browser/templates/tioucscript.pt"))
