@@ -35,11 +35,11 @@
     weight="10"
     title="Topics" />
   <browser:resource
-    name="gs-group-messages-topics-tab-20140131.js"
+    name="gs-group-messages-topics-tab-20140313.js"
     file="browser/javascript/topicstab.js"
     permission="zope2.Public" />
   <browser:resource
-    name="gs-group-messages-topics-tab-min-20140131.js"
+    name="gs-group-messages-topics-tab-min-20140313.js"
     file="browser/javascript/topicstab-min.js"
     permission="zope2.Public" />
 
