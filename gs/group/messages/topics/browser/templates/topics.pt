@@ -39,22 +39,24 @@
               aria-flowto="gs-group-messages-topics-toolbar-next"
               data-icon="&#x25c3;"
               class="btn gs-search-toolbar-previous">Newer</button>
-      <ul id="gs-group-messages-topics-toolbar-navigation"
-          class="dotted-inline-list" role="navigation">
-        <li>
-          <a tal:attributes="href string:${view/groupInfo/relativeURL}/messages/topics.html"
-             href="messages/topics.html">All topics</a>
-        </li>
-        <li>
-          <a type="application/atom+xml" class="icon-alone" href="#"
-             tal:define="url string:/s/search.atom?t=1&amp;p=0&amp;g=${view/groupInfo/id}"
-             tal:attributes="href url;
-                             title string:Topics in ${view/groupInfo/name};">
+      <div id="gs-group-messages-topics-toolbar-navigation"
+           role="navigation">
+        <ul class="dotted-inline-list">
+          <li>
+            <a tal:attributes="href string:${view/groupInfo/relativeURL}/messages/topics.html"
+               href="messages/topics.html">All topics</a>
+          </li>
+          <li>
+            <a type="application/atom+xml" class="icon-alone" href="#"
+               tal:define="url string:/s/search.atom?t=1&amp;p=0&amp;g=${view/groupInfo/id}"
+               tal:attributes="href url;
+                               title string:Topics in ${view/groupInfo/name};">
               <span aria-hidden="true" data-icon="&#xe003;"></span>
               <span class="screen-reader-text">Web feed</span>
-          </a>
-        </li>
-      </ul>
+            </a>
+          </li>
+        </ul>
+      </div><!--gs-group-messages-topics-toolbar-navigation-->
       <button id="gs-group-messages-topics-toolbar-next"
               aria-controls="gs-group-messages-topics-latest"
               aria-flowto="gs-group-messages-topics-toolbar-navigation"
