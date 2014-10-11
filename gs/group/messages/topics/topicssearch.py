@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+############################################################################
 #
 # Copyright © 2013 OnlineGroups.net and Contributors.
 # All Rights Reserved.
@@ -11,7 +11,7 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-##############################################################################
+############################################################################
 from __future__ import absolute_import, unicode_literals
 from logging import getLogger
 log = getLogger('gs.group.messages.topics.TopicsSearch')
@@ -82,26 +82,24 @@ class TopicsSearch(object):
 
     def normal_search(self):
         retval = self.messageQuery.topic_search_keyword(
-                self.searchTokens, self.siteInfo.id,
-                [self.groupInfo.id], limit=self.limit,
-                offset=self.offset)
+            self.searchTokens, self.siteInfo.id, [self.groupInfo.id],
+            limit=self.limit, offset=self.offset)
         return retval
 
     def sticky_plus_recent(self):
         s = self.topicsQuery.sticky_topics(self.siteInfo.id,
-                                            self.groupInfo.id)
+                                           self.groupInfo.id)
         limit = max([self.limit - len(s), 0])
         r = []
         if limit:
             r = self.topicsQuery.recent_non_sitcky_topics(
-                    self.siteInfo.id, self.groupInfo.id, limit, 0)
+                self.siteInfo.id, self.groupInfo.id, limit, 0)
         retval = s + r
         return retval
 
     def just_recent(self):
         retval = self.topicsQuery.recent_non_sitcky_topics(
-                    self.siteInfo.id, self.groupInfo.id, self.limit,
-                    self.offset)
+            self.siteInfo.id, self.groupInfo.id, self.limit, self.offset)
         return retval
 
     @Lazy
@@ -112,12 +110,12 @@ class TopicsSearch(object):
 
     def files_for_topic(self, topic):
         retval = [{
-                'name': f['file_name'],
-                'url': to_ascii('/r/topic/%s#post-%s' % (f['post_id'], f
-                                                            ['post_id'])),
-                'icon': get_icon(f['mime_type'])
+            'name': f['file_name'],
+            'url': to_ascii('/r/topic/%s#post-%s' % (f['post_id'], f
+                                                     ['post_id'])),
+            'icon': get_icon(f['mime_type'])
             } for f in self.topicFiles
-                if f['topic_id'] == topic['topic_id']]
+            if f['topic_id'] == topic['topic_id']]
         return retval
 
     def last_author_for_topic(self, topic):
@@ -139,8 +137,8 @@ class TopicsSearch(object):
 
         assert authorInfo, "Author info was not created"
         if  authorInfo['id'] != userId:
-            m = 'authorInfo ID (%s) did not equal userId (%s) for the topic '\
-                '"%s". Was the user "%s" deleted?' % \
+            m = 'authorInfo ID (%s) did not equal userId (%s) for the '\
+                'topic "%s". Was the user "%s" deleted?' % \
                 (authorInfo['id'], userId, topic['topic_id'], userId)
             log.warning(m)
         return authorInfo

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+############################################################################
 #
 # Copyright © 2013, 2014 OnlineGroups.net and Contributors.
 # All Rights Reserved.
@@ -11,7 +11,7 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-##############################################################################
+############################################################################
 from __future__ import absolute_import, unicode_literals
 from logging import getLogger
 log = getLogger('Products.XWFMailingList.topicsView')
@@ -48,10 +48,10 @@ class TopicsPage(GroupPage):
         nTopics = (self.end - self.start)
         if (nTopics > self.topNTopics):
             m = 'Request for %d topics (%d--%d) from %s (%s) on ' \
-              '%s (%s) is too high; returning %d.' % \
-              (nTopics, self.start, self.end, self.groupInfo.name,
-              self.groupInfo.id, self.siteInfo.name,
-              self.siteInfo.id, self.topNTopics)
+                '%s (%s) is too high; returning %d.' % \
+                (nTopics, self.start, self.end, self.groupInfo.name,
+                 self.groupInfo.id, self.siteInfo.name,
+                 self.siteInfo.id, self.topNTopics)
             log.warn(m)
             self.end = self.start + self.topNTopics
 
@@ -83,7 +83,7 @@ class TopicsPage(GroupPage):
     def topicsSearch(self):
         searchTokens = createObject('groupserver.SearchTextTokens', '')
         retval = TopicsSearch(self.groupInfo.groupObj, searchTokens,
-                            self.summaryLength, self.start)
+                              self.summaryLength, self.start)
         return retval
 
     @Lazy

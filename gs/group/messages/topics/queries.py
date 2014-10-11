@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+############################################################################
 #
 # Copyright © 2013, 2014 OnlineGroups.net and Contributors.
 # All Rights Reserved.
@@ -11,7 +11,7 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-##############################################################################
+############################################################################
 from __future__ import absolute_import, unicode_literals
 import sqlalchemy as sa
 from gs.database import getTable, getSession
@@ -47,14 +47,16 @@ class TopicsQuery(object):
         tkt = self.topicKeywordsTable
         pt = self.postTable
         s1 = sa.select([pt.c.user_id],
-                        tt.c.last_post_id == pt.c.post_id).label('user_id')
+                       tt.c.last_post_id == pt.c.post_id).label('user_id')
         retval = [tt.c.topic_id, tt.c.last_post_id,
-                    tt.c.first_post_id, tt.c.group_id, tt.c.site_id,
-                    tt.c.original_subject, tt.c.last_post_date, tkt.c.keywords,
-                    tt.c.num_posts, tt.c.sticky, s1]
+                  tt.c.first_post_id, tt.c.group_id, tt.c.site_id,
+                  tt.c.original_subject,
+                  tt.c.last_post_date, tkt.c.keywords,
+                  tt.c.num_posts, tt.c.sticky, s1]
         return retval
 
-    def add_standard_where_clauses(self, statement, siteId, groupId, hidden):
+    def add_standard_where_clauses(self, statement, siteId, groupId,
+                                   hidden):
         statement.append_whereclause(self.topicTable.c.site_id == siteId)
         statement.append_whereclause(self.topicTable.c.group_id == groupId)
         if hidden:
@@ -82,7 +84,7 @@ class TopicsQuery(object):
         tt = self.topicTable
         tkt = self.topicKeywordsTable
         s = sa.select(self.cols, order_by=sa.desc(tt.c.last_post_date),
-                            limit=limit, offset=offset)
+                      limit=limit, offset=offset)
         self.add_standard_where_clauses(s, siteId, groupId, False)
         s.append_whereclause(tt.c.sticky == None)  # lint:ok
         s.append_whereclause(tt.c.topic_id == tkt.c.topic_id)
@@ -95,6 +97,7 @@ class TopicsQuery(object):
         return retval
 
     def search(self, searchTokens, siteId, groupId, limit=12, offset=0):
+        # TODO Look at <https://sqlalchemy-searchable.readthedocs.org/>
         tt = self.topicTable
         tkt = self.topicKeywordsTable
         # SELECT topic.topic_id from topic
@@ -106,7 +109,7 @@ class TopicsQuery(object):
         #   LIMIT = limit
         #   OFFSET = offset;
         s = sa.select(self.cols, order_by=sa.desc(tt.c.last_post_date),
-                            limit=limit, offset=offset)
+                      limit=limit, offset=offset)
         self.add_standard_where_clauses(s, siteId, groupId, False)
         s.append_whereclause(tt.c.topic_id == tkt.c.topic_id)
 
