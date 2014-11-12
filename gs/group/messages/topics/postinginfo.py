@@ -45,5 +45,4 @@ class PostingInfo(UserInfoTab):
     @Lazy
     def privacy(self):
         retval = IMessagesPrivacy(self.context)
-        print retval
         return retval
