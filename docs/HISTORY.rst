@@ -1,11 +1,21 @@
 Changelog
 =========
 
+4.4.0 (2014-11-12)
+------------------
+
+* Using the new ``IMessagesPrivacy`` adaptor from
+  `gs.group.messages.privacy`_
+
+.. _gs.group.messages.privacy: https://github.com/groupserver/gs.group.messages.privacy
+
 4.3.3 (2014-10-10)
 ------------------
 
-* Switching to GitHub as the primary code repository, and naming
-  the reStructuredText files as such
+* Switching to GitHub_ as the primary code repository
+* Naming the reStructuredText files as such
+
+.. _GitHub: https://github.com/groupserver/gs.group.messages.topics
 
 4.3.2 (2014-06-24)
 ------------------
