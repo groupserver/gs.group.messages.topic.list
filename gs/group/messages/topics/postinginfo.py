@@ -18,7 +18,7 @@ from zope.component import getMultiAdapter
 from Products.GSGroup.interfaces import IGSMailingListInfo
 from gs.group.member.canpost.interfaces import IGSPostingUser
 from gs.group.home.simpletab import UserInfoTab
-from gs.group.messages.privacy import MessagesPrivacy
+from gs.group.messages.privacy.interfaces import IMessagesPrivacy
 
 
 class PostingInfo(UserInfoTab):
@@ -44,5 +44,6 @@ class PostingInfo(UserInfoTab):
 
     @Lazy
     def privacy(self):
-        retval = MessagesPrivacy(self.context)
+        retval = IMessagesPrivacy(self.context)
+        print retval
         return retval
