@@ -1,6 +1,15 @@
 Changelog
 =========
 
+5.0.0 (2015-02-24)
+------------------
+
+* Renaming the product `gs.group.messages.topic.list`_ from
+  ``gs.group.messages.topics``
+
+.. _gs.group.messages.topic.list:
+   https://github.com/groupserver/gs.group.messages.topic.list
+
 4.4.0 (2014-11-12)
 ------------------
 
@@ -12,10 +21,8 @@ Changelog
 4.3.3 (2014-10-10)
 ------------------
 
-* Switching to GitHub_ as the primary code repository
+* Switching to GitHub as the primary code repository
 * Naming the reStructuredText files as such
-
-.. _GitHub: https://github.com/groupserver/gs.group.messages.topics
 
 4.3.2 (2014-06-24)
 ------------------
@@ -108,3 +115,5 @@ Changelog
 
 * Initial version (code originally from
   ``gs.group.messages.topic``)
+
+..  LocalWords:  GitHub reStructuredText

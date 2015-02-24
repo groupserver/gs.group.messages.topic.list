@@ -16,7 +16,7 @@ from __future__ import absolute_import, unicode_literals
 from zope.cachedescriptors.property import Lazy
 from zope.component import createObject
 from AccessControl import getSecurityManager
-from gs.group.base.page import GroupPage
+from gs.group.base import GroupPage
 from .topicssearch import TopicsSearch
 
 

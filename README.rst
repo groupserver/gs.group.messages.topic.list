@@ -1,13 +1,13 @@
-============================
-``gs.group.messages.topics``
-============================
+================================
+``gs.group.messages.topic.list``
+================================
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The list of topics in a GroupServer Group
+The list of topics in a GroupServer group
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :Author: `Michael JasonSmith`_
 :Contact: Michael JasonSmith <mpj17@onlinegroups.net>
-:Date: 2014-10-10
+:Date: 2015-02-24
 :Organization: `GroupServer.org`_
 :Copyright: This document is licensed under a
   `Creative Commons Attribution-Share Alike 4.0 International License`_
@@ -101,7 +101,7 @@ group.
 Resources
 =========
 
-- Code repository: https://github.com/groupserver/gs.group.messages.topics
+- Code repository: https://github.com/groupserver/gs.group.messages.topic.list
 - Questions and comments to http://groupserver.org/groups/development
 - Report bugs at https://redmine.iopen.net/projects/groupserver
 
@@ -115,8 +115,8 @@ Resources
 ..  [#posts] Posts are displayed by the ``gs.group.messages.post`` 
     product <https://github.com/groupserver/gs.group.messages.post>
 
-..  [#topics] Topics are displayed by the ``gs.group.messages.topic`` 
-    product <https://github.com/groupserver/gs.group.messages.topic>
+..  [#topics] Topics are displayed by the ``gs.group.messages.topic.base`` 
+    product <https://github.com/groupserver/gs.group.messages.topic.base>
 
 ..  [#group] The group page is provided by the ``gs.group.home`` 
     product <https://github.com/groupserver/gs.group.home>
