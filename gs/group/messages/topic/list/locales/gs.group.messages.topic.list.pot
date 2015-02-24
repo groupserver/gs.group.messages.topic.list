@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-02-24 20:34+0000\n"
+"POT-Creation-Date: 2015-02-24 22:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,31 @@ msgstr ""
 #. Default: "There are no topics in this group."
 #: ./browser/templates/topics.pt:40
 msgid "empty-group"
+msgstr ""
+
+#. Default: "Files:"
+#: ./browser/templates/ajax.pt:33
+msgid "files"
+msgstr ""
+
+#. Default: "Keywords:"
+#: ./browser/templates/ajax.pt:56
+msgid "list-last-keywords"
+msgstr ""
+
+#. Default: "Last post by ${author} at ${datetime}"
+#: ./browser/templates/ajax.pt:48
+msgid "list-last-post"
+msgstr ""
+
+#. Default: "Only members can view the topics."
+#: ./browser/templates/ajax.pt:70
+msgid "list-members-only"
+msgstr ""
+
+#. Default: "Sticky"
+#: ./browser/templates/ajax.pt:19
+msgid "list-sticky-topic"
 msgstr ""
 
 #. Default: "Loading the topics…"
@@ -62,8 +87,8 @@ msgstr ""
 msgid "older-topics-icon"
 msgstr ""
 
-#. Default: "Email <code class=\"email\">${emailAddress}</code>"
-#: ./browser/templates/postinginfo.pt:12
+#. Default: "Email ${emailAddress}"
+#: ./browser/templates/postinginfo.pt:11
 msgid "postinginfo-email"
 msgstr ""
 
@@ -75,6 +100,21 @@ msgstr ""
 #. Default: "Search"
 #: ./browser/templates/topics.pt:17
 msgid "search"
+msgstr ""
+
+#. Default: "📌"
+#: ./browser/templates/ajax.pt:17
+msgid "sticky-topic-icon"
+msgstr ""
+
+#. Default: "1 post"
+#: ./topicssearch.py:73
+msgid "topic-1-post"
+msgstr ""
+
+#. Default: "${nPosts} posts"
+#: ./topicssearch.py:75
+msgid "topic-n-posts"
 msgstr ""
 
 #. Default: "Search within topics…"
