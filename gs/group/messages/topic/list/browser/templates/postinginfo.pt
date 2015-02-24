@@ -8,12 +8,12 @@
     <span id="gs-group-messages-topic-list-postinginfo-email"
           i18n:translate="postinginfo-email">
       Email
-      <code
-        class="email"><a href="#" title="Email someone"
-                         tal:attributes="href string:mailto:${view/email};
-                                         title string:Email ${view/groupInfo/name};"
-                         data-icon="&#x2709;" i18n:name="emailAddress"
-                         tal:content="view/email">the email address</a></code>
+      <code i18n:name="emailAddress"
+            class="email"><a href="#" title="Email someone"
+                             tal:attributes="href string:mailto:${view/email};
+                                             title string:Email ${view/groupInfo/name};"
+                             data-icon="&#x2709;"
+                             tal:content="view/email">email</a></code>
     </span><!--gs-group-messages-topic-list-postinginfo-email-->
     <br />
     <span id="gs-group-messages-topics-postinginfo-privacy-summary"
