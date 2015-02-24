@@ -75,8 +75,8 @@
               aria-flowto="gs-group-messages-topics-toolbar-navigation"
               data-icon-after="&#x25b9;"
               class="btn gs-search-toolbar-next"
-              i18n:translate="older-topics"
-              i18n:attributes="data-icon older-topics-icon;">Older</button>
+              i18n:attributes="data-icon-after older-topics-icon;"
+              i18n:translate="older-topics">Older</button>
     </div><!--gs-group-messages-topics-toolbar-->
   </div><!--id="gs-group-messages-topics-search-->
   <tal:block condition="not:view/viewTopics">
