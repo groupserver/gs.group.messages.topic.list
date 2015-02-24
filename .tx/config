@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[gs-group-messages-topic-list.gs-group-messages-topic-list-pot]
+file_filter = gs/group/messages/topic/list/locales/<lang>/LC_MESSAGES/gs.group.messages.topic.list.po
+source_lang = en
+type = PO
+

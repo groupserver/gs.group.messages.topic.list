@@ -1,18 +1,21 @@
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: gs.group.messages.topic.list\n"
 "POT-Creation-Date: 2015-02-24 22:55+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2015-02-24 23:33+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: German (http://www.transifex.com/projects/p/gs-group-messages-topic-list/language/de/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Domain: DOMAIN\n"
+"Language: de\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
 
 #. Default: "There are no topics in this group."
 #: ./browser/templates/topics.pt:40
@@ -69,7 +72,8 @@ msgstr ""
 msgid "no-topics-found"
 msgstr ""
 
-#. Default: "You must be a <strong>logged in</strong> member of ${groupName} to view the topics."
+#. Default: "You must be a <strong>logged in</strong> member of ${groupName}
+#. to view the topics."
 #: ./browser/templates/topics.pt:86
 msgid "not-logged-in"
 msgstr ""
@@ -143,4 +147,3 @@ msgstr ""
 #: ./browser/templates/topics.pt:67
 msgid "web-feed-link"
 msgstr ""
-
