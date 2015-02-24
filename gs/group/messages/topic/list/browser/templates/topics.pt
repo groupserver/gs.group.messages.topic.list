@@ -1,4 +1,8 @@
-<div id="gs-group-messages-topics">
+<div id="gs-group-messages-topics"
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="gs.group.messages.topic.list">
   <div id="gs-group-messages-topics-search" tal:condition="view/viewTopics"
        class="gs-search" role="application">
     <div id="gs-group-messages-topics-search-form" class="form-inline">
@@ -7,29 +11,33 @@
         <input type="search" name="s" placeholder="Search within topics&#8230;"
                autocomplete="on"
                id="gs-group-messages-topics-search-input" value=""
-               title="Search within topics"/>
+               title="Search within topics"
+               i18n:attributes="placeholder topic-search-placeholder;
+                                title topic-search-title;" />
         <button id="gs-group-messages-topics-search-button"
-                class="btn">Search</button>
+                class="btn"
+                i18n:translate="search">Search</button>
       </div><!--gs-group-messages-topics-search-->
       <a id="gs-group-messages-topics-search-form-new-topic" class="btn"
          tal:condition="view/canPost/canPost"
          tal:attributes="href string:${view/groupInfo/relativeURL}/messages/newTopic.html"
          href="messages/newTopic.html"><span class="muted">&#10010;</span>
-         <strong>New topic</strong></a>
+         <strong i18n:translate="new-topic">New topic</strong></a>
     </div><!--gs-group-messages-topics-search-form-->
     <p id="gs-group-messages-topics-loading" class="gs-search-loading"
        role="status">
       <span data-icon="&#xe619;" aria-hidden="true" class="loading"> </span>
-      Loading the topics&#8230;
+      <tal:block
+        i18n:translate="loading">Loading the topics&#8230;</tal:block>
     </p><!--gs-group-messages-topics-loading-->
     <div id="gs-group-messages-topics-latest" aria-live="polite"
          class="gs-search-results items-list">
       &#160;
     </div><!--gs-group-messages-topics-latest-->
-    <p class="gs-search-failed">
+    <p class="gs-search-failed" i18n:translate="no-topics-found">
       No topics were found.
     </p><!--gs-search-failed-->
-    <p class="gs-search-empty muted">
+    <p class="gs-search-empty muted" i18n:translate="empty-group">
       There are no topics in this group.
     </p><!--gs-search-empty-->
     <div id="gs-group-messages-topics-toolbar" role="toolbar"
@@ -38,21 +46,26 @@
               aria-controls="gs-group-messages-topics-latest"
               aria-flowto="gs-group-messages-topics-toolbar-next"
               data-icon="&#x25c3;"
-              class="btn gs-search-toolbar-previous">Newer</button>
+              class="btn gs-search-toolbar-previous"
+              i18n:translate="newer-topics"
+              i18n:attributes="data-icon newer-topics-icon;">Newer</button>
       <div id="gs-group-messages-topics-toolbar-navigation"
            role="navigation">
         <ul class="dotted-inline-list">
           <li>
             <a tal:attributes="href string:${view/groupInfo/relativeURL}/messages/topics.html"
-               href="messages/topics.html">All topics</a>
+               href="messages/topics.html"
+              i18n:translate="topics-page-link">All topics</a>
           </li>
           <li>
             <a type="application/atom+xml" class="icon-alone" href="#"
+               title="Web feed of topics"
                tal:define="url string:/s/search.atom?t=1&amp;p=0&amp;g=${view/groupInfo/id}"
-               tal:attributes="href url;
-                               title string:Topics in ${view/groupInfo/name};">
+               tal:attributes="href url"
+               i18n:attributes="title web-feed-icon-title;">
               <span aria-hidden="true" data-icon="&#xe003;"></span>
-              <span class="screen-reader-text">Web feed</span>
+              <span class="screen-reader-text"
+                    i18n:translate="web-feed-link">Web feed</span>
             </a>
           </li>
         </ul>
@@ -61,14 +74,17 @@
               aria-controls="gs-group-messages-topics-latest"
               aria-flowto="gs-group-messages-topics-toolbar-navigation"
               data-icon-after="&#x25b9;"
-              class="btn gs-search-toolbar-next">Older</button>
+              class="btn gs-search-toolbar-next"
+              i18n:translate="older-topics"
+              i18n:attributes="data-icon older-topics-icon;">Older</button>
     </div><!--gs-group-messages-topics-toolbar-->
   </div><!--id="gs-group-messages-topics-search-->
   <tal:block condition="not:view/viewTopics">
     <!--We must be looking at a private group-->
-    <p>
-      You must be a logged in member of
-      <span class="group" tal:content="view/groupInfo/name">this group</span>
+    <p i18n:translate="not-logged-in">
+      You must be a <strong>logged in</strong> member of
+      <span class="group" i18n:name="groupName"
+            tal:content="view/groupInfo/name">this group</span>
       to view the topics.
     </p>
   </tal:block>

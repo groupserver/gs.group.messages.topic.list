@@ -19,6 +19,7 @@ from gs.core import to_ascii
 
 
 class IOGNLogitudinalInfo(IContentProvider):
+    # --=mpj17=-- No i18n needed for content provider
     pageTemplateFileName = ASCIILine(
         title="Page Template File Name",
         description='The name of the ZPT file that is used to '

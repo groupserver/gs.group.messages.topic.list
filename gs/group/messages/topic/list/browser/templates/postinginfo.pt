@@ -2,20 +2,25 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="gs.group.messages.topics"
+      i18n:domain="gs.group.messages.topic.list"
       id="gs-group-messages-topics-postinginfo">
-  <p i18n:translate="gs-group-messages-topics-postinginfo-summary">
-    Email
-    <a href="#" title="Email someone"
-       tal:attributes="href string:mailto:${view/email};
-                       title string:Email ${view/groupInfo/name};">
-      <code class="email" data-icon="&#x2709;" i18n:name="emailAddress"
-            tal:content="view/email">the email address</code></a>
-      <br />
-      <span id="gs-group-messages-topics-postinginfo-privacy-summary"
-            title="Privacy"
-            tal:attributes="title string:Privacy: ${view/privacy/visibility};">
+  <p>
+    <span id="gs-group-messages-topic-list-postinginfo-email"
+          i18n:translate="postinginfo-email">
+      Email
+      <code
+        class="email"><a href="#" title="Email someone"
+                         tal:attributes="href string:mailto:${view/email};
+                                         title string:Email ${view/groupInfo/name};"
+                         data-icon="&#x2709;" i18n:name="emailAddress"
+                         tal:content="view/email">the email address</a></code>
+    </span><!--gs-group-messages-topic-list-postinginfo-email-->
+    <br />
+    <span id="gs-group-messages-topics-postinginfo-privacy-summary"
+          title="Privacy"
+          tal:attributes="title string:Privacy: ${view/privacy/visibility};">
         <span class="muted" role="button"
+              i18n:translate="postinginfo-privacy"
               aria-haspopup="true">Post will be
         <span class="vis" i18n:name="visibility"
               tal:content="view/privacy/visibility">lurid</span></span>

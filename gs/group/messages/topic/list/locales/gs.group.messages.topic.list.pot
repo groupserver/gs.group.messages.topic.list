@@ -1,0 +1,108 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2015-02-24 20:23+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: gs.group.messages.topic.list\n"
+
+#. Default: "There are no topics in this group."
+#: ./browser/templates/topics.pt:40
+msgid "empty-group"
+msgstr ""
+
+#. Default: "Loading the topics…"
+#: ./browser/templates/topics.pt:30
+msgid "loading"
+msgstr ""
+
+#. Default: "New topic"
+#: ./browser/templates/topics.pt:25
+msgid "new-topic"
+msgstr ""
+
+#. Default: "Newer"
+#: ./browser/templates/topics.pt:45
+msgid "newer-topics"
+msgstr ""
+
+#. Default: "◃"
+#: ./browser/templates/topics.pt:45
+msgid "newer-topics-icon"
+msgstr ""
+
+#. Default: "No topics were found."
+#: ./browser/templates/topics.pt:37
+msgid "no-topics-found"
+msgstr ""
+
+#. Default: "You must be a <strong>logged in</strong> member of ${groupName} to view the topics."
+#: ./browser/templates/topics.pt:86
+msgid "not-logged-in"
+msgstr ""
+
+#. Default: "Older"
+#: ./browser/templates/topics.pt:73
+msgid "older-topics"
+msgstr ""
+
+#: ./browser/templates/topics.pt:73
+msgid "older-topics-icon"
+msgstr ""
+
+#. Default: "Email <code class=\"email\">${emailAddress}</code>"
+#: ./browser/templates/postinginfo.pt:12
+msgid "postinginfo-email"
+msgstr ""
+
+#. Default: "Post will be ${visibility}"
+#: ./browser/templates/postinginfo.pt:25
+msgid "postinginfo-privacy"
+msgstr ""
+
+#. Default: "Search"
+#: ./browser/templates/topics.pt:17
+msgid "search"
+msgstr ""
+
+#. Default: "Search within topics…"
+#: ./browser/templates/topics.pt:11
+msgid "topic-search-placeholder"
+msgstr ""
+
+#. Default: "Search within topics"
+#: ./browser/templates/topics.pt:11
+msgid "topic-search-title"
+msgstr ""
+
+#. Default: "All topics"
+#: ./browser/templates/topics.pt:56
+msgid "topics-page-link"
+msgstr ""
+
+#. Default: "Topics"
+#: ./topicstab.py:26
+msgid "topics-tab-title"
+msgstr ""
+
+#. Default: "Web feed of topics"
+#: ./browser/templates/topics.pt:61
+msgid "web-feed-icon-title"
+msgstr ""
+
+#. Default: "Web feed"
+#: ./browser/templates/topics.pt:67
+msgid "web-feed-link"
+msgstr ""
+

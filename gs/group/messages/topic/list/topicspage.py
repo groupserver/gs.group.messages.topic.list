@@ -14,7 +14,7 @@
 ############################################################################
 from __future__ import absolute_import, unicode_literals
 from logging import getLogger
-log = getLogger('Products.XWFMailingList.topicsView')
+log = getLogger('gs.group.messages.topic.list.page')
 from zope.cachedescriptors.property import Lazy
 from zope.component import getMultiAdapter, createObject
 from gs.core import to_ascii
