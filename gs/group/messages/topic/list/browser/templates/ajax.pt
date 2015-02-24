@@ -1,7 +1,8 @@
 <div id="gs-group-messages-topics-ajax-response"
-  tal:define="utils python:modules['Products.XWFCore.XWFUtils'];
-              change_tz python:utils.change_timezone;
-              munge_date python:utils.munge_date;">
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      tal:define="utils python:modules['Products.XWFCore.XWFUtils'];
+                  change_tz python:utils.change_timezone;
+                  munge_date python:utils.munge_date;">
   <ul class="searchResults hfeed" tal:condition="view/viewTopics">
     <tal:block repeat="topic view/topics">
       <li id="topic" class="gs-search-result hentry"
@@ -17,7 +18,7 @@
           <span class="name entry-title"
                 tal:content="topic/subject">TopicName</span>
         </a><!--topic-->
-        <abbr role="tooltip" class="postCount value" title="Number of posts" 
+        <abbr role="tooltip" class="postCount value" title="Number of posts"
               tal:define="l topic/num_posts;
                        p python:'posts' if l != 1 else 'post'"
            tal:attributes="title string:${l} ${p}"
@@ -36,7 +37,7 @@
           Last post by
           <a class="name author hcard" href="#"
              tal:omit-tag="not:topic/last_author/exists"
-             tal:attributes="href topic/last_author/url"><em class="fn" 
+             tal:attributes="href topic/last_author/url"><em class="fn"
                                                              tal:content="topic/last_author/name">Me!</em></a>
           at
           <em class="updated"
@@ -53,7 +54,7 @@
               <a class="keyword gs-search-keyword muted" rel="tag"
                  tal:attributes="title string:Search for &#8220;${keyword}&#8221;"
                  tal:content="keyword"
-                 href="#">Keyword</a><tal:block define="n repeat/keyword/number;" 
+                 href="#">Keyword</a><tal:block define="n repeat/keyword/number;"
                  condition="python:n &lt; len(topic['keywords'])">,</tal:block>
             </li>
           </tal:block>

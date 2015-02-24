@@ -1,9 +1,9 @@
 <div id="gs-group-messages-topics-help" class="section">
   <h3>Topics Tab</h3>
   <p>
-    The <cite class="tab">Topics</cite> tab shows what people have be 
+    The <cite class="tab">Topics</cite> tab shows what people have be
     discussing in a group.
-    By default the tab shows the topics that people have posted to 
+    By default the tab shows the topics that people have posted to
     recently, with the most recent topic first.
     For each topic the following information is provided.
   </p>
@@ -12,7 +12,7 @@
     <dd>The name of the topic.</dd>
 
     <dt>Files</dt>
-    <dd>The icons representing each file that has been posted to the 
+    <dd>The icons representing each file that has been posted to the
     topic, if any, will appear after the name.</dd>
 
     <dt>Keywords</dt>
@@ -23,7 +23,7 @@
     <dd>The number of posts in the topic.</dd>
 
     <dt>Most recent author</dt>
-    <dd>The name of the person who most recently posted to the 
+    <dd>The name of the person who most recently posted to the
       topic.</dd>
 
     <dt>Date of the most recent post</dt>
@@ -40,11 +40,11 @@
   </p>
   <p>
     You can
-    <a href="#gs-group-messages-topics-help-viewolder">view older 
+    <a href="#gs-group-messages-topics-help-viewolder">view older
       topics,</a>
-    <a href="#gs-group-messages-topics-help-search">search the 
+    <a href="#gs-group-messages-topics-help-search">search the
       topics,</a>
-    and 
+    and
     <a href="#gs-group-messages-topics-help-search">find similar
       topics.</a>
   </p>
@@ -52,14 +52,14 @@
     <h4>View Older Topics</h4>
     <p>
       The <cite class="tab">Topics</cite> tab show six topics at once.
-      To view older topics click the 
-      <samp class="button">Older</samp> button; the older topics will be 
+      To view older topics click the
+      <samp class="button">Older</samp> button; the older topics will be
       shown.
       To return to the display of the more recent topics click on the
-      <samp class="button">Newer</samp> button; the older topics will be 
+      <samp class="button">Newer</samp> button; the older topics will be
       shown.
     </p>
-  </div><!--gs-group-messages-topics-help-viewolder-->  
+  </div><!--gs-group-messages-topics-help-viewolder-->
   <div class="section" id="gs-group-messages-topics-help-search">
     <h4>Search the Topics</h4>
     <p>
@@ -88,9 +88,9 @@
   <div class="section" id="gs-group-messages-topics-help-similar">
     <h4>Find Similar Topics</h4>
     <p>
-      To find a topic in the group that is similar to another 
+      To find a topic in the group that is similar to another
       click on one of the <samp class="link">keywords</samp>
-      A search for topics with that keyword will be made, with the 
+      A search for topics with that keyword will be made, with the
       results shown in the <cite class="tab">Topics</cite> tab.
     </p>
   </div><!--gs-group-messages-topics-help-similar-->

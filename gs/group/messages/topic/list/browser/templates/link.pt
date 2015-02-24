@@ -1,5 +1,6 @@
-<link id="gs-group-messages-topics-link" 
-  rel="alternate" type="application/atom+xml" title="Topics Feed"
-  href="#"
-  tal:attributes="href string:/s/search.atom?g=${view/groupInfo/id}&t=1&p=0;
-    title string:Topics in ${view/groupInfo/name}"/>
+<link id="gs-group-messages-topics-link"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      rel="alternate" type="application/atom+xml" title="Topics Feed"
+      href="#"
+      tal:attributes="href string:/s/search.atom?g=${view/groupInfo/id}&amp;t=1&amp;p=0;
+                      title string:Topics in ${view/groupInfo/name}"/>
