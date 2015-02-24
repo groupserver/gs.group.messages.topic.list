@@ -1,5 +1,7 @@
 <div id="gs-group-messages-topics-ajax-response"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="gs.group.messages.topic.list"
       tal:define="utils python:modules['Products.XWFCore.XWFUtils'];
                   change_tz python:utils.change_timezone;
                   munge_date python:utils.munge_date;">
@@ -8,47 +10,49 @@
       <li id="topic" class="gs-search-result hentry"
         tal:attributes="id string:gs-group-messages-topics-ajax-response-${topic/topic_id}">
         <a class="topic" href="#" rel="bookmark"
-          tal:attributes="href string:${view/groupInfo/relativeURL}/messages/topic/${topic/last_post_id}/">
+           tal:attributes="href string:${view/groupInfo/relativeURL}/messages/topic/${topic/last_post_id}/">
           <abbr tal:condition="topic/sticky | nothing"
                 title="Sticky"
                 class="gs-search-sticky icon-alone">
-            <span aria-hidden="true" data-icon="&#x1f4cc;"></span>
-            <span class="screen-reader-text">Sticky</span>
+            <span aria-hidden="true" data-icon="&#x1f4cc;"
+                  i18n:attributes="data-icon sticky-topic-icon"></span>
+            <span class="screen-reader-text"
+                  i18n:translate="list-sticky-topic">Sticky</span>
           </abbr><!--gs-search-sticky-->
           <span class="name entry-title"
                 tal:content="topic/subject">TopicName</span>
         </a><!--topic-->
         <abbr role="tooltip" class="postCount value" title="Number of posts"
-              tal:define="l topic/num_posts;
-                       p python:'posts' if l != 1 else 'post'"
-           tal:attributes="title string:${l} ${p}"
-           tal:content="topic/num_posts">?</abbr>
+              tal:attributes="title topic/nPosts"
+              tal:content="topic/num_posts">?</abbr>
         <abbr role="tooltip" class="files muted" title="Number of files"
               tal:condition="topic/files"
               tal:attributes="title topic/icons">
           <span class="icon-alone">
             <span aria-hidden="true" data-icon="&#128206;"></span>
-            <span class="screen-reader-text">Files:</span>
+            <span class="screen-reader-text"
+                  i18n:translate="files">Files:</span>
           </span><!--icon-alone-->
           <span class="value"
                 tal:content="python:len(topic['files'])">?</span>
         </abbr>
-        <div class="metadata muted">
+        <div class="metadata muted"
+             i18n:translate="list-last-post">
           Last post by
-          <a class="name author hcard" href="#"
-             tal:omit-tag="not:topic/last_author/exists"
-             tal:attributes="href topic/last_author/url"><em class="fn"
-                                                             tal:content="topic/last_author/name">Me!</em></a>
+          <em class=" hcard fn" i18n:name="author">
+            <a class="name author" href="#"
+               tal:omit-tag="not:topic/last_author/exists"
+               tal:attributes="href topic/last_author/url"
+               tal:content="topic/last_author/name">Me!</a></em>
           at
-          <em class="updated"
+          <em class="updated" i18n:name="datetime"
             tal:define="ctx view/context; d topic/last_post_date;
                         z python:change_tz(d, 'UTC').replace(microsecond=0);">
-            <abbr title="date" class="value"
-                  tal:attributes="title string:${z/isoformat}Z"
-                  tal:content="python:munge_date(ctx, d)">a date</abbr></em>
+            <time tal:attributes="datetime z/isoformat; title z/isoformat"
+                  tal:content="python:munge_date(ctx, d)">a date</time></em>
         </div><!--metadata-->
         <ul class="inline-list tags muted small" tal:condition="topic/keywords">
-          <li>Keywords:</li>
+          <li i18n:translate="list-last-keywords">Keywords:</li>
           <tal:block tal:repeat="keyword topic/keywords">
             <li>
               <a class="keyword gs-search-keyword muted" rel="tag"
@@ -62,7 +66,8 @@
       </li>
     </tal:block>
   </ul><!--searchResults-->
-  <p tal:condition="not:view/viewTopics">
+  <p tal:condition="not:view/viewTopics"
+     i18n:translate="list-members-only">
     Only members can view the topics.
   </p>
 </div><!--gs-group-messages-topics-ajax-response-->
