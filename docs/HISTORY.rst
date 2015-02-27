@@ -1,15 +1,19 @@
 Changelog
 =========
 
-5.0.0 (2015-02-24)
+5.0.0 (2015-02-26)
 ------------------
 
 * Adding internationalisation_
+  
+  + Adding a German translation (thanks Alice_)
+
 * Renaming the product `gs.group.messages.topic.list`_ from
   ``gs.group.messages.topics``
 
 .. _internationalisation:
    https://www.transifex.com/projects/p/gs-group-messages-topic-list
+.. _Alice: http://groupserver.org/p/alice
 .. _gs.group.messages.topic.list:
    https://github.com/groupserver/gs.group.messages.topic.list
 

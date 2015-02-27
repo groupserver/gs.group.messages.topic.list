@@ -1,11 +1,12 @@
 # 
 # Translators:
+# Alice Rose <heldinz@posteo.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: gs.group.messages.topic.list\n"
 "POT-Creation-Date: 2015-02-24 22:55+0000\n"
-"PO-Revision-Date: 2015-02-24 23:33+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2015-02-26 16:01+0000\n"
+"Last-Translator: Alice Rose <heldinz@posteo.de>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/gs-group-messages-topic-list/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,130 +21,130 @@ msgstr ""
 #. Default: "There are no topics in this group."
 #: ./browser/templates/topics.pt:40
 msgid "empty-group"
-msgstr ""
+msgstr "Keine Themen in dieser Gruppe."
 
 #. Default: "Files:"
 #: ./browser/templates/ajax.pt:33
 msgid "files"
-msgstr ""
+msgstr "Dateien:"
 
 #. Default: "Keywords:"
 #: ./browser/templates/ajax.pt:56
 msgid "list-last-keywords"
-msgstr ""
+msgstr "Schlagwörter:"
 
 #. Default: "Last post by ${author} at ${datetime}"
 #: ./browser/templates/ajax.pt:48
 msgid "list-last-post"
-msgstr ""
+msgstr "Letzter Beitrag von ${author} um ${datetime}"
 
 #. Default: "Only members can view the topics."
 #: ./browser/templates/ajax.pt:70
 msgid "list-members-only"
-msgstr ""
+msgstr "Nur Mitglieder dürfen die Themen sehen."
 
 #. Default: "Sticky"
 #: ./browser/templates/ajax.pt:19
 msgid "list-sticky-topic"
-msgstr ""
+msgstr "Ankündigung"
 
 #. Default: "Loading the topics…"
 #: ./browser/templates/topics.pt:30
 msgid "loading"
-msgstr ""
+msgstr "Themen laden&#8230;"
 
 #. Default: "New topic"
 #: ./browser/templates/topics.pt:25
 msgid "new-topic"
-msgstr ""
+msgstr "Neues Thema"
 
 #. Default: "Newer"
 #: ./browser/templates/topics.pt:45
 msgid "newer-topics"
-msgstr ""
+msgstr "neuer"
 
 #. Default: "◃"
 #: ./browser/templates/topics.pt:45
 msgid "newer-topics-icon"
-msgstr ""
+msgstr "&#x25c3;"
 
 #. Default: "No topics were found."
 #: ./browser/templates/topics.pt:37
 msgid "no-topics-found"
-msgstr ""
+msgstr "Keine Themen gefunden."
 
 #. Default: "You must be a <strong>logged in</strong> member of ${groupName}
 #. to view the topics."
 #: ./browser/templates/topics.pt:86
 msgid "not-logged-in"
-msgstr ""
+msgstr "Um die Themen zu sehen müssen Sie <strong>eingeloggt</strong> und Mitglied von ${groupName} sein."
 
 #. Default: "Older"
 #: ./browser/templates/topics.pt:73
 msgid "older-topics"
-msgstr ""
+msgstr "älter"
 
 #. Default: "▹"
 #: ./browser/templates/topics.pt:73
 msgid "older-topics-icon"
-msgstr ""
+msgstr "&#x25b9;"
 
 #. Default: "Email ${emailAddress}"
 #: ./browser/templates/postinginfo.pt:11
 msgid "postinginfo-email"
-msgstr ""
+msgstr "Mail-Adresse ${emailAddress}"
 
 #. Default: "Post will be ${visibility}"
 #: ./browser/templates/postinginfo.pt:25
 msgid "postinginfo-privacy"
-msgstr ""
+msgstr "Ihr Beitrag wird ${visibility} sein"
 
 #. Default: "Search"
 #: ./browser/templates/topics.pt:17
 msgid "search"
-msgstr ""
+msgstr "Suchen"
 
 #. Default: "📌"
 #: ./browser/templates/ajax.pt:17
 msgid "sticky-topic-icon"
-msgstr ""
+msgstr "&#x1f4cc;"
 
 #. Default: "1 post"
 #: ./topicssearch.py:73
 msgid "topic-1-post"
-msgstr ""
+msgstr "1 Beitrag"
 
 #. Default: "${nPosts} posts"
 #: ./topicssearch.py:75
 msgid "topic-n-posts"
-msgstr ""
+msgstr "${nPosts} Beiträge"
 
 #. Default: "Search within topics…"
 #: ./browser/templates/topics.pt:11
 msgid "topic-search-placeholder"
-msgstr ""
+msgstr "Innerhalb von Themen suchen&#8230;"
 
 #. Default: "Search within topics"
 #: ./browser/templates/topics.pt:11
 msgid "topic-search-title"
-msgstr ""
+msgstr "Innerhalb von Themen suchen"
 
 #. Default: "All topics"
 #: ./browser/templates/topics.pt:56
 msgid "topics-page-link"
-msgstr ""
+msgstr "Alle Themen"
 
 #. Default: "Topics"
 #: ./topicstab.py:26
 msgid "topics-tab-title"
-msgstr ""
+msgstr "Themen"
 
 #. Default: "Web feed of topics"
 #: ./browser/templates/topics.pt:61
 msgid "web-feed-icon-title"
-msgstr ""
+msgstr "Web-Feed von Themen"
 
 #. Default: "Web feed"
 #: ./browser/templates/topics.pt:67
 msgid "web-feed-link"
-msgstr ""
+msgstr "Web-Feed"
