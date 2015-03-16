@@ -1,11 +1,12 @@
 # 
 # Translators:
+# Michael JasonSmith <mpj17@onlinegroups.net>, 2015
 # Razique Mahroua <razique.mahroua@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: gs.group.messages.topic.list\n"
 "POT-Creation-Date: 2015-02-24 22:55+0000\n"
-"PO-Revision-Date: 2015-03-12 00:12+0000\n"
+"PO-Revision-Date: 2015-03-16 20:29+0000\n"
 "Last-Translator: Michael JasonSmith <mpj17@onlinegroups.net>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/gs-group-messages-topic-list/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +52,7 @@ msgstr "Epinglé"
 #. Default: "Loading the topics…"
 #: ./browser/templates/topics.pt:30
 msgid "loading"
-msgstr "Chargement des sujets&#8230;"
+msgstr "Chargement des sujets…"
 
 #. Default: "New topic"
 #: ./browser/templates/topics.pt:25
@@ -66,7 +67,7 @@ msgstr "Récent"
 #. Default: "◃"
 #: ./browser/templates/topics.pt:45
 msgid "newer-topics-icon"
-msgstr "&#x25c3;"
+msgstr "◃"
 
 #. Default: "No topics were found."
 #: ./browser/templates/topics.pt:37
@@ -87,7 +88,7 @@ msgstr "Anciens"
 #. Default: "▹"
 #: ./browser/templates/topics.pt:73
 msgid "older-topics-icon"
-msgstr "&#x25b9;"
+msgstr "▹"
 
 #. Default: "Email ${emailAddress}"
 #: ./browser/templates/postinginfo.pt:11
@@ -107,7 +108,7 @@ msgstr "Rechercher"
 #. Default: "📌"
 #: ./browser/templates/ajax.pt:17
 msgid "sticky-topic-icon"
-msgstr "&#x1f4cc;"
+msgstr "📌"
 
 #. Default: "1 post"
 #: ./topicssearch.py:73
@@ -122,7 +123,7 @@ msgstr "${nPosts} posts"
 #. Default: "Search within topics…"
 #: ./browser/templates/topics.pt:11
 msgid "topic-search-placeholder"
-msgstr "Rechercher dans les sujets&#8230;"
+msgstr "Rechercher dans les sujets…"
 
 #. Default: "Search within topics"
 #: ./browser/templates/topics.pt:11
