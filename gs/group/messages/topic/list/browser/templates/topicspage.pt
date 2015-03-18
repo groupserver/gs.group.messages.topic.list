@@ -1,4 +1,6 @@
-<html metal:use-macro="context/@@groupserver_site_home_layout/page">
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="context/@@groupserver_site_home_layout/page">
   <head>
     <title metal:fill-slot="title">
       Topics:
@@ -8,17 +10,17 @@
     <tal:block metal:fill-slot="metadata">
       <!-- The documents related to this post -->
       <link rel="previous" title="Later topics" href=""
-        tal:define="global laterURL python:view.get_later_url()"
+        tal:define="global laterURL view/get_later_url"
         tal:condition="laterURL"
         tal:attributes="href laterURL;" />
       <link rel="next" title="Earlier topics" href=""
         tal:define="global earlierURL python:view.get_earlier_url()"
         tal:condition="earlierURL"
         tal:attributes="href earlierURL;" />
-      <link rel="first" title="Most recent topics" href="topics.html" 
+      <link rel="first" title="Most recent topics" href="topics.html"
         tal:condition="laterURL" />
-      <link rel="last" title="Oldest topics" href="" 
-        tal:condition="earlierURL" 
+      <link rel="last" title="Oldest topics" href=""
+        tal:condition="earlierURL"
         tal:attributes="href python:view.get_last_url()" />
       <link rel="up" title="Group Homepage" href="#"
         tal:attributes="title view/groupInfo/name;
@@ -30,24 +32,25 @@
       <li><a tal:attributes="title string:${view/siteInfo/name} Homepage"
              href="/" title="Home">&#8962;</a></li>
       <li>
-        <a class="group" 
+        <a class="group"
            tal:attributes="href string:${view/groupInfo/relativeURL}/">
           <strong
             tal:content="view/groupInfo/name">This group</strong></a>
       </li>
       <li>Topics</li>
     </ul>
-    
-    <div id="gs-group-messages-topics-page" role="main" 
+
+    <div id="gs-group-messages-topics-page" role="main"
          aria-labelledby="gs-group-messages-topics-page-h"
-         metal:fill-slot="body">
+         metal:fill-slot="body"
+         tal:define="global laterURL view/get_later_url">
       <div class="btn-toolbar" role="toolbar">
         <div class="btn-group nav" role="navigation"
              tal:define="len view/summaryLength">
           <a href="#" tal:condition="laterURL" class="prev btn"
              tal:attributes="href laterURL;
                              title string:The ${len} more recent topics;">Prev</a>
-          <span tal:condition="not:laterURL" 
+          <span tal:condition="not:laterURL"
                 class="prev btn disabled">Prev</span>
           <a href="#" class="group btn up"
              tal:attributes="href view/groupInfo/relativeURL;
@@ -55,17 +58,17 @@
           <a href="#" tal:condition="earlierURL" class="btn next"
              tal:attributes="href earlierURL;
                              title string:The ${len} older topics;">Next</a>
-          <span tal:condition="not:earlierURL" 
+          <span tal:condition="not:earlierURL"
                 class="btn next disabled">Next</span>
         </div><!--nav-->
         <a tal:condition="view/userPostingInfo/canPost"
            href="newTopic.html" class="btn"><span class="muted">&#10010;</span>
         New topic</a>
       </div><!--toobar-->
-      <h1 id="gs-group-messages-topics-page-h">Topics in 
-      <span class="group" 
+      <h1 id="gs-group-messages-topics-page-h">Topics in
+      <span class="group"
             tal:content="python:view.groupInfo.get_name()">a Group</span></h1>
-      
+
       <p class="message-result"
          tal:condition="python:not(view.userPostingInfo.canPost) and (view.userPostingInfo.status != 2)"
          tal:define="statusNum view/userPostingInfo/statusNum;
@@ -75,10 +78,10 @@
       </p>
       <tal:block tal:define="munge_date python:modules['Products.XWFCore.XWFUtils'].munge_date;
                              ctx view/context;">
-        <table id="topicsSummary" 
+        <table id="topicsSummary"
                tal:condition="view/topics">
           <caption>Topics in
-          <span class="group" 
+          <span class="group"
                 tal:content="view/groupInfo/name">This Group</span>
           </caption>
           <thead>
@@ -91,7 +94,7 @@
           </thead>
           <tbody>
             <tal:block tal:repeat="topic view/topics">
-              <tr id="abc123" 
+              <tr id="abc123"
                   tal:define="position repeat/topic/number;
                               class python:((position % 2) and 'odd') or 'even';"
                   tal:attributes="id topic/topic_id; class class;">
@@ -109,7 +112,7 @@
                   <span class="cardinal" tal:content="topic/num_posts"/>
                 </td>
                 <td>
-                  <a class="name" href="#" 
+                  <a class="name" href="#"
                      tal:omit-tag="not:topic/last_author/exists"
                      tal:attributes="href topic/last_author/url"
                      tal:content="topic/last_author/name">Me!</a>
