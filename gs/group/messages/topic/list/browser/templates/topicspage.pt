@@ -14,7 +14,7 @@
         tal:condition="laterURL"
         tal:attributes="href laterURL;" />
       <link rel="next" title="Earlier topics" href=""
-        tal:define="global earlierURL python:view.get_earlier_url()"
+        tal:define="global earlierURL view/get_earlier_url"
         tal:condition="earlierURL"
         tal:attributes="href earlierURL;" />
       <link rel="first" title="Most recent topics" href="topics.html"
@@ -43,7 +43,8 @@
     <div id="gs-group-messages-topics-page" role="main"
          aria-labelledby="gs-group-messages-topics-page-h"
          metal:fill-slot="body"
-         tal:define="global laterURL view/get_later_url">
+         tal:define="global laterURL view/get_later_url;
+                     global earlierURL view/get_earlier_url">
       <div class="btn-toolbar" role="toolbar">
         <div class="btn-group nav" role="navigation"
              tal:define="len view/summaryLength">
