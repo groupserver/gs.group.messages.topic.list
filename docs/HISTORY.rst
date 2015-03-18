@@ -1,6 +1,11 @@
 Changelog
 =========
 
+5.0.2 (2015-03-18)
+------------------
+
+* Fixing an error with the *Topics* page
+
 5.0.1 (2015-03-11)
 ------------------
 
@@ -21,7 +26,7 @@ Changelog
 
 .. _internationalisation:
    https://www.transifex.com/projects/p/gs-group-messages-topic-list
-.. _Alice: http://groupserver.org/p/alice
+.. _Alice: https://twitter.com/heldinz
 .. _gs.group.messages.topic.list:
    https://github.com/groupserver/gs.group.messages.topic.list
 
