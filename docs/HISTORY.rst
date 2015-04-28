@@ -1,6 +1,13 @@
 Changelog
 =========
 
+5.0.3 (2015-04-28)
+------------------
+
+* Removing ``role="application"``, closing `Bug 4156`_
+
+.. _Bug 4156: https://redmine.iopen.net/issues/4156
+
 5.0.2 (2015-03-18)
 ------------------
 
@@ -136,4 +143,4 @@ Changelog
 * Initial version (code originally from
   ``gs.group.messages.topic``)
 
-..  LocalWords:  GitHub reStructuredText
+..  LocalWords:  GitHub reStructuredText Changelog
