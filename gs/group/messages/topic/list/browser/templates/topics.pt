@@ -3,8 +3,8 @@
      xmlns:metal="http://xml.zope.org/namespaces/metal"
      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
      i18n:domain="gs.group.messages.topic.list">
-  <div id="gs-group-messages-topics-search" tal:condition="view/viewTopics"
-       class="gs-search" role="application">
+  <div id="gs-group-messages-topics-search" class="gs-search"
+       tal:condition="view/viewTopics">
     <div id="gs-group-messages-topics-search-form" class="form-inline">
       <div class="gs-search-entry search input-append"
            role="search" aria-controls="gs-group-messages-topics-latest">
