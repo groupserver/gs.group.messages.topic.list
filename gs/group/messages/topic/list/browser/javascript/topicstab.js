@@ -28,7 +28,7 @@ function init_topic_search() {
 // Connect to the DOM being ready, rather than the window loading, so the
 // topics can load while all the other assets are being downloaded
 jQuery(document).ready(function() {
-    gsJsLoader.with_module('/++resource++gs-search-base-js-min-20140313.js',
+    gsJsLoader.with_module('/++resource++gs-search-base-js-min-20160201.js',
                            init_topic_search);
 });
 
