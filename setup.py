@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 ############################################################################
 #
-# Copyright © 2012, 2013, 2014, 2015 OnlineGroups.net and Contributors.
+# Copyright © 2012, 2013, 2014, 2015, 2016 OnlineGroups.net and
+# Contributors.
+#
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -82,6 +84,8 @@ setup(
         'Products.XWFCore',
         'Products.XWFMailingListManager',
     ],
+    test_suite="{0}.tests.test_all".format(name),
+    tests_require=['mock', ],
     entry_points="""
     # -*- Entry points: -*-
     """,)

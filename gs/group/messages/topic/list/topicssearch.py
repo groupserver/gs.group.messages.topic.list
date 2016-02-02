@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ############################################################################
 #
-# Copyright © 2013 OnlineGroups.net and Contributors.
+# Copyright © 2013, 2016 OnlineGroups.net and Contributors.
 # All Rights Reserved.
 #
 # This software is subject to the provisions of the Zope Public License,
@@ -12,7 +12,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ############################################################################
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import, unicode_literals, print_function
 from logging import getLogger
 log = getLogger('gs.group.messages.topic.list.TopicsSearch')
 from zope.cachedescriptors.property import Lazy
@@ -62,8 +62,7 @@ class TopicsSearch(object):
 
     def topics(self):
         '''The main method, returns a generator for the list of topics'''
-        topics = self.rawTopicInfo
-        for topic in topics:
+        for topic in self.rawTopicInfo:
             topic['files'] = self.files_for_topic(topic)
             icons = ' '.join([f['icon'] for f in topic['files']])
             topic['icons'] = icons.encode('utf-8', 'ignore')
@@ -116,13 +115,16 @@ class TopicsSearch(object):
         return retval
 
     def files_for_topic(self, topic):
-        retval = [{
+        retval = [self.marshall_file(f) for f in self.topicFiles
+                  if f['topic_id'] == topic['topic_id']]
+        return retval
+
+    def marshall_file(self, f):
+        url = '{0}/messages/topic/{1}/#post-{1}'.format(self.groupInfo.relativeURL, f['post_id'])
+        retval = {
             'name': f['file_name'],
-            'url': to_ascii('/r/topic/%s#post-%s' % (f['post_id'], f
-                                                     ['post_id'])),
-            'icon': get_icon(f['mime_type'])
-            } for f in self.topicFiles
-            if f['topic_id'] == topic['topic_id']]
+            'url': to_ascii(url),
+            'icon': get_icon(f['mime_type']), }
         return retval
 
     def last_author_for_topic(self, topic):
