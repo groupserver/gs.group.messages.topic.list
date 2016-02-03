@@ -78,3 +78,23 @@ class TestTopicsSearch(TestCase):
         self.assertEqual(0, m_n_s.call_count)
         m_j_r.assert_called_once_with()
         self.assertEqual(r, m_j_r())
+
+    @patch('gs.group.messages.topic.list.topicssearch.createObject')
+    def test_last_author_for_topic(self, m_cO):
+        ui = MagicMock()
+        ui.id = 'example'
+        ui.anonymous = False
+        ui.url = '/p/example'
+        ui.name = 'Example Profile'
+        m_cO.return_value = ui
+        context = MagicMock()
+        ts = TopicsSearch(context, MagicMock(), 6, 1)
+        topic = {'last_post_user_id': 'example', }
+        r = ts.last_author_for_topic(topic)
+
+        m_cO.assert_called_once_with('groupserver.UserFromId', context, 'example')
+        self.assertIn('id', r)
+        self.assertIn('name', r)
+        self.assertIn('exists', r)
+        self.assertTrue(r['exists'])
+        self.assertIn('url', r)
