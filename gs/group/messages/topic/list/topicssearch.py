@@ -63,17 +63,23 @@ class TopicsSearch(object):
     def topics(self):
         '''The main method, returns a generator for the list of topics'''
         for topic in self.rawTopicInfo:
-            topic['files'] = self.files_for_topic(topic)
-            icons = ' '.join([f['icon'] for f in topic['files']])
-            topic['icons'] = icons.encode('utf-8', 'ignore')
-            topic['last_author'] = self.last_author_for_topic(topic)
-            # --=mpj17=-- It *should* be impossible to get 0 posts
-            if topic['num_posts'] == 1:
-                topic['nPosts'] = _('topic-1-post', '1 post')
-            else:
-                topic['nPosts'] = _('topic-n-posts', '${nPosts} posts',
-                                    mapping={'nPosts': topic['num_posts']})
-            yield topic
+            retval = self.marshall_topic(topic)
+            yield retval
+
+    def marshall_topic(self, topic):
+        retval = topic
+        retval['files'] = [self.marshall_file(f) for f in self.topicFiles
+                           if f['topic_id'] == retval['topic_id']]
+        icons = ' '.join([f['icon'] for f in retval['files']])
+        retval['icons'] = icons.encode('utf-8', 'ignore')
+        retval['last_author'] = self.last_author_for_topic(retval)
+        # --=mpj17=-- It *should* be impossible to get 0 posts
+        if retval['num_posts'] == 1:
+            retval['nPosts'] = _('topic-1-post', '1 post')
+        else:
+            retval['nPosts'] = _('topic-n-posts', '${nPosts} posts',
+                                 mapping={'nPosts': retval['num_posts']})
+        return retval
 
     @Lazy
     def rawTopicInfo(self):
@@ -112,11 +118,6 @@ class TopicsSearch(object):
     def topicFiles(self):
         tIds = [t['topic_id'] for t in self.rawTopicInfo]
         retval = self.messageQuery.files_metadata_topic(tIds)
-        return retval
-
-    def files_for_topic(self, topic):
-        retval = [self.marshall_file(f) for f in self.topicFiles
-                  if f['topic_id'] == topic['topic_id']]
         return retval
 
     def marshall_file(self, f):
